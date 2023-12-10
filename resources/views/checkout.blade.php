@@ -1,0 +1,106 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Checkout') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <form method="POST" action="/checkout">
+                        @csrf
+                        <div>
+                            <p class="text-5xl">Parcel details</p>
+                            <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border p-2">
+                                <div class="grid grid-cols-3">
+                                    <div class="grid grid-cols-2 mr-12">
+                                        Parcel from:
+                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='from'>
+                                            <option value="{{ $couriers['from'] }}">
+                                                {{ $couriers['from'] }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="grid grid-cols-2 mr-12">
+                                        Parcel to:
+                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='to'>
+                                            <option value="{{ $couriers['to'] }}">
+                                                {{ $couriers['to'] }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="grid grid-cols-2 mr-12">
+                                        Parcel weight:
+                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='weight'>
+                                            <option value="{{ $couriers['weight'] }}">
+                                                {{ $couriers['weight'] }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="grid grid-cols-4">
+                                    <div class="grid grid-cols-2 mr-12" >
+                                        Paid amount:
+                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='parcel_amount'>
+                                            <option value="@foreach ($parcelamounts as $parcelamount){{ $parcelamount['amount'] + 10 }}@endforeach">
+                                                @foreach ($parcelamounts as $parcelamount)
+                                                    {{ $parcelamount['amount'] + 10 }}
+                                                @endforeach
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="grid grid-cols-2 mr-12">
+                                        payment method:
+                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='payment_method'>
+                                            <option value="{{ $paymentmethods['method'] }}">
+                                                {{ $paymentmethods['method'] }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="grid grid-cols-2 mr-12">
+                                        payment status:
+                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='payment_status'>
+                                            <option value="Paid">
+                                                Paid
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="grid grid-cols-2 mr-12">
+                                        tracking id:
+                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='tracking_id'>
+                                            <option value="<?= rand(111111, 999999) ?>">
+                                                <?= rand(111111, 999999) ?>
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="ring p-2 m-2 rounded-md hover:bg-gray-700 hover:dark:bg-gray-300 hover:text-gray-100 hover:dark:text-gray-700">Ok</button>
+                    </form>
+
+                    <a href="/payment">
+                        <button href="/dashboard" class="p-2 my-5 bg-white dark:bg-gray-800 text-green-900 dark:text-green-50 hover:text-black hover:bg-white ring rounded-xl">Back</button>
+                    </a>
+                </div>
+
+                <div class="flex items-center justify-between bg-white dark:bg-gray-800 px-4 py-3 sm:px-6">
+                    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+                      <div>
+                        <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                          <a href="/dashboard" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold bg-green-400 dark:bg-green-700 text-gray-900 dark:text-gray-50 ring-1 ring-inset ring-gray-300  focus:outline-offset-0">Step 1</a>
+                          <a href="/payment" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold bg-green-400 dark:bg-green-700 text-gray-900 dark:text-gray-50 ring-1 ring-inset ring-green-300  focus:outline-offset-0">Step 2</a>
+                          <a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold bg-blue-400 dark:bg-blue-700 text-gray-900 dark:text-gray-50 ring-2 ring-inset ring-black  focus:outline-offset-0">Step 3</a>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
+
+            </div>
+        </div>
+    </div>
+</x-app-layout>
