@@ -27,9 +27,9 @@
                                 <td class="border p-2">{{ $checkout['parcel_amount'] }}</td>
                                 <td class="border p-2">{{ $checkout['payment_status'] }}</td>
                                 <td class="border p-2">{{ $checkout['tracking_id'] }}</td>
-                        @endforeach
-                                <td class="border p-2">Booked</td>
+                                <td class="border p-2">{{ $checkout['current_status'] }}</td>
                             </tr>
+                        @endforeach
                     </table>
                 </div>
             </div>

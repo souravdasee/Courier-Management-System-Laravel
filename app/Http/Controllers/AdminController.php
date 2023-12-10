@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Checkout;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -16,6 +17,10 @@ class AdminController extends Controller
             abort(403);
         }
 
-        return view('admin');
+        $checkout = Checkout::all();
+
+        return view('admin', [
+            'checkouts' => $checkout
+        ]);
     }
 }

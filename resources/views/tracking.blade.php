@@ -62,7 +62,7 @@
                                                     <td>{{ $checkout['parcel_amount'] }}</td>
                                                     <td>{{ $checkout['payment_status'] }}</td>
                                                     <td>{{ $checkout['tracking_id'] }}</td>
-                                                    <td>Booked</td>
+                                                    <td>{{ $checkout['current_status'] }}</td>
                                                 </tr>
                                             @endforeach
                                         </table>

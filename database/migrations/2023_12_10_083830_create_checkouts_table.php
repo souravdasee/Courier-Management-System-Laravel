@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('payment_method');
             $table->string('payment_status')->default('Paid');
             $table->bigInteger('tracking_id');
+            $table->string('current_status')->default('Booked');
             $table->timestamps();
         });
     }
