@@ -55,5 +55,3 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/edit/{id}', [EditController::class, 'show']);
 Route::post('/edit', [EditController::class, 'update']);
-
-Route::get('/delete/{id}', [DeleteController::class, 'delete']);
