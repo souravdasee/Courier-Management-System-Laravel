@@ -14,7 +14,9 @@ class TrackingController extends Controller
             $trackingids->where('tracking_id', '=', request('search'));
         }
 
-        // $checkout = Checkout::latest()->get();
+        if (request('search') == '') {
+            abort(403);
+        }
 
         return view('tracking', [
             'checkouts' => $trackingids->get()
