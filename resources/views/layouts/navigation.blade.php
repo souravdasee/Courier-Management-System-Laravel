@@ -18,6 +18,11 @@
                     <x-nav-link :href="route('order')" :active="request()->routeIs('order')">
                         {{ __('Ordes') }}
                     </x-nav-link>
+                    @if (auth()->user()->email === 's@d.c')
+                        <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+                            {{ __('Admin') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

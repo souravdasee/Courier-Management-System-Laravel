@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Models\Courier;
 use Faker\Provider\ar_EG\Payment;
 use Illuminate\Support\Facades\Route;
@@ -47,3 +48,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
