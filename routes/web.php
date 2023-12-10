@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\EditController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TrackingController;
@@ -54,3 +55,5 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/edit/{id}', [EditController::class, 'show']);
 Route::post('/edit', [EditController::class, 'update']);
+
+Route::get('/delete/{id}', [DeleteController::class, 'delete']);

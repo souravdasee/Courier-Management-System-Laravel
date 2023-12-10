@@ -21,7 +21,7 @@
                                 <td class="border p-2">{{ $checkout['user_id'] }}</td>
                                 <td class="border p-2">{{ $checkout['tracking_id'] }}</td>
                                 <td class="border p-2">{{ $checkout['current_status'] }}</td>
-                                <td class="border p-2"><a href={{"/edit/".$checkout['id']}} class="bg-blue-500 p-2">Edit</a><a href="#" class="bg-red-500 p-2">Delete</a></td>
+                                <td class="border p-2"><a href={{"/edit/".$checkout['id']}} class="bg-blue-500 p-2">Edit</a><a href={{"/delete/".$checkout['id']}} class="bg-red-500 p-2">Delete</a></td>
                             </tr>
                         @endforeach
                         </table>
