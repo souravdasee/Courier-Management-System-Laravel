@@ -14,7 +14,7 @@ class EditController extends Controller
             abort(403);
         }
 
-        if (auth()->user()->email !== 's@d.c') {
+        if (auth()->user()->email !== 's@d.c' && auth()->user()->email !== 'j@d.c') {
             abort(403);
         }
 

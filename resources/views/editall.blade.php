@@ -18,7 +18,7 @@
                         Weight: <input class="bg-white dark:bg-gray-900" type="number" name="weight" value="{{ $checkouts['weight'] }}">
                         Amount: <input class="bg-white dark:bg-gray-900" type="number" name="parcel_amount" value="{{ $checkouts['parcel_amount'] }}">
                         Parcel amount: <input class="bg-white dark:bg-gray-900" type="number" checked name="parcel_amount" value="{{ $checkouts['parcel_amount'] }}">
-                        Payment method: <input class="bg-white dark:bg-gray-900" type="radio" checked name="payment_method" value="{{ $checkouts['payment_method'] }}">
+                        Payment method: UPI<input class="bg-white dark:bg-gray-900" type="radio" checked name="payment_method" value="upi"><br>Card<input class="bg-white dark:bg-gray-900" type="radio" name="payment_method" value="card">
                         Payment status: <input class="bg-white dark:bg-gray-900" type="text" name="payment_status" value="{{ $checkouts['payment_status'] }}">
                         Tracking ID: <input class="bg-white dark:bg-gray-900" type="number" name="tracking_id" value="{{ $checkouts['tracking_id'] }}">
                         {{-- <input class="bg-white dark:bg-gray-900" type="" name="" value="">Current Status: {{$checkouts['current_status']}} --}}
@@ -27,7 +27,9 @@
                                 <option value="{{$stats['status']}}">{{$stats['status']}}</option>
                             @endforeach
                         </select>
-                        Remarks: <input type="text" class="bg-white dark:bg-gray-900" name="remarks" value="{{ $checkouts['remarks'] }}">
+                        {{-- Remarks: <input type="text" class="bg-white dark:bg-gray-900" name="remarks" value="{{ $checkouts['remarks'] }}"> --}}
+                        Remarks: <textarea class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="remarks" id="tinymce" cols="30" rows="10">{{ $checkouts['remarks'] }}</textarea>
+
                         <button class="border p-2 bg-blue-500" type="submit">Update</button>
                     </form>
                 </div>

@@ -18,12 +18,12 @@
                     <x-nav-link :href="route('order')" :active="request()->routeIs('order')">
                         {{ __('Ordes') }}
                     </x-nav-link>
-                    @if (auth()->user()->email === 's@d.c' || auth()->user()->email === 'j@d.c'))
+                    @if (auth()->user()->email === 's@d.c')
                         <x-nav-link :href="route('allorder')" :active="request()->routeIs('allorder')">
                             {{ __('All Orders') }}
                         </x-nav-link>
                     @endif
-                    @if (auth()->user()->email === 's@d.c')
+                    @if (auth()->user()->email === 's@d.c' || auth()->user()->email === 'j@d.c'))
                         <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                             {{ __('Status Update') }}
                         </x-nav-link>
