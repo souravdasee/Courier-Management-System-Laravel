@@ -11,31 +11,33 @@
                 <div class="p-6  text-gray-900 dark:text-gray-100">
                     <table class="border">
                         <tr class="border">
-                            <th class="border p-2">Time of booking</th>
-                            <th class="border p-2">Booking person name</th>
-                            <th class="border p-2">From</th>
-                            <th class="border p-2">To</th>
-                            <th class="border p-2">Weight</th>
-                            <th class="border p-2">Parcel amount</th>
-                            <th class="border p-2">Payment method</th>
-                            <th class="border p-2">Payment Status</th>
-                            <th class="border p-2">Tracking ID</th>
-                            <th class="border p-2">Current Status</th>
-                            <th class="border p-2">Edit</th>
+                            <th class="border p-1 underline">Time of booking</th>
+                            <th class="border p-1 underline">Booking person name</th>
+                            <th class="border p-1 underline">From</th>
+                            <th class="border p-1 underline">To</th>
+                            <th class="border p-1 underline">Weight</th>
+                            <th class="border p-1 underline">Parcel amount</th>
+                            <th class="border p-1 underline">Payment method</th>
+                            <th class="border p-1 underline">Payment Status</th>
+                            <th class="border p-1 underline">Tracking ID</th>
+                            <th class="border p-1 underline">Current Status</th>
+                            <th class="border p-1 underline">Remarks</th>
+                            <th class="border p-1 underline">Edit</th>
                         </tr>
                         @foreach($orders as $order)
                             <tr class="border">
-                                <td class="border p-2">{{ $order['created_at'] }}</td>
-                                <td class="border p-2">{{ $order['user_name'] }}</td>
-                                <td class="border p-2">{{ $order['from'] }}</td>
-                                <td class="border p-2">{{ $order['to'] }}</td>
-                                <td class="border p-2">{{ $order['weight'] }}</td>
-                                <td class="border p-2">{{ $order['parcel_amount'] }}</td>
-                                <td class="border p-2">{{ $order['payment_method'] }}</td>
-                                <td class="border p-2">{{ $order['payment_status'] }}</td>
-                                <td class="border p-2">{{ $order['tracking_id'] }}</td>
-                                <td class="border p-2">{{ $order['current_status'] }}</td>
-                                <td class="border p-2"><a href={{"/adminedit/".$order['id']}} class="bg-blue-500 p-2">Edit</a></td>
+                                <td class="border p-1">{{ $order['created_at'] }}</td>
+                                <td class="border p-1">{{ $order['user_name'] }}</td>
+                                <td class="border p-1">{{ $order['from'] }}</td>
+                                <td class="border p-1">{{ $order['to'] }}</td>
+                                <td class="border p-1">{{ $order['weight'] }}</td>
+                                <td class="border p-1">{{ $order['parcel_amount'] }}</td>
+                                <td class="border p-1">{{ $order['payment_method'] }}</td>
+                                <td class="border p-1">{{ $order['payment_status'] }}</td>
+                                <td class="border p-1">{{ $order['tracking_id'] }}</td>
+                                <td class="border p-1">{{ $order['current_status'] }}</td>
+                                <td class="border p-1">{!! $order['remarks'] !!}</td>
+                                <td class="border p-1"><a href={{"/adminedit/".$order['id']}} class="bg-blue-500 p-2">Edit</a></td>
                             </tr>
                         @endforeach
                     </table>
