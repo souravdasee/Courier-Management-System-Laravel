@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('checkouts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('user_name');
             $table->string('from');
             $table->string('to');
             $table->bigInteger('weight');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('payment_status')->default('Paid');
             $table->bigInteger('tracking_id');
             $table->string('current_status')->default('Booked');
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

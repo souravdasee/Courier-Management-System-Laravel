@@ -6,6 +6,7 @@ use App\Models\Checkout;
 use App\Models\Courier;
 use App\Models\ParcelAmount;
 use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -15,13 +16,15 @@ class CheckoutController extends Controller
         $courier = Courier::latest()->first();
         $parcelamount = ParcelAmount::all();
         $paymentmethod = Payment::latest()->first();
+        $user = User::all();
 
         return view('checkout', [
             'parcelamounts' => $parcelamount
                 ->where('from', '=', $courier->from)
                 ->where('to', '=', $courier->to),
             'paymentmethods' => $paymentmethod,
-            'couriers' => $courier
+            'couriers' => $courier,
+            'users' => $user
         ]);
     }
 
@@ -29,6 +32,7 @@ class CheckoutController extends Controller
     {
         $parcel = new Checkout();
         $parcel->user_id = $req->user()->id;
+        $parcel->user_name = $req->user()->name;
         $parcel->from = $req->from;
         $parcel->to = $req->to;
         $parcel->weight = $req->weight;

@@ -12,16 +12,16 @@
                     <form action="/edit" method="post">
                         @csrf
                         <input type="hidden" name="id" value="{{$checkouts['id']}}">
-                        <p>User ID: {{ $checkouts['user_id'] }}</p>
-                        <p>From: {{ $checkouts['from'] }}</p>
-                        <p>To: {{ $checkouts['to'] }}</p>
-                        <p>Weight: {{ $checkouts['weight'] }}</p>
-                        <p>Amount: {{ $checkouts['parcel_amount'] }}</p>
-                        <p>Payment method: {{ $checkouts['payment_method'] }}</p>
-                        <p>Payment Status: {{ $checkouts['payment_status'] }}</p>
+                        <input class="bg-white dark:bg-gray-900" type="hidden" name="user_name" value="{{ $checkouts['user_name'] }}">
+                        <input class="bg-white dark:bg-gray-900" type="hidden" name="from" value="{{ $checkouts['from'] }}">
+                        <input class="bg-white dark:bg-gray-900" type="hidden" name="to" value="{{ $checkouts['to'] }}">
+                        <input class="bg-white dark:bg-gray-900" type="hidden" name="weight" value="{{ $checkouts['weight'] }}">
+                        <input class="bg-white dark:bg-gray-900" type="hidden" name="parcel_amount" value="{{ $checkouts['parcel_amount'] }}">
+                        <input class="bg-white dark:bg-gray-900" type="hidden" checked name="payment_method" value="{{ $checkouts['payment_method'] }}">
+                        <input class="bg-white dark:bg-gray-900" type="hidden" name="payment_status" value="{{ $checkouts['payment_status'] }}">
+                        <input class="bg-white dark:bg-gray-900" type="hidden" name="tracking_id" value="{{ $checkouts['tracking_id'] }}">
                         <p>Tracking ID: {{ $checkouts['tracking_id'] }}</p>
-                        <p>Current Status: {{$checkouts['current_status']}}</p>
-                        <select class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="current_status" autofocus required>
+                        Current Status: <select class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="current_status" autofocus required>
                             @foreach ($statses as $stats)
                                 <option value="{{$stats['status']}}">{{$stats['status']}}</option>
                             @endforeach

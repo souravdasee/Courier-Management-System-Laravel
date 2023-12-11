@@ -15,6 +15,14 @@
                             <p class="text-5xl">Parcel details</p>
                             <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border p-2">
                                 <div class="grid grid-cols-3">
+                                    <div class="hidden">
+                                        Booking person name:
+                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='weight'>
+                                            <option value="@foreach($users as $user){{ $user['name'] }}@endforeach">
+                                                @foreach($users as $user){{ $user['name'] }}@endforeach
+                                            </option>
+                                        </select>
+                                    </div>
                                     <div class="grid grid-cols-2 mr-12">
                                         Parcel from:
                                         <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='from'>

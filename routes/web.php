@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Models\Courier;
+use App\Models\Checkout;
 use Faker\Provider\ar_EG\Payment;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EditController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\CourierController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\AllOrderController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DeleteController;
-use App\Http\Controllers\EditController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TrackingController;
-use App\Models\Checkout;
+use App\Http\Controllers\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -55,3 +56,7 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/edit/{id}', [EditController::class, 'show']);
 Route::post('/edit', [EditController::class, 'update']);
+
+Route::get('/allorder', [AllOrderController::class, 'index'])->name('allorder');
+Route::get('/adminedit/{id}', [AllOrderController::class, 'show']);
+Route::post('/allorder', [AllOrderController::class, 'update']);
