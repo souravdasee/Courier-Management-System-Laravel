@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class StatusController extends Controller
 {
     function index()
     {
@@ -17,9 +17,9 @@ class AdminController extends Controller
             abort(403);
         }
 
-        $checkout = Checkout::all();
+        $checkout = Checkout::paginate(10);
 
-        return view('admin', [
+        return view('status', [
             'checkouts' => $checkout
         ]);
     }

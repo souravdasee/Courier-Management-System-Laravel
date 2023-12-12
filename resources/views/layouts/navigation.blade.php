@@ -24,7 +24,7 @@
                         </x-nav-link>
                     @endif
                     @if (auth()->user()->email === 's@d.c' || auth()->user()->email === 'j@d.c'))
-                        <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+                        <x-nav-link :href="route('status')" :active="request()->routeIs('status')">
                             {{ __('Status Update') }}
                         </x-nav-link>
                     @endif

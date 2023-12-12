@@ -11,13 +11,13 @@
                 <div class="p-6  text-gray-900 dark:text-gray-100">
                     <table class="border">
                         <tr class="border">
-                            <th class="border p-2">Time of booking</th>
-                            <th class="border p-2">From</th>
-                            <th class="border p-2">To</th>
-                            <th class="border p-2">Amount</th>
-                            <th class="border p-2">Payment Status</th>
-                            <th class="border p-2">Tracking ID</th>
-                            <th class="border p-2">Current Status</th>
+                            <th class="border p-2 underline">Time of booking</th>
+                            <th class="border p-2 underline">From</th>
+                            <th class="border p-2 underline">To</th>
+                            <th class="border p-2 underline">Amount</th>
+                            <th class="border p-2 underline">Payment Status</th>
+                            <th class="border p-2 underline">Tracking ID</th>
+                            <th class="border p-2 underline">Current Status</th>
                         </tr>
                         @foreach($checkouts as $checkout)
                             <tr class="border">

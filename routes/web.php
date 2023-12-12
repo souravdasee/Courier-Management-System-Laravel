@@ -6,6 +6,7 @@ use Faker\Provider\ar_EG\Payment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EditController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\CourierController;
@@ -52,7 +53,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/status', [StatusController::class, 'index'])->name('status');
 
 Route::get('/edit/{id}', [EditController::class, 'show']);
 Route::post('/edit', [EditController::class, 'update']);

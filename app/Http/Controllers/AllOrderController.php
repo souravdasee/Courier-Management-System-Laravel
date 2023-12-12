@@ -18,7 +18,7 @@ class AllOrderController extends Controller
             abort(403);
         }
 
-        $order = Checkout::all();
+        $order = Checkout::Paginate(10);
 
         return view('allorder', [
             'orders' => $order

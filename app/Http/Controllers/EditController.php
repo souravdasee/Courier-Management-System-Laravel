@@ -31,6 +31,6 @@ class EditController extends Controller
         $update = Checkout::find($req->id);
         $update->current_status = $req->current_status;
         $update->save();
-        return redirect('admin');
+        return redirect('status');
     }
 }

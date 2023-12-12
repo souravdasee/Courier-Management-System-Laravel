@@ -6,25 +6,26 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6  text-gray-900 dark:text-gray-100">
                     <table class="border">
                         <tr class="border">
-                            <th class="border p-1 underline">Time of booking</th>
-                            <th class="border p-1 underline">Booking person name</th>
-                            <th class="border p-1 underline">From</th>
-                            <th class="border p-1 underline">To</th>
-                            <th class="border p-1 underline">Weight</th>
-                            <th class="border p-1 underline">Parcel amount</th>
-                            <th class="border p-1 underline">Payment method</th>
-                            <th class="border p-1 underline">Payment Status</th>
-                            <th class="border p-1 underline">Tracking ID</th>
-                            <th class="border p-1 underline">Current Status</th>
-                            <th class="border p-1 underline">Remarks</th>
-                            <th class="border p-1 underline">Edit</th>
+                            <th class="border p-2 underline">Time of booking</th>
+                            <th class="border p-2 underline">Booking person name</th>
+                            <th class="border p-2 underline">From</th>
+                            <th class="border p-2 underline">To</th>
+                            <th class="border p-2 underline">Weight</th>
+                            <th class="border p-2 underline">Parcel amount</th>
+                            <th class="border p-2 underline">Payment method</th>
+                            <th class="border p-2 underline">Payment Status</th>
+                            <th class="border p-2 underline">Tracking ID</th>
+                            <th class="border p-2 underline">Current Status</th>
+                            <th class="border p-2 underline">Remarks</th>
+                            <th class="border p-2 underline">Edit</th>
                         </tr>
-                        @foreach($orders as $order)
+                        <div class="container">
+                            @foreach($orders as $order)
                             <tr class="border">
                                 <td class="border p-1">{{ $order['created_at'] }}</td>
                                 <td class="border p-1">{{ $order['user_name'] }}</td>
@@ -39,8 +40,10 @@
                                 <td class="border p-1">{!! $order['remarks'] !!}</td>
                                 <td class="border p-1"><a href={{"/adminedit/".$order['id']}} class="bg-blue-500 p-2">Edit</a></td>
                             </tr>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </table>
+                    {{ $orders->links() }}
                 </div>
             </div>
         </div>
