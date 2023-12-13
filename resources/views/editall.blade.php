@@ -12,21 +12,57 @@
                     <form action="/allorder" method="post">
                         @csrf
                         <input type="hidden" name="id" value="{{$checkouts['id']}}">
-                        User name: <input class="bg-white dark:bg-gray-900" type="text" name="user_name" value="{{ $checkouts['user_name'] }}">
-                        From: <input class="bg-white dark:bg-gray-900" type="text" name="from" value="{{ $checkouts['from'] }}">
-                        To: <input class="bg-white dark:bg-gray-900" type="text" name="to" value="{{ $checkouts['to'] }}">
-                        Weight: <input class="bg-white dark:bg-gray-900" type="number" name="weight" value="{{ $checkouts['weight'] }}">
-                        Amount: <input class="bg-white dark:bg-gray-900" type="number" name="parcel_amount" value="{{ $checkouts['parcel_amount'] }}">
-                        Parcel amount: <input class="bg-white dark:bg-gray-900" type="number" checked name="parcel_amount" value="{{ $checkouts['parcel_amount'] }}">
-                        Payment method: UPI<input class="bg-white dark:bg-gray-900" type="radio" checked name="payment_method" value="upi"><br>Card<input class="bg-white dark:bg-gray-900" type="radio" name="payment_method" value="card">
-                        Payment status: <input class="bg-white dark:bg-gray-900" type="text" name="payment_status" value="{{ $checkouts['payment_status'] }}">
-                        Tracking ID: <input class="bg-white dark:bg-gray-900" type="number" name="tracking_id" value="{{ $checkouts['tracking_id'] }}">
+
+                        <div>
+                            <label for="user_name">User name: </label>
+                            <input class="bg-white dark:bg-gray-900" type="text" name="user_name" value="{{ $checkouts['user_name'] }}">
+                        </div>
+
+                        <div>
+                            <label for="from">From: </label>
+                            <input class="bg-white dark:bg-gray-900" type="text" name="from" value="{{ $checkouts['from'] }}">
+                        </div>
+
+                        <div>
+                            <label for="to">To: </label>
+                            <input class="bg-white dark:bg-gray-900" type="text" name="to" value="{{ $checkouts['to'] }}">
+                        </div>
+
+                        <div>
+                            <label for="weight">Weight: </label>
+                            <input class="bg-white dark:bg-gray-900" type="number" name="weight" value="{{ $checkouts['weight'] }}">
+                        </div>
+
+                        <div>
+                            <label for="parcel_amount">Amount: </label>
+                            <input class="bg-white dark:bg-gray-900" type="number" name="parcel_amount" value="{{ $checkouts['parcel_amount'] }}">
+                        </div>
+
+                        <div>
+                            <label for="payment_method">Payment method: </label>
+                                <label for="payment_method">UPI</label>
+                                <input class="bg-white dark:bg-gray-900" type="radio" checked name="payment_method" value="upi">
+                                <label for="payment_method">Card</label>
+                                <input class="bg-white dark:bg-gray-900" type="radio" name="payment_method" value="card">
+                        </div>
+
+                        <div>
+                            <label for="payment_method">Payment status: </label>
+                            <input class="bg-white dark:bg-gray-900" type="text" name="payment_status" value="{{ $checkouts['payment_status'] }}">
+                        </div>
+
+                        <div>
+                            <label for="tracking_id">Tracking ID: </label>
+                            <input class="bg-white dark:bg-gray-900" type="number" name="tracking_id" value="{{ $checkouts['tracking_id'] }}">
+                        </div>
                         {{-- <input class="bg-white dark:bg-gray-900" type="" name="" value="">Current Status: {{$checkouts['current_status']}} --}}
-                        Current Status: <select class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="current_status" autofocus required>
-                            @foreach ($statses as $stats)
-                                <option value="{{$stats['status']}}">{{$stats['status']}}</option>
-                            @endforeach
-                        </select>
+
+                        <div>
+                            <label for="current_status">Current Status: </label>
+                            <select class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="current_status" autofocus required>
+                                <option value="{{$checkouts['current_status']}}">{{$checkouts['current_status']}}</option>
+                            </select>
+                        </div>
 
                         <script>
                             tinymce.init({
@@ -41,9 +77,18 @@
                             ],
                             });
                         </script>
-                        Remarks: <textarea class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="remarks" id="tinymce" cols="20" rows="10">
-                            {{ $checkouts['remarks'] }}
-                        </textarea>
+                        <div>
+                            <label for="remarks">Remarks: </label>
+                            <textarea class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="remarks" id="tinymce" cols="20" rows="10">
+                                {{ $checkouts['remarks'] }}
+                            </textarea>
+                        </div>
+
+                        <div>
+                            <label for="tracking_id">Feedback Image: </label>
+                            <img class="bg-white dark:bg-gray-900" name="tracking_id" src="/storage/{{ $checkouts['image'] }}">
+                        </div>
+
                         <button class="border p-2 bg-blue-500" type="submit">Update</button>
                     </form>
                 </div>

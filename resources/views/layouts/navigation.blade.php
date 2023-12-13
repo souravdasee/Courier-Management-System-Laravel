@@ -28,6 +28,11 @@
                             {{ __('Status Update') }}
                         </x-nav-link>
                     @endif
+                    @if (auth()->user()->email === 's@d.c' || auth()->user()->email === 'j@d.c'))
+                        <x-nav-link :href="route('feedback')" :active="request()->routeIs('feedback')">
+                            {{ __('Feedback') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

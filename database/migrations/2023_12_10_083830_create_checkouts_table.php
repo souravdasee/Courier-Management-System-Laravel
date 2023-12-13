@@ -24,6 +24,8 @@ return new class extends Migration
             $table->bigInteger('tracking_id');
             $table->string('current_status')->default('Booked');
             $table->string('remarks')->nullable();
+            $table->string('image')->nullable();
+            $table->string('voice')->nullable();
             $table->timestamps();
         });
     }
