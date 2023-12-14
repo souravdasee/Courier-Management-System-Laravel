@@ -28,10 +28,12 @@
                                 <option value="{{$stats['status']}}">{{$stats['status']}}</option>
                             @endforeach
                         </select>
+
                         <div class="p-2">
                             <label for="image">Image: </label>
                             <input accept="image/*" type="file" name="image" class="border">
                         </div>
+
                         <button class="border p-2 bg-blue-500" type="submit">Update</button>
                     </form>
                 </div>
@@ -39,3 +41,15 @@
         </div>
     </div>
 </x-app-layout>
+
+{{-- <center>
+    <h1>Audio Clip Recorder</h1>
+    <button id="record" class="border hover:bg-gray-500 hover:dark:bg-gray-700 text-blue-500 p-1">Record</button>
+    <div id="sound-clip"></div>
+</center>
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+<script src="../js/voiceMemo.js"></script>
+@vite(['resources/js/voiceMemo.js']); --}}

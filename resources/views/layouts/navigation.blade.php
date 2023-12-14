@@ -23,14 +23,9 @@
                             {{ __('All Orders') }}
                         </x-nav-link>
                     @endif
-                    @if (auth()->user()->email === 's@d.c' || auth()->user()->email === 'j@d.c'))
+                    @if (auth()->user()->email === 's@d.c' || auth()->user()->email === 'j@d.c')
                         <x-nav-link :href="route('status')" :active="request()->routeIs('status')">
                             {{ __('Status Update') }}
-                        </x-nav-link>
-                    @endif
-                    @if (auth()->user()->email === 's@d.c' || auth()->user()->email === 'j@d.c'))
-                        <x-nav-link :href="route('feedback')" :active="request()->routeIs('feedback')">
-                            {{ __('Feedback') }}
                         </x-nav-link>
                     @endif
                 </div>

@@ -86,7 +86,7 @@
 
                         <div>
                             <label for="tracking_id">Feedback Image: </label>
-                            <img class="bg-white dark:bg-gray-900" name="tracking_id" src="/storage/{{ $checkouts['image'] }}">
+                            <img class="bg-white dark:bg-gray-900" name="tracking_id" src="/storage/{{ $checkouts['image'] }}" alt="No feedback image">
                         </div>
 
                         <button class="border p-2 bg-blue-500" type="submit">Update</button>
