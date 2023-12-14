@@ -15,52 +15,53 @@
 
                         <div>
                             <label for="user_name">User name: </label>
-                            <input class="bg-white dark:bg-gray-900" type="text" name="user_name" value="{{ $checkouts['user_name'] }}">
+                            <input class="bg-white dark:bg-gray-900" type="text" name="user_name" id="user_name" value="{{ $checkouts['user_name'] }}">
                         </div>
 
                         <div>
                             <label for="from">From: </label>
-                            <input class="bg-white dark:bg-gray-900" type="text" name="from" value="{{ $checkouts['from'] }}">
+                            <input class="bg-white dark:bg-gray-900" type="text" name="from" id="from" value="{{ $checkouts['from'] }}">
                         </div>
 
                         <div>
                             <label for="to">To: </label>
-                            <input class="bg-white dark:bg-gray-900" type="text" name="to" value="{{ $checkouts['to'] }}">
+                            <input class="bg-white dark:bg-gray-900" type="text" name="to" id="to" value="{{ $checkouts['to'] }}">
                         </div>
 
                         <div>
                             <label for="weight">Weight: </label>
-                            <input class="bg-white dark:bg-gray-900" type="number" name="weight" value="{{ $checkouts['weight'] }}">
+                            <input class="bg-white dark:bg-gray-900" type="number" name="weight" id="weight" value="{{ $checkouts['weight'] }}">
                         </div>
 
                         <div>
                             <label for="parcel_amount">Amount: </label>
-                            <input class="bg-white dark:bg-gray-900" type="number" name="parcel_amount" value="{{ $checkouts['parcel_amount'] }}">
+                            <input class="bg-white dark:bg-gray-900" type="number" name="parcel_amount" id="parcel_amount" value="{{ $checkouts['parcel_amount'] }}">
                         </div>
 
                         <div>
                             <label for="payment_method">Payment method: </label>
-                                <label for="payment_method">UPI</label>
-                                <input class="bg-white dark:bg-gray-900" type="radio" checked name="payment_method" value="upi">
-                                <label for="payment_method">Card</label>
-                                <input class="bg-white dark:bg-gray-900" type="radio" name="payment_method" value="card">
+                                <label for="upi">UPI</label>
+                                <input class="bg-white dark:bg-gray-900" type="radio" checked name="payment_method" id="upi" value="upi">
+                                <label for="card">Card</label>
+                                <input class="bg-white dark:bg-gray-900" type="radio" name="payment_method" id="card" value="card">
                         </div>
 
                         <div>
                             <label for="payment_method">Payment status: </label>
-                            <input class="bg-white dark:bg-gray-900" type="text" name="payment_status" value="{{ $checkouts['payment_status'] }}">
+                            <input class="bg-white dark:bg-gray-900" type="text" name="payment_status" id="payment_status" value="{{ $checkouts['payment_status'] }}">
                         </div>
 
                         <div>
                             <label for="tracking_id">Tracking ID: </label>
-                            <input class="bg-white dark:bg-gray-900" type="number" name="tracking_id" value="{{ $checkouts['tracking_id'] }}">
+                            <input class="bg-white dark:bg-gray-900" type="number" name="tracking_id" id="tracking_id" value="{{ $checkouts['tracking_id'] }}">
                         </div>
-                        {{-- <input class="bg-white dark:bg-gray-900" type="" name="" value="">Current Status: {{$checkouts['current_status']}} --}}
 
                         <div>
                             <label for="current_status">Current Status: </label>
-                            <select class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="current_status" autofocus required>
-                                <option value="{{$checkouts['current_status']}}">{{$checkouts['current_status']}}</option>
+                            <select class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="current_status" id="current_status" autofocus required>
+                                @foreach($statses as $statse)
+                                <option value="{{$statse['status']}}">{{$statse['status']}}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -78,7 +79,7 @@
                             });
                         </script>
                         <div>
-                            <label for="remarks">Remarks: </label>
+                            <label for="tinymce">Remarks: </label>
                             <textarea class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="remarks" id="tinymce" cols="20" rows="10">
                                 {{ $checkouts['remarks'] }}
                             </textarea>

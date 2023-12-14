@@ -17,7 +17,7 @@ class StatusController extends Controller
             abort(403);
         }
 
-        $checkout = Checkout::paginate(10);
+        $checkout = Checkout::orderBy('id', 'desc')->paginate(10);
 
         return view('status', [
             'checkouts' => $checkout
