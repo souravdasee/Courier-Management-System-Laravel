@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TrackingController extends Controller
 {
-    function index(Request $req)
+    function index()
     {
         $trackingids = Checkout::latest();
         if (request('search')) {

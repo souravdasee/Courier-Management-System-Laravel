@@ -23,10 +23,10 @@
                             <p>Amount to pay</p>
                             <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
                                 <div class="border p-4">
-                                    <p>Shipping Cost:@foreach ($parcelamounts as $parcelamount)₹{{ $parcelamount['amount'] }}@endforeach</p>
+                                    <p>Shipping Cost:@foreach ($parcelamounts as $parcelamount)₹{{ $parcelamount['price'] }}@endforeach</p>
                                     <p>Platform fee: ₹<?= 10 ?></p>
                                     <p>---------------------------</p>
-                                    <p>Total amount to pay = @foreach ($parcelamounts as $parcelamount)₹{{ $parcelamount['amount'] + 10 }}@endforeach</p>
+                                    <p>Total amount to pay = @foreach ($parcelamounts as $parcelamount)₹{{ $parcelamount['price'] + 10 }}@endforeach</p>
                                 </div>
                             </div>
                         </div>

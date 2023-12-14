@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Checkout;
-use App\Models\Statse;
+use App\Models\Update;
 use Illuminate\Http\Request;
 
 class EditController extends Controller
@@ -19,7 +19,7 @@ class EditController extends Controller
         }
 
         $checkout = Checkout::find($id);
-        $stats = Statse::all();
+        $stats = Update::all();
 
         return view('edit', [
             'checkouts' => $checkout,
@@ -29,6 +29,7 @@ class EditController extends Controller
     function update(Request $req)
     {
         $update = Checkout::find($req->id);
+
         $update->current_status = $req->current_status;
         $update->image = $req->file('image')->store('images');
         $update->voice = $req->file('voice')->store('audios');

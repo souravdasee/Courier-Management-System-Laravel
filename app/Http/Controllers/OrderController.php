@@ -12,7 +12,7 @@ class OrderController extends Controller
         $checkout = Checkout::orderBy('id', 'desc')->get();
 
         return view('order', [
-            'checkouts' => $checkout->where('user_id', '=', $req->user()->id)
+            'checkouts' => $checkout->where('users_id', '=', $req->user()->id)
         ]);
     }
 }

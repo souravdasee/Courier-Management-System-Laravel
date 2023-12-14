@@ -6,12 +6,13 @@ use App\Models\Checkout;
 use App\Models\Courier;
 use App\Models\ParcelAmount;
 use App\Models\Payment;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    function index()
+    function index(Request $req)
     {
         $courier = Courier::latest()->first();
         $parcelamount = ParcelAmount::all();
@@ -24,22 +25,26 @@ class CheckoutController extends Controller
                 ->where('to', '=', $courier->to),
             'paymentmethods' => $paymentmethod,
             'couriers' => $courier,
-            'users' => $user
+            'users' => $user,
+            'roles' => $req->user()->roles_id
         ]);
     }
 
     function create(Request $req)
     {
         $parcel = new Checkout();
-        $parcel->user_id = $req->user()->id;
-        $parcel->user_name = $req->user()->name;
+
+        $parcel->users_id = $req->user()->id;
+        $parcel->users_name = $req->user()->name;
         $parcel->from = $req->from;
         $parcel->to = $req->to;
         $parcel->weight = $req->weight;
-        $parcel->parcel_amount = $req->parcel_amount;
+        $parcel->parcel_amounts = $req->parcel_amounts;
         $parcel->payment_method = $req->payment_method;
         $parcel->payment_status = $req->payment_status;
         $parcel->tracking_id = $req->tracking_id;
+        $parcel->roles_id = $req->user()->roles_id;
+
         $parcel->save();
         return redirect('order');
     }

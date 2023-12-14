@@ -19,15 +19,15 @@ class CheckoutFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => fake()->numberBetween(1, 103),
-            'user_name' => fake()->name(),
+            'users_id' => fake()->numberBetween(1, 103),
+            'users_name' => fake()->name(),
             'from' => fake()->unique()->city(),
             'to' => fake()->unique()->city(),
             'weight' => fake()->numberBetween(1, 100),
-            'parcel_amount' => fake()->numberBetween(110, 210),
+            'parcel_amounts' => fake()->numberBetween(110, 210),
             'payment_method' => fake()->word(),
             'payment_status' => fake()->word(),
-            'tracking_id' => fake()->numberBetween(100000, 999999),
+            'tracking_id' => fake()->numberBetween(1000000000, 9999999999),
             'current_status' => fake()->word(),
             'remarks' => fake()->sentence()
         ];

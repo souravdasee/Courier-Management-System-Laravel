@@ -20,7 +20,7 @@ class ParcelAmountFactory extends Factory
         return [
             'from' => Location::factory(),
             'to' => Location::factory(),
-            'amount' => fake()->numberBetween(100, 500)
+            'price' => fake()->numberBetween(100, 500)
 
         ];
     }

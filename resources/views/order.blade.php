@@ -24,7 +24,7 @@
                                 <td class="border p-2">{{ $checkout['created_at'] }}</td>
                                 <td class="border p-2">{{ $checkout['from'] }}</td>
                                 <td class="border p-2">{{ $checkout['to'] }}</td>
-                                <td class="border p-2">{{ $checkout['parcel_amount'] }}</td>
+                                <td class="border p-2">{{ $checkout['parcel_amounts'] }}</td>
                                 <td class="border p-2">{{ $checkout['payment_status'] }}</td>
                                 <td class="border p-2">{{ $checkout['tracking_id'] }}</td>
                                 <td class="border p-2">{{ $checkout['current_status'] }}</td>

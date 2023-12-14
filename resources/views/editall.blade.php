@@ -14,8 +14,8 @@
                         <input type="hidden" name="id" value="{{$checkouts['id']}}">
 
                         <div>
-                            <label for="user_name">User name: </label>
-                            <input class="bg-white dark:bg-gray-900" type="text" name="user_name" id="user_name" value="{{ $checkouts['user_name'] }}">
+                            <label for="users_name">User name: </label>
+                            <input class="bg-white dark:bg-gray-900" type="text" name="users_name" id="users_name" value="{{ $checkouts['users_name'] }}">
                         </div>
 
                         <div>
@@ -30,20 +30,20 @@
 
                         <div>
                             <label for="weight">Weight: </label>
-                            <input class="bg-white dark:bg-gray-900" type="number" name="weight" id="weight" value="{{ $checkouts['weight'] }}">
+                            <input class="bg-white dark:bg-gray-900" type="number" step="0.01" name="weight" id="weight" value="{{ $checkouts['weight'] }}">
                         </div>
 
                         <div>
                             <label for="parcel_amount">Amount: </label>
-                            <input class="bg-white dark:bg-gray-900" type="number" name="parcel_amount" id="parcel_amount" value="{{ $checkouts['parcel_amount'] }}">
+                            <input class="bg-white dark:bg-gray-900" type="number" name="parcel_amounts" id="parcel_amount" value="{{ $checkouts['parcel_amounts'] }}">
                         </div>
 
                         <div>
                             <label for="payment_method">Payment method: </label>
-                                <label for="upi">UPI</label>
-                                <input class="bg-white dark:bg-gray-900" type="radio" checked name="payment_method" id="upi" value="upi">
-                                <label for="card">Card</label>
-                                <input class="bg-white dark:bg-gray-900" type="radio" name="payment_method" id="card" value="card">
+                            <input class="bg-white dark:bg-gray-900" type="radio" checked name="payment_method" id="upi" value="upi">
+                            <label for="upi">UPI</label>
+                            <input class="bg-white dark:bg-gray-900" type="radio" name="payment_method" id="card" value="card">
+                            <label for="card">Card</label>
                         </div>
 
                         <div>

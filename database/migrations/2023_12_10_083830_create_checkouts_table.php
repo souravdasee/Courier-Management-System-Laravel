@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,15 +14,16 @@ return new class extends Migration
     {
         Schema::create('checkouts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('user_name');
+            $table->foreignId('users_id')->constrained()->cascadeOnDelete();
+            $table->integer('roles_id')->default(3);
+            $table->string('users_name');
             $table->string('from');
             $table->string('to');
             $table->bigInteger('weight');
-            $table->bigInteger('parcel_amount');
+            $table->bigInteger('parcel_amounts');
             $table->string('payment_method');
             $table->string('payment_status')->default('Paid');
-            $table->bigInteger('tracking_id');
+            $table->bigInteger('tracking_id')->unique();
             $table->string('current_status')->default('Booked');
             $table->string('remarks')->nullable();
             $table->string('image')->nullable();

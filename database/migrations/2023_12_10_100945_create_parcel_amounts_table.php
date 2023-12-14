@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('from');
             $table->string('to');
-            $table->bigInteger('amount');
+            $table->bigInteger('price');
             $table->timestamps();
         });
     }

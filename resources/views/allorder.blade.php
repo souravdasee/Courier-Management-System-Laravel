@@ -13,6 +13,7 @@
                         <tr class="border">
                             <th class="border p-2 underline">Time of booking</th>
                             <th class="border p-2 underline">Booking person name</th>
+                            <th class="border p-2 underline">Booking person role</th>
                             <th class="border p-2 underline">From</th>
                             <th class="border p-2 underline">To</th>
                             <th class="border p-2 underline">Weight</th>
@@ -28,8 +29,9 @@
                             @foreach($orders as $order)
                             <tr class="border">
                                 <td class="border p-1">{{ $order['created_at'] }}</td>
-                                <td class="border p-1">{{ $order['user_name'] }}{{$order->user->name}}</td>
-                                <td class="border p-1">{{ $order['from'] }}</td>
+                                <td class="border p-1">{{$order->users_name}}</td>
+                                <td class="border p-1">{{ $order->roles_id }}</td>
+                                <td class="border p-1">{{ $order->from }}</td>
                                 <td class="border p-1">{{ $order['to'] }}</td>
                                 <td class="border p-1">{{ $order['weight'] }}</td>
                                 <td class="border p-1">{{ $order['parcel_amount'] }}</td>

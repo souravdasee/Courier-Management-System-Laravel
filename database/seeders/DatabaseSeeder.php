@@ -8,7 +8,9 @@ use App\Models\Checkout;
 use App\Models\User;
 use App\Models\Location;
 use App\Models\ParcelAmount;
+use App\Models\Role;
 use App\Models\Statse;
+use App\Models\Update;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,18 +22,20 @@ class DatabaseSeeder extends Seeder
     {
         Location::truncate();
         ParcelAmount::truncate();
-        Statse::truncate();
+        Update::truncate();
         Checkout::truncate();
 
         User::create([
             'name' => 'Sourav Das',
             'email' => 's@d.c',
-            'password' => 'poiu0987'
+            'password' => 'poiu0987',
+            'roles_id' => 1
         ]);
         User::create([
             'name' => 'John Doe',
             'email' => 'j@d.c',
-            'password' => 'poiu0987'
+            'password' => 'poiu0987',
+            'roles_id' => 2
         ]);
         User::create([
             'name' => 'Mark Miller',
@@ -39,6 +43,16 @@ class DatabaseSeeder extends Seeder
             'password' => 'poiu0987'
         ]);
         User::factory(100)->create();
+
+        Role::create([
+            'role' => 'Admin',
+        ]);
+        Role::create([
+            'role' => 'Data Entry',
+        ]);
+        Role::create([
+            'role' => 'User',
+        ]);
 
         Location::create([
             'location' => 'Raiganj',
@@ -56,74 +70,74 @@ class DatabaseSeeder extends Seeder
         ParcelAmount::create([
             'from' => 'Raiganj',
             'to' => 'Balurghat',
-            'amount' => '100'
+            'price' => '100'
         ]);
         ParcelAmount::create([
             'from' => 'Raiganj',
             'to' => 'Maldah',
-            'amount' => '150'
+            'price' => '150'
         ]);
         ParcelAmount::create([
             'from' => 'Raiganj',
             'to' => 'Siliguri',
-            'amount' => '200'
+            'price' => '200'
         ]);
         ParcelAmount::create([
             'from' => 'Maldah',
             'to' => 'Raiganj',
-            'amount' => '100'
+            'price' => '100'
         ]);
         ParcelAmount::create([
             'from' => 'Maldah',
             'to' => 'Balurghat',
-            'amount' => '150'
+            'price' => '150'
         ]);
         ParcelAmount::create([
             'from' => 'Maldah',
             'to' => 'Siliguri',
-            'amount' => '200'
+            'price' => '200'
         ]);
         ParcelAmount::create([
             'from' => 'Balurghat',
             'to' => 'Raiganj',
-            'amount' => '100'
+            'price' => '100'
         ]);
         ParcelAmount::create([
             'from' => 'Balurghat',
             'to' => 'Maldah',
-            'amount' => '150'
+            'price' => '150'
         ]);
         ParcelAmount::create([
             'from' => 'Balurghat',
             'to' => 'Siliguri',
-            'amount' => '200'
+            'price' => '200'
         ]);
         ParcelAmount::create([
             'from' => 'Siliguri',
             'to' => 'Raiganj',
-            'amount' => '100'
+            'price' => '100'
         ]);
         ParcelAmount::create([
             'from' => 'Siliguri',
             'to' => 'Maldah',
-            'amount' => '150'
+            'price' => '150'
         ]);
         ParcelAmount::create([
             'from' => 'Siliguri',
             'to' => 'Balurghat',
-            'amount' => '200'
+            'price' => '200'
         ]);
 
-        Statse::create([
+        Update::create([
             'status' => 'Booked',
         ]);
-        Statse::create([
+        Update::create([
             'status' => 'Shipped',
         ]);
-        Statse::create([
+        Update::create([
             'status' => 'Out for delivery',
         ]);
-        Statse::create([
+        Update::create([
             'status' => 'Delivered',
         ]);
 

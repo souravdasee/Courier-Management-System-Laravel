@@ -17,9 +17,17 @@
                                 <div class="grid grid-cols-3">
                                     <div class="hidden">
                                         Booking person name:
-                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='weight'>
+                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='name'>
                                             <option value="@foreach($users as $user){{ $user['name'] }}@endforeach">
                                                 @foreach($users as $user){{ $user['name'] }}@endforeach
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="hidden">
+                                        Booking person role id:
+                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='name'>
+                                            <option value="{{$roles}}">
+                                                {{$roles}}
                                             </option>
                                         </select>
                                     </div>
@@ -52,10 +60,10 @@
                                 <div class="grid grid-cols-4">
                                     <div class="grid grid-cols-2 mr-12" >
                                         Paid amount:
-                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='parcel_amount'>
-                                            <option value="@foreach ($parcelamounts as $parcelamount){{ $parcelamount['amount'] + 10 }}@endforeach">
+                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='parcel_amounts'>
+                                            <option value="@foreach ($parcelamounts as $parcelamount){{ $parcelamount['price'] + 10 }}@endforeach">
                                                 @foreach ($parcelamounts as $parcelamount)
-                                                    {{ $parcelamount['amount'] + 10 }}
+                                                    {{ $parcelamount['price'] + 10 }}
                                                 @endforeach
                                             </option>
                                         </select>
@@ -79,8 +87,8 @@
                                     <div class="grid grid-cols-2 mr-12">
                                         tracking id:
                                         <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='tracking_id'>
-                                            <option value="<?= rand(111111, 999999) ?>">
-                                                <?= rand(111111, 999999) ?>
+                                            <option value="<?= rand(1111111111, 9999999999) ?>">
+                                                <?= rand(1000000000, 9999999999) ?>
                                             </option>
                                         </select>
                                     </div>

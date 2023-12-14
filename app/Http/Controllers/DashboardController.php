@@ -19,7 +19,7 @@ class DashboardController extends Controller
     function addData(Request $req)
     {
         $courier = new Courier;
-        $courier->user_id = $req->user()->id;
+        $courier->users_id = $req->user()->id;
         $courier->from = $req->from;
         $courier->to = $req->to;
         $courier->weight = $req->weight;

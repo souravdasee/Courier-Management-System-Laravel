@@ -19,7 +19,7 @@
                     <div class="container">
                         @foreach($checkouts as $checkout)
                             <tr class="border text-center">
-                                <td class="border p-2">{{ $checkout['user_name'] }}</td>
+                                <td class="border p-2">{{ $checkout['users_name'] }}</td>
                                 <td class="border p-2">{{ $checkout['tracking_id'] }}</td>
                                 <td class="border p-2">{{ $checkout['current_status'] }}</td>
                                 <td class="border p-2"><a href={{"/edit/".$checkout['id']}} class="bg-blue-500 p-2">Change</a></td>

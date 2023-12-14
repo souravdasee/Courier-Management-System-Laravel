@@ -31,7 +31,7 @@
                             </div>
                             <div>
                                 <p>Weight<span class="text-red-500">*</span>(in KGs)</p>
-                                <input class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" type="number" name="weight" required>
+                                <input class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" type="number" name="weight" step="0.01" required>
                             </div>
                         </div>
 

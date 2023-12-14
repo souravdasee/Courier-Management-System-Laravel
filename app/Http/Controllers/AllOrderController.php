@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Statse;
 use App\Models\Checkout;
+use App\Models\Role;
+use App\Models\Update;
 use Illuminate\Http\Request;
 
 class AllOrderController extends Controller
@@ -19,8 +20,11 @@ class AllOrderController extends Controller
         }
 
         $order = Checkout::with("user")->orderBy('id', 'desc')->Paginate(10);
+        $role = Role::with('role');
+
         return view('allorder', [
-            'orders' => $order
+            'orders' => $order,
+            'roles' => $role
         ]);
     }
 
@@ -35,7 +39,7 @@ class AllOrderController extends Controller
         }
 
         $checkout = Checkout::find($id);
-        $stats = Statse::all();
+        $stats = Update::all();
 
         return view('editall', [
             'checkouts' => $checkout,
@@ -46,11 +50,11 @@ class AllOrderController extends Controller
     function update(Request $req)
     {
         $update = Checkout::find($req->id);
-        $update->user_name = $req->user_name;
+        $update->users_name = $req->users_name;
         $update->from = $req->from;
         $update->to = $req->to;
         $update->weight = $req->weight;
-        $update->parcel_amount = $req->parcel_amount;
+        $update->parcel_amounts = $req->parcel_amounts;
         $update->payment_method = $req->payment_method;
         $update->payment_status = $req->payment_status;
         $update->tracking_id = $req->tracking_id;
