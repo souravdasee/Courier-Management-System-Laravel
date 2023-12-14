@@ -28,7 +28,7 @@
                             @foreach($orders as $order)
                             <tr class="border">
                                 <td class="border p-1">{{ $order['created_at'] }}</td>
-                                <td class="border p-1">{{ $order['user_name'] }}</td>
+                                <td class="border p-1">{{ $order['user_name'] }}{{$order->user->name}}</td>
                                 <td class="border p-1">{{ $order['from'] }}</td>
                                 <td class="border p-1">{{ $order['to'] }}</td>
                                 <td class="border p-1">{{ $order['weight'] }}</td>

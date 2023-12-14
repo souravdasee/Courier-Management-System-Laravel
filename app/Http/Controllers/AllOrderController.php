@@ -18,8 +18,7 @@ class AllOrderController extends Controller
             abort(403);
         }
 
-        $order = Checkout::orderBy('id', 'desc')->Paginate(10);
-
+        $order = Checkout::with("user")->orderBy('id', 'desc')->Paginate(10);
         return view('allorder', [
             'orders' => $order
         ]);
