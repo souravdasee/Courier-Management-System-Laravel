@@ -86,8 +86,15 @@
                         </div>
 
                         <div>
-                            <label for="tracking_id">Feedback Image: </label>
-                            <img class="bg-white dark:bg-gray-900" name="tracking_id" src="/storage/{{ $checkouts['image'] }}" alt="No feedback image">
+                            <label for="feedback_image">Feedback Image: </label>
+                            <img class="bg-white dark:bg-gray-900" name="tracking_id" src="/storage/{{ $checkouts['image'] }}" alt="No feedback image" id="feedback_image">
+                        </div>
+
+                        <div>
+                            <label for="feedback_audio">Feedback Audio: </label>
+                            <audio class="bg-white dark:bg-gray-900" id="feedback_audio" controls>
+                                <source src="/storage/{{ $checkouts['voice'] }}">
+                            </audio>
                         </div>
 
                         <button class="border p-2 bg-blue-500" type="submit">Update</button>

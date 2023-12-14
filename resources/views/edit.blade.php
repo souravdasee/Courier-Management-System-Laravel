@@ -35,6 +35,10 @@
                         </div>
 
 
+                        <div class="p-2">
+                            <label for="image">Audio: </label>
+                            <input accept="audio/*" type="file" name="voice" class="border">
+                        </div>
 
                         <button class="border p-2 bg-blue-500" type="submit">Update</button>
                     </form>
