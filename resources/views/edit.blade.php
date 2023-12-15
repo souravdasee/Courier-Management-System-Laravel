@@ -12,14 +12,6 @@
                     <form action="/edit" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id" value="{{$checkouts['id']}}">
-                        {{-- <input class="bg-white dark:bg-gray-900" type="hidden" name="user_name" value="{{ $checkouts['user_name'] }}">
-                        <input class="bg-white dark:bg-gray-900" type="hidden" name="from" value="{{ $checkouts['from'] }}">
-                        <input class="bg-white dark:bg-gray-900" type="hidden" name="to" value="{{ $checkouts['to'] }}">
-                        <input class="bg-white dark:bg-gray-900" type="hidden" name="weight" value="{{ $checkouts['weight'] }}">
-                        <input class="bg-white dark:bg-gray-900" type="hidden" name="parcel_amount" value="{{ $checkouts['parcel_amount'] }}">
-                        <input class="bg-white dark:bg-gray-900" type="hidden" checked name="payment_method" value="{{ $checkouts['payment_method'] }}">
-                        <input class="bg-white dark:bg-gray-900" type="hidden" name="payment_status" value="{{ $checkouts['payment_status'] }}">
-                        <input class="bg-white dark:bg-gray-900" type="hidden" name="tracking_id" value="{{ $checkouts['tracking_id'] }}"> --}}
 
                         <p>Tracking ID: {{ $checkouts['tracking_id'] }}</p>
                         <label for="current_status">Current Status: </label>
@@ -35,10 +27,95 @@
                         </div>
 
 
-                        <div class="p-2">
+                        {{-- <div class="p-2">
                             <label for="image">Audio: </label>
                             <input accept="audio/*" type="file" name="voice" class="border">
-                        </div>
+                        </div> --}}
+
+
+                        <label for="record">Audio: </label>
+                        {{-- <button >Record</button> --}}
+                        <input type="button" name="voice" id="record" class="voice2 border hover:bg-gray-500 hover:dark:bg-gray-700 text-blue-500 p-1" value="Record">
+                        <div id="sound-clip"></div>
+
+
+                        <script>
+                            document.querySelector('.voice2').addEventListener('click', function()
+                                            {
+
+                                // Set up the AudioContext.
+                                const audioCtx = new AudioContext();
+
+                                // Top-level variable keeps track of whether we are recording or not.
+                                let recording = false;
+
+                                // Ask user for access to the microphone.
+                                if (navigator.mediaDevices) {
+                                    navigator.mediaDevices
+                                        .getUserMedia({ audio: true })
+                                        .then((stream) => {
+                                            // Instantiate the media recorder.
+                                            const mediaRecorder = new MediaRecorder(stream);
+
+                                            // Create a buffer to store the incoming data.
+                                            let chunks = [];
+                                            mediaRecorder.ondataavailable = (event) => {
+                                                chunks.push(event.data);
+                                            };
+
+                                            // When you stop the recorder, create a empty audio clip.
+                                            mediaRecorder.onstop = (event) => {
+                                                const audio = new Audio();
+                                                audio.setAttribute("controls", "");
+                                                $("#sound-clip").append(audio);
+                                                $("#sound-clip").append("<br />");
+
+                                                // Combine the audio chunks into a blob, then point the empty audio clip to that blob.
+                                                const blob = new Blob(chunks, {
+                                                    type: "audio/ogg; codecs=opus",
+                                                });
+                                                audio.src = window.URL.createObjectURL(blob);
+
+                                                // Clear the `chunks` buffer so that you can record again.
+                                                chunks = [];
+                                            };
+
+                                            // Set up event handler for the "Record" button.
+
+                                                $("#record").on("click", () => {
+                                                    if (recording) {
+                                                        mediaRecorder.stop();
+                                                        recording = false;
+                                                        $("#record").html("Record");
+                                                    } else {
+                                                        mediaRecorder.start();
+                                                        recording = true;
+                                                        $("#record").html("Stop");
+                                                    }
+                                                });
+                                        })
+                                        .catch((err) => {
+                                            // Throw alert when the browser is unable to access the microphone.
+                                            console.log(
+                                                "Oh no! Your browser cannot access your computer's microphone."
+                                            );
+                                        });
+                                } else {
+                                    // Throw alert when the browser cannot access any media devices.
+                                    console.log(
+                                        "Oh no! Your browser cannot access your computer's microphone. Please update your browser."
+                                    );
+                                }
+                            })
+
+                        </script>
+
+                        <script
+                            src="https://code.jquery.com/jquery-3.3.1.min.js"
+                            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                            crossorigin="anonymous">
+                        </script>
+
 
                         <button class="border p-2 bg-blue-500" type="submit">Update</button>
                     </form>
@@ -47,21 +124,3 @@
         </div>
     </div>
 </x-app-layout>
-{{--
-<div>
-    <center>
-        <h1>Audio Clip Recorder</h1>
-        <button id="record" class="border hover:bg-gray-500 hover:dark:bg-gray-700 text-blue-500 p-1">Record</button>
-        <div id="sound-clip"></div>
-    </center>
-
-    <label for="image">Voice: </label>
-    <input accept="audio/*" type="file" name="voice" class="border">
-
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-    <script src="../js/voiceMemo.js"></script>
-    @vite(['resources/js/voiceMemo.js'])
-</div> --}}

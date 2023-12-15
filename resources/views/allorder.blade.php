@@ -34,7 +34,7 @@
                                 <td class="border p-1">{{ $order->from }}</td>
                                 <td class="border p-1">{{ $order['to'] }}</td>
                                 <td class="border p-1">{{ $order['weight'] }}</td>
-                                <td class="border p-1">{{ $order['parcel_amount'] }}</td>
+                                <td class="border p-1">{{ $order->parcel_amounts }}</td>
                                 <td class="border p-1">{{ $order['payment_method'] }}</td>
                                 <td class="border p-1">{{ $order['payment_status'] }}</td>
                                 <td class="border p-1">{{ $order['tracking_id'] }}</td>
