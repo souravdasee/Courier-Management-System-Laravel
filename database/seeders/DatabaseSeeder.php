@@ -40,7 +40,8 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Mark Miller',
             'email' => 'm@a.c',
-            'password' => 'poiu0987'
+            'password' => 'poiu0987',
+            'roles_id' => 3
         ]);
         User::factory(100)->create();
 
