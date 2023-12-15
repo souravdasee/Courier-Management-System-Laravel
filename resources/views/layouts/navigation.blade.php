@@ -18,16 +18,19 @@
                     <x-nav-link :href="route('order')" :active="request()->routeIs('order')">
                         {{ __('Ordes') }}
                     </x-nav-link>
-                    @if (auth()->user()->email === 's@d.c')
-                        <x-nav-link :href="route('allorder')" :active="request()->routeIs('allorder')">
-                            {{ __('All Orders') }}
-                        </x-nav-link>
-                    @endif
-                    @if (auth()->user()->email === 's@d.c' || auth()->user()->email === 'j@d.c')
+                    @operator
                         <x-nav-link :href="route('status')" :active="request()->routeIs('status')">
                             {{ __('Status Update') }}
                         </x-nav-link>
-                    @endif
+                    @endoperator
+                    @admin
+                        <x-nav-link :href="route('allorder')" :active="request()->routeIs('allorder')">
+                            {{ __('All Orders') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+                            {{ __('Admin') }}
+                        </x-nav-link>
+                    @endadmin
                 </div>
             </div>
 

@@ -58,7 +58,7 @@
 
                         <div>
                             <label for="current_status">Current Status: </label>
-                            <select class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="current_status" id="current_status" autofocus required>
+                            <select class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="current_status" id="current_status" required>
                                 @foreach($statses as $statse)
                                 <option value="{{$statse['status']}}">{{$statse['status']}}</option>
                                 @endforeach
@@ -89,7 +89,7 @@
 
                         <div>
                             <label for="feedback_image">Feedback Image: </label>
-                            <img class="bg-white dark:bg-gray-900" name="tracking_id" src="/storage/{{ $checkouts['image'] }}" alt="No feedback image" id="feedback_image">
+                            <img class="bg-white dark:bg-gray-900" name="tracking_id" src="{{ asset('storage/' . $checkouts->image) }}" alt="No feedback image" id="feedback_image">
                         </div>
 
                         <div>

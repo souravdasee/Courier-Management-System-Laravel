@@ -9,6 +9,8 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com"></script>
+
 
         <!-- Styles -->
         <style>
@@ -46,23 +48,23 @@
                                     <div class="p-6  text-gray-900 dark:text-gray-100">
                                         <table>
                                             <tr>
-                                                <th>Time of booking</th>
-                                                <th>From</th>
-                                                <th>To</th>
-                                                <th>Amount</th>
-                                                <th>Payment Status</th>
-                                                <th>Tracking ID</th>
-                                                <th>Current Status</th>
+                                                <th class="border p-2">Time of booking</th>
+                                                <th class="border p-2">From</th>
+                                                <th class="border p-2">To</th>
+                                                <th class="border p-2">Amount</th>
+                                                <th class="border p-2">Payment Status</th>
+                                                <th class="border p-2">Tracking ID</th>
+                                                <th class="border p-2">Current Status</th>
                                             </tr>
                                             @foreach($checkouts as $checkout)
                                                 <tr>
-                                                    <td>{{ $checkout['created_at'] }}</td>
-                                                    <td>{{ $checkout['from'] }}</td>
-                                                    <td>{{ $checkout['to'] }}</td>
-                                                    <td>{{ $checkout['parcel_amount'] }}</td>
-                                                    <td>{{ $checkout['payment_status'] }}</td>
-                                                    <td>{{ $checkout['tracking_id'] }}</td>
-                                                    <td>{{ $checkout['current_status'] }}</td>
+                                                    <td class="border p-2">{{ $checkout['created_at'] }}</td>
+                                                    <td class="border p-2">{{ $checkout['from'] }}</td>
+                                                    <td class="border p-2">{{ $checkout['to'] }}</td>
+                                                    <td class="border p-2">{{ $checkout['parcel_amounts'] }}</td>
+                                                    <td class="border p-2">{{ $checkout['payment_status'] }}</td>
+                                                    <td class="border p-2">{{ $checkout['tracking_id'] }}</td>
+                                                    <td class="border p-2">{{ $checkout['current_status'] }}</td>
                                                 </tr>
                                             @endforeach
                                         </table>

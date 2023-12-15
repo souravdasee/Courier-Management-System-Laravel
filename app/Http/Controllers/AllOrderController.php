@@ -11,14 +11,6 @@ class AllOrderController extends Controller
 {
     function index()
     {
-        if (auth()->guest()) {
-            abort(403);
-        }
-
-        if (auth()->user()->email !== 's@d.c' && auth()->user()->email !== 'j@d.c') {
-            abort(403);
-        }
-
         $order = Checkout::with("user")->orderBy('id', 'desc')->Paginate(10);
         $role = Role::with('role');
 
@@ -30,14 +22,6 @@ class AllOrderController extends Controller
 
     function show($id)
     {
-        if (auth()->guest()) {
-            abort(403);
-        }
-
-        if (auth()->user()->email !== 's@d.c') {
-            abort(403);
-        }
-
         $checkout = Checkout::find($id);
         $stats = Update::all();
 

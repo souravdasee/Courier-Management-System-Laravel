@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EditController;
 use App\Http\Controllers\StatusController;
@@ -28,13 +29,13 @@ Route::get('/', [WelcomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [DashboardController::class, 'show'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::post('/dashboard', [DashboardController::class, 'addData']);
 
-Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+Route::get('/payment', [PaymentController::class, 'index'])->middleware('auth', 'verified')->name('payment');
 Route::post('/payment', [PaymentController::class, 'addData']);
 
-Route::get('/checkout', [CheckoutController::class, 'index']);
+Route::get('/checkout', [CheckoutController::class, 'index'])->middleware('auth', 'verified');
 Route::post('/checkout', [CheckoutController::class, 'create']);
 
-Route::get('/order', [OrderController::class, 'index'])->name('order');
+Route::get('/order', [OrderController::class, 'index'])->middleware('auth', 'verified')->name('order');
 
 Route::get('/tracking', [TrackingController::class, 'index']);
 
@@ -46,11 +47,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('/status', [StatusController::class, 'index'])->name('status');
+Route::get('/status', [StatusController::class, 'index'])->middleware('can:operator', 'auth', 'verified')->name('status');
+Route::get('/edit/{id}', [EditController::class, 'show'])->middleware('can:operator', 'auth', 'verified');
+Route::post('/edit', [EditController::class, 'update'])->middleware('can:operator', 'auth', 'verified');
 
-Route::get('/edit/{id}', [EditController::class, 'show']);
-Route::post('/edit', [EditController::class, 'update']);
-
-Route::get('/allorder', [AllOrderController::class, 'index'])->name('allorder');
-Route::get('/adminedit/{id}', [AllOrderController::class, 'show']);
+Route::get('/allorder', [AllOrderController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('allorder');
+Route::get('/adminedit/{id}', [AllOrderController::class, 'show'])->middleware('can:admin', 'auth', 'verified');
 Route::post('/allorder', [AllOrderController::class, 'update']);
+
+Route::get('/admin', [AdminController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('admin');
+Route::get('/admin/users/create', [AdminController::class, 'create'])->middleware('can:admin', 'auth', 'verified');

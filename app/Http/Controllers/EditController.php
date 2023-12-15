@@ -10,14 +10,6 @@ class EditController extends Controller
 {
     function show($id)
     {
-        if (auth()->guest()) {
-            abort(403);
-        }
-
-        if (auth()->user()->email !== 's@d.c') {
-            abort(403);
-        }
-
         $checkout = Checkout::find($id);
         $stats = Update::all();
 
