@@ -29,19 +29,19 @@ class DatabaseSeeder extends Seeder
             'name' => 'Sourav Das',
             'email' => 's@d.c',
             'password' => 'poiu0987',
-            'roles_id' => 1
+            'role' => 'Admin'
         ]);
         User::create([
             'name' => 'John Doe',
             'email' => 'j@d.c',
             'password' => 'poiu0987',
-            'roles_id' => 2
+            'role' => 'Data Entry'
         ]);
         User::create([
             'name' => 'Mark Miller',
             'email' => 'm@a.c',
             'password' => 'poiu0987',
-            'roles_id' => 3
+            'role' => 'User'
         ]);
         User::factory(100)->create();
 

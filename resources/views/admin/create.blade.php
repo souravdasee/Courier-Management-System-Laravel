@@ -15,11 +15,11 @@
                         <label for="name">Name: </label>
                         <input type="text" name="name" id="name" class="bg-white dark:bg-gray-900" placeholder="Name of the user" required>
 
-                        <label for="roles_id">Role: </label>
-                        <select name="roles_id" id="roles_id" class="bg-white dark:bg-gray-900" required>
-                            @foreach ($roles_id as $role)
-                                <option value="{{ $role->id }}">
-                                    {{ $role->id }}
+                        <label for="role">Role: </label>
+                        <select name="role" id="role" class="bg-white dark:bg-gray-900" required>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->role }}">
+                                    {{ $role->role }}
                                 </option>
                             @endforeach
                         </select>

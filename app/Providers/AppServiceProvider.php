@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('admin', function (User $user) {
-            return $user->roles_id === 1;
+            return $user->role === 'Admin';
         });
 
         Blade::if('admin', function () {
@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('operator', function (User $user) {
-            return ($user->roles_id === 1 || $user->roles_id === 2);
+            return ($user->role === 'Admin' || $user->role === 'Data Entry');
         });
 
         Blade::if('operator', function () {

@@ -27,10 +27,10 @@ class AdminController extends Controller
      */
     public function create()
     {
-        $role_id = Role::all();
+        $role = Role::all();
 
         return view('admin.create', [
-            'roles_id' => $role_id
+            'roles' => $role
         ]);
     }
 
@@ -42,7 +42,7 @@ class AdminController extends Controller
         $user = new User();
 
         $user->name = $req->name;
-        $user->roles_id = $req->roles_id;
+        $user->role = $req->role;
         $user->email = $req->email;
         $user->password = $req->password;
 

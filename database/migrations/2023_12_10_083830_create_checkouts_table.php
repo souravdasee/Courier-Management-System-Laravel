@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('checkouts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id')->constrained()->cascadeOnDelete();
-            $table->integer('roles_id')->default(3);
+            $table->string('role')->default('User');
             $table->string('users_name');
             $table->string('from');
             $table->string('to');
