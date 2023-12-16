@@ -100,7 +100,7 @@
                     </form>
 
                     <a href="/payment">
-                        <button href="/dashboard" class="p-2 my-5 bg-white dark:bg-gray-800 text-green-900 dark:text-green-50 hover:text-black hover:bg-white ring rounded-xl">Back</button>
+                        <button class="p-2 my-5 bg-white dark:bg-gray-800 text-green-900 dark:text-green-50 hover:text-black hover:bg-white ring rounded-xl">Back</button>
                     </a>
                 </div>
 

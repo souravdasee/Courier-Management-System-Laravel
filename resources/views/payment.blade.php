@@ -47,7 +47,7 @@
                     </div>
 
                     <a href="/dashboard">
-                        <button href="/dashboard" class="p-2 my-5 bg-white dark:bg-gray-800 text-blue-500 hover:text-black hover:bg-white hover:dark:bg-gray-600">Back</button>
+                        <button class="p-2 my-5 bg-white dark:bg-gray-800 text-blue-500 hover:text-black hover:bg-white hover:dark:bg-gray-600">Back</button>
                     </a>
                 </div>
 

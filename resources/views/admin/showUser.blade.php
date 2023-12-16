@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Admin') }}
+            {{ __('All Users') }}
         </h2>
     </x-slot>
 
@@ -22,7 +22,7 @@
                                 <td class="border p-1">{{ $user->name }}</td>
                                 <td class="border p-1">{{ $user->role }}</td>
                                 <td class="border p-1">{{ $user->email }}</td>
-                                <td class="border p-1"><a href="#" class="bg-blue-500 p-1">Edit</a></td>
+                                <td class="border p-1"><a href="{{"/admin/users/".$user['id']}}" class="bg-blue-500 p-1">Edit</a></td>
                             </tr>
                             @endforeach
                         </div>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <a href="/admin">
-                <button href="/dashboard" class="p-2 my-5 ring rounded-full bg-white dark:bg-gray-800 text-blue-500 hover:text-black hover:bg-white hover:dark:bg-gray-600">Back</button>
+                <button class="p-2 my-5 ring rounded-full bg-white dark:bg-gray-800 text-blue-500 hover:text-black hover:bg-white hover:dark:bg-gray-600">Back</button>
             </a>
         </div>
     </div>
