@@ -23,6 +23,7 @@
                                             </option>
                                         </select>
                                     </div>
+
                                     <div class="hidden">
                                         Booking person role:
                                         <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='name'>
@@ -31,36 +32,37 @@
                                             </option>
                                         </select>
                                     </div>
+
                                     <div class="grid grid-cols-2 mr-12">
                                         Parcel from:
-                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='from'>
+                                        <p>{{ $couriers['from'] }}</p>
+                                        <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='from'>
                                             <option value="{{ $couriers['from'] }}">
                                                 {{ $couriers['from'] }}
                                             </option>
                                         </select>
                                     </div>
+
                                     <div class="grid grid-cols-2 mr-12">
                                         Parcel to:
-                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='to'>
+                                        <p>{{ $couriers['to'] }}</p>
+                                        <select class=" hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='to'>
                                             <option value="{{ $couriers['to'] }}">
                                                 {{ $couriers['to'] }}
                                             </option>
                                         </select>
                                     </div>
+
                                     <div class="grid grid-cols-2 mr-12">
-                                        Parcel weight:
-                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='weight'>
-                                            <option value="{{ $couriers['weight'] }}">
-                                                {{ $couriers['weight'] }}
-                                            </option>
-                                        </select>
+                                        Parcel weight: <p>{{ $couriers['weight'] }}</p>
+                                        <input type="number" step="0.01" value="{{ $couriers['weight'] }}" class="hidden" name="weight">
                                     </div>
-                                </div>
-                                <br>
+                                </div><br>
+
                                 <div class="grid grid-cols-4">
                                     <div class="grid grid-cols-2 mr-12" >
-                                        Paid amount:
-                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='parcel_amounts'>
+                                        Paid amount: <p>@foreach ($parcelamounts as $parcelamount){{ $parcelamount['price'] + 10 }}@endforeach</p>
+                                        <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='parcel_amounts'>
                                             <option value="@foreach ($parcelamounts as $parcelamount){{ $parcelamount['price'] + 10 }}@endforeach">
                                                 @foreach ($parcelamounts as $parcelamount)
                                                     {{ $parcelamount['price'] + 10 }}
@@ -68,25 +70,28 @@
                                             </option>
                                         </select>
                                     </div>
+
                                     <div class="grid grid-cols-2 mr-12">
-                                        payment method:
-                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='payment_method'>
+                                        Payment method: <p>{{ $paymentmethods['method'] }}</p>
+                                        <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='payment_method'>
                                             <option value="{{ $paymentmethods['method'] }}">
                                                 {{ $paymentmethods['method'] }}
                                             </option>
                                         </select>
                                     </div>
+
                                     <div class="grid grid-cols-2 mr-12">
-                                        payment status:
-                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='payment_status'>
+                                        payment status: <p>Paid</p>
+                                        <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='payment_status'>
                                             <option value="Paid">
                                                 Paid
                                             </option>
                                         </select>
                                     </div>
+
                                     <div class="grid grid-cols-2 mr-12">
-                                        tracking id:
-                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='tracking_id'>
+                                        tracking id: <p><?= rand(1000000000, 9999999999) ?></p>
+                                        <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='tracking_id'>
                                             <option value="<?= rand(1111111111, 9999999999) ?>">
                                                 <?= rand(1000000000, 9999999999) ?>
                                             </option>

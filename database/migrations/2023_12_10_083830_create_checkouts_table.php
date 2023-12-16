@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('users_name');
             $table->string('from');
             $table->string('to');
-            $table->bigInteger('weight');
+            $table->decimal('weight');
             $table->bigInteger('parcel_amounts');
             $table->string('payment_method');
             $table->string('payment_status')->default('Paid');
