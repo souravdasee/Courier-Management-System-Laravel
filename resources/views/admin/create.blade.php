@@ -7,8 +7,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 border text-gray-900 dark:text-gray-100">
+            <div class="p-12 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-12 border text-gray-900 dark:text-gray-100">
                     <form action="/admin/users/create" method="POST">
                         @csrf
 
@@ -33,6 +33,9 @@
                     </form>
                 </div>
             </div>
+            <a href="/admin">
+                <button href="/dashboard" class="p-2 my-5 ring rounded-full bg-white dark:bg-gray-800 text-blue-500 hover:text-black hover:bg-white hover:dark:bg-gray-600">Back</button>
+            </a>
         </div>
     </div>
 </x-app-layout>

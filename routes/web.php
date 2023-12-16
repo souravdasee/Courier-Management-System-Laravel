@@ -56,5 +56,6 @@ Route::get('/adminedit/{id}', [AllOrderController::class, 'show'])->middleware('
 Route::post('/allorder', [AllOrderController::class, 'update']);
 
 Route::get('/admin', [AdminController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('admin');
+Route::get('/admin/users', [AdminController::class, 'show'])->middleware('can:admin', 'auth', 'verified');
 Route::get('/admin/users/create', [AdminController::class, 'create'])->middleware('can:admin', 'auth', 'verified');
 Route::post('/admin/users/create', [AdminController::class, 'store']);

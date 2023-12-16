@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
     <div>
+        <a href="/admin/users" class="text-blue-500 underline">Show All User List</a><br>
         <a href="/admin/users/create" class="text-blue-500 underline">Create New User</a>
     </div>
 </x-app-layout>

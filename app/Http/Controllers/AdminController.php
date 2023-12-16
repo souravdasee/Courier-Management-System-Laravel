@@ -53,9 +53,13 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $user = User::latest()->orderBy('id', 'desc')->Paginate(10);
+
+        return view('admin.show', [
+            'users' => $user
+        ]);
     }
 
     /**
