@@ -26,7 +26,7 @@ class CheckoutController extends Controller
             'paymentmethods' => $paymentmethod,
             'couriers' => $courier,
             'users' => $user,
-            'roles' => $req->user()->roles_id
+            'roles' => $req->user()->role
         ]);
     }
 
@@ -43,7 +43,7 @@ class CheckoutController extends Controller
         $parcel->payment_method = $req->payment_method;
         $parcel->payment_status = $req->payment_status;
         $parcel->tracking_id = $req->tracking_id;
-        $parcel->roles_id = $req->user()->roles_id;
+        $parcel->role = $req->user()->role;
 
         $parcel->save();
         return redirect('order');

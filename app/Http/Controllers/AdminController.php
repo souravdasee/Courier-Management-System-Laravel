@@ -84,9 +84,16 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $req)
     {
-        //
+        $update = User::find($req->id);
+
+        $update->name = $req->name;
+        $update->role = $req->role;
+        $update->email = $req->email;
+
+        $update->save();
+        return redirect('admin/users');
     }
 
     /**

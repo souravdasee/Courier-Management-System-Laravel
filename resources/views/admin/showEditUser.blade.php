@@ -9,13 +9,13 @@
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6  text-gray-900 dark:text-gray-100">
-                    <form action="/edit" method="post" enctype="multipart/form-data">
+                    <form action="/admin/users" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id" value="{{$users['id']}}">
 
                         <div>
                             <label for="users_name">User name: </label>
-                            <input class="bg-white dark:bg-gray-900" type="text" name="users_name" id="users_name" value="{{ $users['name'] }}">
+                            <input class="bg-white dark:bg-gray-900" type="text" name="name" id="users_name" value="{{ $users['name'] }}">
                         </div>
 
                         <label for="role">User Role:</label>
@@ -28,8 +28,8 @@
                         </select>
 
                         <div>
-                            <label for="users_name">User Email: </label>
-                            <input class="bg-white dark:bg-gray-900" type="email" name="users_name" id="users_name" value="{{ $users['email'] }}">
+                            <label for="users_email">User Email: </label>
+                            <input class="bg-white dark:bg-gray-900" type="email" name="email" id="users_email" value="{{ $users['email'] }}">
                         </div>
 
                         <button type="submit" class="border p-2 bg-blue-500">Update</button>

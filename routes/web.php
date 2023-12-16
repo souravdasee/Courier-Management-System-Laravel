@@ -30,10 +30,10 @@ Route::get('/dashboard', [DashboardController::class, 'show'])->middleware(['aut
 Route::post('/dashboard', [DashboardController::class, 'addData']);
 
 Route::get('/payment', [PaymentController::class, 'index'])->middleware('auth', 'verified')->name('payment');
-Route::post('/payment', [PaymentController::class, 'addData']);
+Route::post('/payment', [PaymentController::class, 'addData'])->middleware('auth', 'verified');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->middleware('auth', 'verified');
-Route::post('/checkout', [CheckoutController::class, 'create']);
+Route::post('/checkout', [CheckoutController::class, 'create'])->middleware('auth', 'verified');
 
 Route::get('/order', [OrderController::class, 'index'])->middleware('auth', 'verified')->name('order');
 
@@ -53,10 +53,11 @@ Route::post('/edit', [EditController::class, 'update'])->middleware('can:operato
 
 Route::get('/allorder', [AllOrderController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('allorder');
 Route::get('/adminedit/{id}', [AllOrderController::class, 'show'])->middleware('can:admin', 'auth', 'verified');
-Route::post('/allorder', [AllOrderController::class, 'update']);
+Route::post('/allorder', [AllOrderController::class, 'update'])->middleware('can:admin', 'auth', 'verified');
 
 Route::get('/admin', [AdminController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('admin');
 Route::get('/admin/users/create', [AdminController::class, 'create'])->middleware('can:admin', 'auth', 'verified');
 Route::post('/admin/users/create', [AdminController::class, 'store']);
 Route::get('/admin/users', [AdminController::class, 'showUser'])->middleware('can:admin', 'auth', 'verified');
 Route::get('/admin/users/{id}', [AdminController::class, 'showEditUser'])->middleware('can:admin', 'auth', 'verified');
+Route::post('/admin/users/', [AdminController::class, 'update'])->middleware('can:admin', 'auth', 'verified');

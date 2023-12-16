@@ -24,7 +24,7 @@
                                         </select>
                                     </div>
                                     <div class="hidden">
-                                        Booking person role id:
+                                        Booking person role:
                                         <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='name'>
                                             <option value="{{$roles}}">
                                                 {{$roles}}
