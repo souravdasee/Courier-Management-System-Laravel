@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 border text-gray-900 dark:text-gray-100">
-                    <form action="/edit" method="post" enctype="multipart/form-data">
+                    <form id="audioForm" action="/edit" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id" value="{{$checkouts['id']}}">
 
@@ -28,87 +28,86 @@
 
 
                         <div class="p-2">
-                            <label for="audio">Audio: </label>
-                            <input accept="audio/*" type="file" name="voice" id="audio" class="w-auto text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
-                        </div>
+                            <input accept="audio/*" type="file" name="voice" id="audioInput" class="hidden">
+                            <button type="button" onclick="toggleRecording()" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" >Record feedback & Update</button>
+                            <script>
+                                let chunks = [];
+                                let mediaRecorder;
+                                let stream;
+                                let isRecording = false;
 
-
-                        {{-- <label for="record">Audio: </label> --}}
-                        {{-- <input type="button" name="voice" id="record" class="record border hover:bg-gray-500 hover:dark:bg-gray-700 text-blue-500 p-1" value="Record">
-                        <div id="sound-clip"></div> --}}
-
-                        {{-- <script>
-                            document.querySelector('.record').addEventListener('click', function () {
-                            // Top-level variable keeps track of whether we are recording or not.
-                            let recording = false;
-
-                            // Ask user for access to the microphone.
-                            if (navigator.mediaDevices) {
-                                navigator.mediaDevices
-                                .getUserMedia({ audio: true })
-                                .then(stream => {
-                                    // Instantiate the media recorder.
-                                    const mediaRecorder = new MediaRecorder(stream);
-
-                                    // Create a buffer to store the incoming data.
-                                    let chunks = [];
-                                    mediaRecorder.ondataavailable = event => {
-                                    chunks.push(event.data);
-                                    };
-
-                                    // When you stop the recorder, create a empty audio clip.
-                                    mediaRecorder.onstop = event => {
-                                    const audio = new Audio();
-                                    audio.setAttribute('controls', '');
-                                    $('#sound-clip').append(audio);
-                                    $('#sound-clip').append('<br />');
-
-                                    // Combine the audio chunks into a blob, then point the empty audio clip to that blob.
-                                    const blob = new Blob(chunks, {
-                                        type: 'audio/ogg; codecs=opus',
+                                function startRecording() {
+                                  navigator.mediaDevices.getUserMedia({ audio: true })
+                                    .then(function(userStream) {
+                                      stream = userStream;
+                                      mediaRecorder = new MediaRecorder(stream);
+                                      mediaRecorder.ondataavailable = function(e) {
+                                        chunks.push(e.data);
+                                      };
+                                      mediaRecorder.start();
+                                    })
+                                    .catch(function(err) {
+                                      console.log('The following getUserMedia error occurred: ' + err);
                                     });
-                                    audio.src = window.URL.createObjectURL(blob);
+                                }
 
-                                    // Clear the `chunks` buffer so that you can record again.
-                                    chunks = [];
-                                    };
-
-                                    // Set up event handler for the "Record" button.
-                                    $('#record').on('click', () => {
-                                    if (recording) {
-                                        mediaRecorder.stop();
-                                        recording = false;
-                                        $('#record').html('Record');
-                                    } else {
-                                        mediaRecorder.start();
-                                        recording = true;
-                                        $('#record').html('Stop');
+                                function stopRecording() {
+                                  if (mediaRecorder && mediaRecorder.state === 'recording') {
+                                    mediaRecorder.stop();
+                                    if (stream) {
+                                      const tracks = stream.getTracks();
+                                      tracks.forEach(track => track.stop());
                                     }
-                                    });
-                                })
-                                .catch(err => {
-                                    // Throw alert when the browser is unable to access the microphone.
-                                    console.log(
-                                    "Oh no! Your browser cannot access your computer's microphone."
-                                    );
-                                });
-                            } else {
-                                // Throw alert when the browser cannot access any media devices.
-                                console.log(
-                                "Oh no! Your browser cannot access your computer's microphone. Please update your browser."
-                                );
-                            }
-                            });
-                        </script> --}}
+                                    setTimeout(submitAudio, 500); // Delay submission by 500ms to ensure recording finishes
+                                  }
+                                }
 
-                        {{-- <script
-                            src="https://code.jquery.com/jquery-3.3.1.min.js"
-                            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-                            crossorigin="anonymous">
-                        </script> --}}
+                                function downloadRecording() {
+                                  if (chunks.length === 0) {
+                                    console.log('No recording available.');
+                                    return;
+                                  }
 
+                                  const blob = new Blob(chunks, { type: 'audio/wav' });
+                                  const url = URL.createObjectURL(blob);
+                                  const a = document.createElement('a');
+                                  a.href = url;
+                                  a.download = 'recording.wav';
+                                  document.body.appendChild(a);
+                                  a.click();
+                                  window.URL.revokeObjectURL(url);
+                                  chunks = []; // Clear recorded chunks after download
+                                }
 
-                        <button class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" type="submit">Update</button>
+                                function toggleRecording() {
+                                  if (!isRecording) {
+                                    startRecording();
+                                    document.querySelector('button').innerText = 'Stop';
+                                    isRecording = true;
+                                  } else {
+                                    stopRecording();
+                                    document.querySelector('button').innerText = 'Record';
+                                  }
+                                }
+
+                                function submitAudio() {
+                                  if (chunks.length === 0) {
+                                    console.log('No recording available.');
+                                    return;
+                                  }
+
+                                  const blob = new Blob(chunks, { type: 'audio/wav' });
+                                  const file = new File([blob], 'recording.wav');
+                                  const fileList = new DataTransfer();
+                                  fileList.items.add(file);
+
+                                  const audioInput = document.getElementById('audioInput');
+                                  audioInput.files = fileList.files;
+
+                                  document.getElementById('audioForm').submit();
+                                }
+                            </script>
+                        </div>
                     </form>
                 </div>
             </div>
