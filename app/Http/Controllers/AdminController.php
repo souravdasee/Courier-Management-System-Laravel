@@ -14,17 +14,15 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('admin.index');
+        $user = User::latest()->orderBy('id', 'desc')->Paginate(10);
+
+        return view('admin.index', [
+            'users' => $user
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $role = Role::all();
@@ -34,11 +32,15 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $req)
     {
+        request()->validate([
+            'name' => 'required | string | max:255 ',
+            'role' => 'required | string ',
+            'email' => 'required | email ',
+            'password' => 'required | min:4 | max:127'
+        ]);
+
         $user = new User();
 
         $user->name = $req->name;
@@ -47,45 +49,28 @@ class AdminController extends Controller
         $user->password = $req->password;
 
         $user->save();
-        return redirect('admin');
+        return redirect('users');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function showUser()
-    {
-        $user = User::latest()->orderBy('id', 'desc')->Paginate(10);
-
-        return view('admin.showUser', [
-            'users' => $user
-        ]);
-    }
-
-    public function showEditUser($id)
+    public function show($id)
     {
         $user = User::find($id);
         $role = Role::all();
 
-        return view('admin.showEditUser', [
+        return view('admin.show', [
             'users' => $user,
             'roles' => $role
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $req)
     {
+        request()->validate([
+            'name' => 'required | string | max:255 ',
+            'role' => 'required | string ',
+            'email' => 'required | email '
+        ]);
+
         $update = User::find($req->id);
 
         $update->name = $req->name;
@@ -93,14 +78,6 @@ class AdminController extends Controller
         $update->email = $req->email;
 
         $update->save();
-        return redirect('admin/users');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect('users');
     }
 }

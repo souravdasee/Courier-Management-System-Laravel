@@ -9,10 +9,10 @@ class OrderController extends Controller
 {
     function index(Request $req)
     {
-        $checkout = Checkout::orderBy('id', 'desc')->get();
+        $checkout = Checkout::where('users_id', '=', $req->user()->id)->orderBy('id', 'desc')->Paginate(10);
 
         return view('order', [
-            'checkouts' => $checkout->where('users_id', '=', $req->user()->id)
+            'checkouts' => $checkout
         ]);
     }
 }

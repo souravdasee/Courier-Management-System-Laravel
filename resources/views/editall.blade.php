@@ -13,52 +13,52 @@
                         @csrf
                         <input type="hidden" name="id" value="{{$checkouts['id']}}">
 
-                        <div>
+                        <div class="p-2">
                             <label for="users_name">User name: </label>
-                            <input class="bg-white dark:bg-gray-900" type="text" name="users_name" id="users_name" value="{{ $checkouts['users_name'] }}">
+                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="users_name" id="users_name" value="{{ $checkouts['users_name'] }}">
                         </div>
 
-                        <div>
+                        <div class="p-2">
                             <label for="from">From: </label>
-                            <input class="bg-white dark:bg-gray-900" type="text" name="from" id="from" value="{{ $checkouts['from'] }}">
+                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="from" id="from" value="{{ $checkouts['from'] }}">
                         </div>
 
-                        <div>
+                        <div class="p-2">
                             <label for="to">To: </label>
-                            <input class="bg-white dark:bg-gray-900" type="text" name="to" id="to" value="{{ $checkouts['to'] }}">
+                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="to" id="to" value="{{ $checkouts['to'] }}">
                         </div>
 
-                        <div>
+                        <div class="p-2">
                             <label for="weight">Weight: </label>
-                            <input class="bg-white dark:bg-gray-900" type="number" step="0.01" name="weight" id="weight" value="{{ $checkouts['weight'] }}">
+                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" step="0.01" name="weight" id="weight" value="{{ $checkouts['weight'] }}">
                         </div>
 
-                        <div>
+                        <div class="p-2">
                             <label for="parcel_amount">Amount: </label>
-                            <input class="bg-white dark:bg-gray-900" type="number" name="parcel_amounts" id="parcel_amount" value="{{ $checkouts['parcel_amounts'] }}">
+                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" name="parcel_amounts" id="parcel_amount" value="{{ $checkouts['parcel_amounts'] }}">
                         </div>
 
-                        <div>
+                        <div class="p-2">
                             <label for="payment_method">Payment method: </label>
-                            <input class="bg-white dark:bg-gray-900" type="radio" checked name="payment_method" id="upi" value="upi">
+                            <input class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" type="radio" checked name="payment_method" id="upi" value="upi">
                             <label for="upi">UPI</label>
-                            <input class="bg-white dark:bg-gray-900" type="radio" name="payment_method" id="card" value="card">
+                            <input class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" type="radio" name="payment_method" id="card" value="card">
                             <label for="card">Card</label>
                         </div>
 
-                        <div>
+                        <div class="p-2">
                             <label for="payment_method">Payment status: </label>
-                            <input class="bg-white dark:bg-gray-900" type="text" name="payment_status" id="payment_status" value="{{ $checkouts['payment_status'] }}">
+                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="payment_status" id="payment_status" value="{{ $checkouts['payment_status'] }}">
                         </div>
 
-                        <div>
+                        <div class="p-2">
                             <label for="tracking_id">Tracking ID: </label>
-                            <input class="bg-white dark:bg-gray-900" type="number" name="tracking_id" id="tracking_id" value="{{ $checkouts['tracking_id'] }}">
+                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" name="tracking_id" id="tracking_id" value="{{ $checkouts['tracking_id'] }}">
                         </div>
 
-                        <div>
+                        <div class="p-2">
                             <label for="current_status">Current Status: </label>
-                            <select class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="current_status" id="current_status" required>
+                            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="current_status" id="current_status" required>
                                 @foreach($statses as $statse)
                                 <option value="{{$statse['status']}}">{{$statse['status']}}</option>
                                 @endforeach
@@ -80,26 +80,26 @@
                             ],
                             });
                         </script>
-                        <div>
+                        <div class="p-2">
                             <label for="tinymce">Remarks: </label>
-                            <textarea class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="remarks" id="tinymce" cols="20" rows="10">
+                            <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="remarks" id="tinymce" cols="20" rows="10">
                                 {{ $checkouts['remarks'] }}
                             </textarea>
                         </div>
 
-                        <div>
+                        <div class="p-2">
                             <label for="feedback_image">Feedback Image: </label>
-                            <img class="bg-white dark:bg-gray-900" name="tracking_id" src="{{ asset('storage/' . $checkouts->image) }}" alt="No feedback image" id="feedback_image">
+                            <img class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="tracking_id" src="{{ asset('storage/' . $checkouts->image) }}" alt="No feedback image" id="feedback_image">
                         </div>
 
-                        <div>
+                        <div class="p-2">
                             <label for="feedback_audio">Feedback Audio: </label>
-                            <audio class="bg-white dark:bg-gray-900" id="feedback_audio" controls>
+                            <audio class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="feedback_audio" controls>
                                 <source src="/storage/{{ $checkouts['voice'] }}">
                             </audio>
                         </div>
 
-                        <button class="border p-2 bg-blue-500" type="submit">Update</button>
+                        <button class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" type="submit">Update</button>
                     </form>
                 </div>
             </div>

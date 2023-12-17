@@ -27,8 +27,8 @@
                         <x-nav-link :href="route('allorder')" :active="request()->routeIs('allorder')">
                             {{ __('All Orders') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
-                            {{ __('Admin') }}
+                        <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                            {{ __('Users') }}
                         </x-nav-link>
                     @endadmin
                 </div>

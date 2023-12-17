@@ -26,9 +26,15 @@ class PaymentController extends Controller
 
     function addData(Request $req)
     {
+        request()->validate([
+            'method' => 'required | string'
+        ]);
+
         $courier = new Payment;
+
         $courier->users_id = $req->user()->id;
         $courier->method = $req->method;
+
         $courier->save();
         return redirect('checkout');
     }

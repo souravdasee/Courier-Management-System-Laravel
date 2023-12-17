@@ -33,7 +33,21 @@ class AllOrderController extends Controller
 
     function update(Request $req)
     {
+        request()->validate([
+            'users_name' => 'required | string | max:255',
+            'from' => 'required | string',
+            'to' => 'required | string',
+            'weight' => 'required',
+            'parcel_amounts' => 'required | integer',
+            'payment_method' => 'required | string',
+            'payment_status' => 'required | string',
+            'tracking_id' => 'required | integer',
+            'current_status' => 'required | string',
+            'remarks' => 'string'
+        ]);
+
         $update = Checkout::find($req->id);
+
         $update->users_name = $req->users_name;
         $update->from = $req->from;
         $update->to = $req->to;
@@ -44,6 +58,7 @@ class AllOrderController extends Controller
         $update->tracking_id = $req->tracking_id;
         $update->current_status = $req->current_status;
         $update->remarks = $req->remarks;
+
         $update->save();
         return redirect('allorder');
     }

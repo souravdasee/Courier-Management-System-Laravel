@@ -55,9 +55,8 @@ Route::get('/allorder', [AllOrderController::class, 'index'])->middleware('can:a
 Route::get('/adminedit/{id}', [AllOrderController::class, 'show'])->middleware('can:admin', 'auth', 'verified');
 Route::post('/allorder', [AllOrderController::class, 'update'])->middleware('can:admin', 'auth', 'verified');
 
-Route::get('/admin', [AdminController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('admin');
-Route::get('/admin/users/create', [AdminController::class, 'create'])->middleware('can:admin', 'auth', 'verified');
-Route::post('/admin/users/create', [AdminController::class, 'store']);
-Route::get('/admin/users', [AdminController::class, 'showUser'])->middleware('can:admin', 'auth', 'verified');
-Route::get('/admin/users/{id}', [AdminController::class, 'showEditUser'])->middleware('can:admin', 'auth', 'verified');
-Route::post('/admin/users/', [AdminController::class, 'update'])->middleware('can:admin', 'auth', 'verified');
+Route::get('/users', [AdminController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('users');
+Route::get('/users/create', [AdminController::class, 'create'])->middleware('can:admin', 'auth', 'verified');
+Route::post('/users/create', [AdminController::class, 'store']);
+Route::get('/users/{id}', [AdminController::class, 'show'])->middleware('can:admin', 'auth', 'verified');
+Route::post('/users/', [AdminController::class, 'update'])->middleware('can:admin', 'auth', 'verified');

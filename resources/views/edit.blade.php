@@ -15,7 +15,7 @@
 
                         <p>Tracking ID: {{ $checkouts['tracking_id'] }}</p>
                         <label for="current_status">Current Status: </label>
-                        <select class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name="current_status" autofocus required>
+                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="current_status" autofocus required>
                             @foreach ($statses as $stats)
                                 <option value="{{$stats['status']}}">{{$stats['status']}}</option>
                             @endforeach
@@ -23,13 +23,13 @@
 
                         <div class="p-2">
                             <label for="image">Image: </label>
-                            <input accept="image/*" type="file" name="image" class="border">
+                            <input accept="image/*" type="file" name="image" class="w-auto text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
                         </div>
 
 
                         <div class="p-2">
                             <label for="audio">Audio: </label>
-                            <input accept="audio/*" type="file" name="voice" id="audio" class="border">
+                            <input accept="audio/*" type="file" name="voice" id="audio" class="w-auto text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
                         </div>
 
 
@@ -108,7 +108,7 @@
                         </script> --}}
 
 
-                        <button class="border p-2 bg-blue-500" type="submit">Update</button>
+                        <button class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" type="submit">Update</button>
                     </form>
                 </div>
             </div>

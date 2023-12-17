@@ -9,24 +9,38 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                <table class="border">
-                    <tr class="border">
-                        <th class="border p-2 underline">Booked Person Name</th>
-                        <th class="border p-2 underline">Tracking ID</th>
-                        <th class="border p-2 underline">Current Status</th>
-                        <th class="border p-2 underline">Change status</th>
-                    </tr>
-                    <div class="container">
-                        @foreach($checkouts as $checkout)
-                            <tr class="border text-center">
-                                <td class="border p-2">{{ $checkout['users_name'] }}</td>
-                                <td class="border p-2">{{ $checkout['tracking_id'] }}</td>
-                                <td class="border p-2">{{ $checkout['current_status'] }}</td>
-                                <td class="border p-2"><a href={{"/edit/".$checkout['id']}} class="bg-blue-500 p-2">Change</a></td>
-                            </tr>
-                        @endforeach
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <table class="w-full text-sm rtl:text-right text-gray-500 dark:text-gray-400 text-center">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Booked Person Name
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Tracking ID
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Current Status
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Change status
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($checkouts as $checkout)
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <td class="px-6 py-4">{{ $checkout['users_name'] }}</td>
+                                        <td class="px-6 py-4">{{ $checkout['tracking_id'] }}</td>
+                                        <td class="px-6 py-4">{{ $checkout['current_status'] }}</td>
+                                        <td class="px-6 py-4">
+                                            <a href="{{"/edit/".$checkout['id']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    </table>
                     {{ $checkouts->links() }}
                 </div>
             </div>

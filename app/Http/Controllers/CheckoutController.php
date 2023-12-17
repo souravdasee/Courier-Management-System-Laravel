@@ -32,6 +32,16 @@ class CheckoutController extends Controller
 
     function create(Request $req)
     {
+        request()->validate([
+            'from' => 'required | string',
+            'to' => 'required | string',
+            'weight' => 'required',
+            'parcel_amounts' => 'required | integer',
+            'payment_method' => 'required | string',
+            'payment_status' => 'required | string',
+            'tracking_id' => 'required | integer | min:10'
+        ]);
+
         $parcel = new Checkout();
 
         $parcel->users_id = $req->user()->id;
