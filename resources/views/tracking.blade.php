@@ -57,6 +57,7 @@
                                                         <th scope="col" class="px-6 py-3">Payment Status</th>
                                                         <th scope="col" class="px-6 py-3">Tracking ID</th>
                                                         <th scope="col" class="px-6 py-3">Current Status</th>
+                                                        <th scope="col" class="px-6 py-3">Current Location</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -69,6 +70,7 @@
                                                         <td class="px-6 py-4">{{ $checkout['payment_status'] }}</td>
                                                         <td class="px-6 py-4">{{ $checkout['tracking_id'] }}</td>
                                                         <td class="px-6 py-4">{{ $checkout['current_status'] }}</td>
+                                                        <td class="px-6 py-4">{{ $checkout->current_location }}</td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

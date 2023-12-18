@@ -12,26 +12,60 @@
                     <form action="/dashboard" method="POST">
                         @csrf
 
-                        <div class="grid grid-cols-3">
-                            <div class="p-2">
-                                <p>From<span class="text-red-500">*</span></p>
-                                <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="from" autofocus required>
-                                    @foreach ($locations as $location)
-                                        <option value="{{$location['location']}}">{{$location['location']}}</option>
-                                    @endforeach
-                                </select>
+                        <div>
+                            <div class="grid grid-cols-3">
+                                <div class="p-2">
+                                    <p>Sender's Name:<span class="text-red-500">*</span></p>
+                                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_name" placeholder="Enter sender's name" required>
+                                </div>
+
+                                <div class="p-2">
+                                    <p>Recipient's Name:<span class="text-red-500">*</span></p>
+                                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_name" placeholder="Enter recipient's name" required>
+                                </div>
+
+                                <div class="p-2">
+                                    <p>Parcel Item Type</p>
+                                    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="item_type" placeholder="(E.g.: Electronic, Household, Books, etc.)">
+                                </div>
                             </div>
-                            <div class="p-2">
-                                <p>To<span class="text-red-500">*</span></p>
-                                <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="to" required>
-                                    @foreach ($locations as $location)
-                                        <option value="{{$location['location']}}">{{$location['location']}}</option>
-                                    @endforeach
-                                </select>
+
+                            <div class="grid grid-cols-3">
+                                <div class="p-2">
+                                    <p>From<span class="text-red-500">*</span></p>
+                                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="from" autofocus required>
+                                        @foreach ($locations as $location)
+                                            <option value="{{$location['location']}}">{{$location['location']}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="p-2">
+                                    <p>To<span class="text-red-500">*</span></p>
+                                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="to" required>
+                                        @foreach ($locations as $location)
+                                            <option value="{{$location['location']}}">{{$location['location']}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="p-2">
+                                    <p>Weight<span class="text-red-500">*</span>(in KGs)</p>
+                                    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" name="weight" step="0.01" placeholder="max upto 2 decimals" required>
+                                </div>
                             </div>
-                            <div class="p-2">
-                                <p>Weight<span class="text-red-500">*</span>(in KGs)</p>
-                                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" name="weight" step="0.01" placeholder="max upto 2 decimals" required>
+
+                            <div class="grid grid-cols-2">
+                                <div class="p-2">
+                                    <p>Sender's Address<span class="text-red-500">*</span></p>
+                                    <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_address" required>{{ old('name') }}</textarea>
+                                </div>
+
+                                <div class="p-2">
+                                    <p>Recipient's Address<span class="text-red-500">*</span></p>
+                                    <textarea type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_address" required>{{ old('name') }}</textarea>
+                                    
+                                </div>
                             </div>
                         </div>
 

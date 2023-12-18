@@ -93,6 +93,11 @@ class DatabaseSeeder extends Seeder
             'price' => '200'
         ]);
         ParcelAmount::create([
+            'from' => 'Raiganj',
+            'to' => 'Raiganj',
+            'price' => '50'
+        ]);
+        ParcelAmount::create([
             'from' => 'Maldah',
             'to' => 'Raiganj',
             'price' => '100'
@@ -106,6 +111,11 @@ class DatabaseSeeder extends Seeder
             'from' => 'Maldah',
             'to' => 'Siliguri',
             'price' => '200'
+        ]);
+        ParcelAmount::create([
+            'from' => 'Maldah',
+            'to' => 'Maldah',
+            'price' => '50'
         ]);
         ParcelAmount::create([
             'from' => 'Balurghat',
@@ -123,6 +133,11 @@ class DatabaseSeeder extends Seeder
             'price' => '200'
         ]);
         ParcelAmount::create([
+            'from' => 'Balurghat',
+            'to' => 'Balurghat',
+            'price' => '50'
+        ]);
+        ParcelAmount::create([
             'from' => 'Siliguri',
             'to' => 'Raiganj',
             'price' => '100'
@@ -136,6 +151,11 @@ class DatabaseSeeder extends Seeder
             'from' => 'Siliguri',
             'to' => 'Balurghat',
             'price' => '200'
+        ]);
+        ParcelAmount::create([
+            'from' => 'Siliguri',
+            'to' => 'Siliguri',
+            'price' => '50'
         ]);
 
         Update::create([

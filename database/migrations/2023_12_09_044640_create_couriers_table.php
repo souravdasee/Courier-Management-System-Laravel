@@ -14,9 +14,14 @@ return new class extends Migration
         Schema::create('couriers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id')->constrained()->cascadeOnDelete();
+            $table->string('sender_name');
+            $table->string('recipient_name');
+            $table->string('item_type')->nullable();
             $table->string('from');
             $table->string('to');
             $table->decimal('weight');
+            $table->string('sender_address');
+            $table->string('recipient_address');
             $table->timestamps();
         });
     }
