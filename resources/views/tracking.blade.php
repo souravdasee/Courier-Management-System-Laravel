@@ -22,7 +22,7 @@
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                        <a href="{{ url('/book') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
@@ -41,45 +41,34 @@
                 </div>
 
                 <div class="mt-16">
-                    <div class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
-                        <div class="py-12">
-                            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                                    <div class="p-6  text-gray-900 dark:text-gray-100">
-                                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                                            <table class="w-full text-sm rtl:text-right text-gray-500 dark:text-gray-400 text-center">
-                                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                                    <tr>
-                                                        <th scope="col" class="px-6 py-3">Time of booking</th>
-                                                        <th scope="col" class="px-6 py-3">From</th>
-                                                        <th scope="col" class="px-6 py-3">To</th>
-                                                        <th scope="col" class="px-6 py-3">Amount</th>
-                                                        <th scope="col" class="px-6 py-3">Payment Status</th>
-                                                        <th scope="col" class="px-6 py-3">Tracking ID</th>
-                                                        <th scope="col" class="px-6 py-3">Current Status</th>
-                                                        <th scope="col" class="px-6 py-3">Current Location</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach($checkouts as $checkout)
-                                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                                        <td class="px-6 py-4">{{ $checkout['created_at']->format('D, h:i:sa d-M Y (T)') }}</td>
-                                                        <td class="px-6 py-4">{{ $checkout['from'] }}</td>
-                                                        <td class="px-6 py-4">{{ $checkout['to'] }}</td>
-                                                        <td class="px-6 py-4">{{ $checkout['parcel_amounts'] }}</td>
-                                                        <td class="px-6 py-4">{{ $checkout['payment_status'] }}</td>
-                                                        <td class="px-6 py-4">{{ $checkout['tracking_id'] }}</td>
-                                                        <td class="px-6 py-4">{{ $checkout['current_status'] }}</td>
-                                                        <td class="px-6 py-4">{{ $checkout->current_location }}</td>
-                                                    </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
+                    <div class="py-12">
+                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                                <div class="p-6  text-gray-900 dark:text-gray-100">
+                                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                                        <table class="w-full text-sm rtl:text-right text-gray-500 dark:text-gray-400 text-center">
+                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                <tr>
+                                                    <th scope="col" class="px-6 py-3">Tracking ID</th>
+                                                    <th scope="col" class="px-6 py-3">Current Status</th>
+                                                    <th scope="col" class="px-6 py-3">Current Location</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($checkouts as $checkout)
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                    <td class="px-6 py-4">{{ $checkout['tracking_id'] }}</td>
+                                                    <td class="px-6 py-4">{{ $checkout['current_status'] }}</td>
+                                                    <td class="px-6 py-4">{{ $checkout->current_location }}</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <a href="/"><button class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Back</button></a>
                     </div>
                 </div>
             </div>
