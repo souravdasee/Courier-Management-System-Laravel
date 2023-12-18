@@ -60,3 +60,7 @@ Route::get('/users/create', [AdminController::class, 'create'])->middleware('can
 Route::post('/users/create', [AdminController::class, 'store']);
 Route::get('/users/{id}', [AdminController::class, 'show'])->middleware('can:admin', 'auth', 'verified');
 Route::post('/users/', [AdminController::class, 'update'])->middleware('can:admin', 'auth', 'verified');
+
+Route::get('/delivery', [StatusController::class, 'delivery'])->middleware('can:delivery', 'auth', 'verified')->name('delivery');
+Route::get('/delivery/{id}', [StatusController::class, 'show'])->middleware('can:delivery', 'auth', 'verified');
+Route::post('/delivery/', [StatusController::class, 'update'])->middleware('can:delivery', 'auth', 'verified');

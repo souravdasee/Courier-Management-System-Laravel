@@ -43,7 +43,7 @@ class AllOrderController extends Controller
             'payment_status' => 'required | string',
             'tracking_id' => 'required | integer',
             'current_status' => 'required | string',
-            'remarks' => 'string'
+            'current_location' => 'required | string'
         ]);
 
         $update = Checkout::find($req->id);
@@ -57,6 +57,7 @@ class AllOrderController extends Controller
         $update->payment_status = $req->payment_status;
         $update->tracking_id = $req->tracking_id;
         $update->current_status = $req->current_status;
+        $update->current_location = $req->current_location;
         $update->remarks = $req->remarks;
 
         $update->save();

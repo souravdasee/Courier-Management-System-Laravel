@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Update;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
 
@@ -14,5 +15,42 @@ class StatusController extends Controller
         return view('status', [
             'checkouts' => $checkout
         ]);
+    }
+
+    public function delivery()
+    {
+        $checkout = Checkout::orderBy('id', 'desc')->paginate(10);
+        $stats = Update::all();
+        return view(
+            'delivery',
+            [
+                'checkouts' => $checkout,
+                'statses' => $stats
+            ]
+        );
+    }
+
+    public function show($id)
+    {
+        $checkout = Checkout::find($id);
+        $stats = Update::all();
+
+        return view('deliveryupdate', [
+            'checkouts' => $checkout,
+            'statses' => $stats
+        ]);
+    }
+
+    public function update(Request $req)
+    {
+        $update = Checkout::find($req->id);
+
+        $update->current_status = $req->current_status;
+        $update->payment_status = $req->payment_status;
+        $update->image = $req->file('image')->store('images');
+        $update->voice = $req->file('voice')->store('audios');
+
+        $update->save();
+        return redirect('delivery');
     }
 }

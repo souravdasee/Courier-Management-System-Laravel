@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="p-2">
-                            <label for="payment_method">Payment method: </label>
+                            <label for="payment_method">Payment method: {{ $checkouts->payment_method }} ||</label>
                             <input class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" type="radio" checked name="payment_method" id="upi" value="upi">
                             <label for="upi">UPI</label>
                             <input class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" type="radio" name="payment_method" id="card" value="card">
@@ -47,8 +47,11 @@
                         </div>
 
                         <div class="p-2">
-                            <label for="payment_method">Payment status: </label>
-                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="payment_status" id="payment_status" value="{{ $checkouts['payment_status'] }}">
+                            <label for="payment_method">Payment status: {{ $checkouts->payment_status }}</label>
+                            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="payment_status" id="payment_status" value="{{ $checkouts['payment_status'] }}">
+                                <option value="Paid">Paid</option>
+                                <option value="Unpaid">Unpaid</option>
+                            </select>
                         </div>
 
                         <div class="p-2">
@@ -57,12 +60,17 @@
                         </div>
 
                         <div class="p-2">
-                            <label for="current_status">Current Status: </label>
+                            <label for="current_status">Current Status: {{ $checkouts->current_status }}</label>
                             <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="current_status" id="current_status" required>
                                 @foreach($statses as $statse)
                                 <option value="{{$statse['status']}}">{{$statse['status']}}</option>
                                 @endforeach
                             </select>
+                        </div>
+
+                        <div class="p-2">
+                            <label for="current_location">Current Location: </label>
+                            <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="current_location" id="current_location" required value="{{ $checkouts->current_location}}">
                         </div>
 
                         <script src="https://cdn.tiny.cloud/1/{{env('TINYMCE_API_KEY')}}/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>

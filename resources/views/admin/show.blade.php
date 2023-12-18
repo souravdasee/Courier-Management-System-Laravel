@@ -15,7 +15,7 @@
 
                         <div class="p-2">
                             <label for="users_name">User name: </label>
-                            <input class="w-auto text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-500 focus:outline-none dark:bg-gray-700 dark:border-gray-600" type="text" name="name" id="users_name" value="{{ $users['name'] }}">
+                            <input class="w-auto text-sm text-black dark:text-white border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none dark:bg-gray-700 dark:border-gray-600" type="text" name="name" id="users_name" value="{{ $users['name'] }}">
                         </div>
 
                         <div class="p-2">

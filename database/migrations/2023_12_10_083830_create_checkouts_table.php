@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('payment_method');
             $table->string('payment_status')->default('Paid');
             $table->bigInteger('tracking_id')->unique();
+            $table->string('current_location')->default('Not shipped yet');
             $table->string('current_status')->default('Booked');
             $table->string('remarks')->nullable();
             $table->string('image')->nullable();

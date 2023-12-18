@@ -41,6 +41,12 @@ class DatabaseSeeder extends Seeder
             'name' => 'Mark Miller',
             'email' => 'm@a.c',
             'password' => 'poiu0987',
+            'role' => 'Delivery Agent'
+        ]);
+        User::create([
+            'name' => 'Jane Doe',
+            'email' => 'j@d.a',
+            'password' => 'poiu0987',
             'role' => 'User'
         ]);
         User::factory(100)->create();
@@ -53,6 +59,9 @@ class DatabaseSeeder extends Seeder
         ]);
         Role::create([
             'role' => 'User',
+        ]);
+        Role::create([
+            'role' => 'Delivery Agent',
         ]);
 
         Location::create([

@@ -18,9 +18,8 @@
                                     <th scope="col" class="px-1 py-3">Booking person role</th>
                                     <th scope="col" class="px-1 py-3">From</th>
                                     <th scope="col" class="px-1 py-3">To</th>
-                                    <th scope="col" class="px-1 py-3">Weight</th>
+                                    <th scope="col" class="px-1 py-3">Current Location</th>
                                     <th scope="col" class="px-1 py-3">Parcel amount</th>
-                                    <th scope="col" class="px-1 py-3">Payment method</th>
                                     <th scope="col" class="px-1 py-3">Payment Status</th>
                                     <th scope="col" class="px-1 py-3">Tracking ID</th>
                                     <th scope="col" class="px-1 py-3">Current Status</th>
@@ -37,9 +36,8 @@
                                     <td class="px-1 py-4">{{ $order->role }}</td>
                                     <td class="px-1 py-4">{{ $order->from }}</td>
                                     <td class="px-1 py-4">{{ $order['to'] }}</td>
-                                    <td class="px-1 py-4">{{ $order['weight'] }}</td>
+                                    <td class="px-1 py-4">{{ $order->current_location }}</td>
                                     <td class="px-1 py-4">{{ $order->parcel_amounts }}</td>
-                                    <td class="px-1 py-4">{{ $order['payment_method'] }}</td>
                                     <td class="px-1 py-4">{{ $order['payment_status'] }}</td>
                                     <td class="px-1 py-4">{{ $order['tracking_id'] }}</td>
                                     <td class="px-1 py-4">{{ $order['current_status'] }}</td>

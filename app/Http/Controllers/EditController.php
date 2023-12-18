@@ -18,13 +18,13 @@ class EditController extends Controller
             'statses' => $stats
         ]);
     }
+
     function update(Request $req)
     {
         $update = Checkout::find($req->id);
 
         $update->current_status = $req->current_status;
-        $update->image = $req->file('image')->store('images');
-        $update->voice = $req->file('voice')->store('audios');
+        $update->current_location = $req->current_location;
         $update->save();
         return redirect('status');
     }

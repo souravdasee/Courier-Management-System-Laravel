@@ -37,5 +37,13 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('operator', function () {
             return request()->user()?->can('operator');
         });
+
+        Gate::define('delivery', function (User $user) {
+            return ($user->role === 'Admin' || $user->role === 'Delivery Agent');
+        });
+
+        Blade::if('delivery', function () {
+            return request()->user()?->can('delivery');
+        });
     }
 }

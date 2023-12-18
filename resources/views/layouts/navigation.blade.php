@@ -18,6 +18,11 @@
                     <x-nav-link :href="route('order')" :active="request()->routeIs('order')">
                         {{ __('Ordes') }}
                     </x-nav-link>
+                    @delivery
+                        <x-nav-link :href="route('delivery')" :active="request()->routeIs('delivery')">
+                            {{ __('Delivery') }}
+                        </x-nav-link>
+                    @enddelivery
                     @operator
                         <x-nav-link :href="route('status')" :active="request()->routeIs('status')">
                             {{ __('Status Update') }}
