@@ -38,6 +38,7 @@ class DashboardController extends Controller
         $courier->from = $req->from;
         $courier->to = $req->to;
         $courier->weight = $req->weight;
+        $courier->distance = $req->distance;
         $courier->sender_name = $req->sender_name;
         $courier->recipient_name = $req->recipient_name;
         $courier->item_type = $req->item_type;

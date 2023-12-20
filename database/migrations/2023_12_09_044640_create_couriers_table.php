@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('from');
             $table->string('to');
             $table->decimal('weight');
+            $table->decimal('distance');
             $table->string('sender_address');
             $table->string('recipient_address');
             $table->timestamps();
