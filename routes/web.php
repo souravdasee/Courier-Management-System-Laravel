@@ -7,11 +7,10 @@ use App\Http\Controllers\StatusController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AllOrderController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\TrackingController;
-use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +23,17 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get('/dashboard', [DashboardController::class, 'show'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::post('/dashboard', [DashboardController::class, 'addData']);
+require __DIR__ . '/auth.php';
+
+Route::get('/', [BookController::class, 'index'])->name('home');
+Route::get('/book', [BookController::class, 'show'])->middleware(['auth', 'verified'])->name('book');
+Route::post('/book', [BookController::class, 'create']);
 
 Route::get('/payment', [PaymentController::class, 'index'])->middleware('auth', 'verified')->name('payment');
 Route::post('/payment', [PaymentController::class, 'addData'])->middleware('auth', 'verified');
@@ -39,17 +45,13 @@ Route::get('/order', [OrderController::class, 'index'])->middleware('auth', 'ver
 
 Route::get('/tracking', [TrackingController::class, 'index']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__ . '/auth.php';
 
 Route::get('/status', [StatusController::class, 'index'])->middleware('can:operator', 'auth', 'verified')->name('status');
 Route::get('/edit/{id}', [EditController::class, 'show'])->middleware('can:operator', 'auth', 'verified');
 Route::post('/edit', [EditController::class, 'update'])->middleware('can:operator', 'auth', 'verified');
+Route::get('/delivery', [StatusController::class, 'delivery'])->middleware('can:delivery', 'auth', 'verified')->name('delivery');
+Route::get('/delivery/{id}', [StatusController::class, 'show'])->middleware('can:delivery', 'auth', 'verified');
+Route::post('/delivery/', [StatusController::class, 'update'])->middleware('can:delivery', 'auth', 'verified');
 
 Route::get('/allorder', [AllOrderController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('allorder');
 Route::get('/adminedit/{id}', [AllOrderController::class, 'show'])->middleware('can:admin', 'auth', 'verified');
@@ -60,7 +62,3 @@ Route::get('/users/create', [AdminController::class, 'create'])->middleware('can
 Route::post('/users/create', [AdminController::class, 'store']);
 Route::get('/users/{id}', [AdminController::class, 'show'])->middleware('can:admin', 'auth', 'verified');
 Route::post('/users/', [AdminController::class, 'update'])->middleware('can:admin', 'auth', 'verified');
-
-Route::get('/delivery', [StatusController::class, 'delivery'])->middleware('can:delivery', 'auth', 'verified')->name('delivery');
-Route::get('/delivery/{id}', [StatusController::class, 'show'])->middleware('can:delivery', 'auth', 'verified');
-Route::post('/delivery/', [StatusController::class, 'update'])->middleware('can:delivery', 'auth', 'verified');

@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @if($couriers->recipient_adderss === $couriers->sender_adderss)
+                    @if($couriers->sender_address === $couriers->recipient_address)
                         <p class="p-4">Sorry, Please choose different location of delivery and pickup</p>
                     @else
                     <div class="grid grid-cols-4">
