@@ -9,11 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-<<<<<<< HEAD:resources/views/dashboard.blade.php
-                    <form action="/dashboard" method="POST" id="distanceForm">
-=======
-                    <form action="/book" method="POST">
->>>>>>> 21a2d56ceba4804e2704c91e098077de714d0722:resources/views/book.blade.php
+                    <form action="/book" method="POST" id="booking">
                         @csrf
 
                         <div>
@@ -29,129 +25,13 @@
                                 </div>
 
                                 <div class="p-2">
-                                    <p>Parcel Item Type</p>
-                                    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="item_type" placeholder="(E.g.: Electronic, Household, Books, etc.)">
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-3">
-                                <div class="p-2">
-                                    <p>From<span class="text-red-500">*</span></p>
-                                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="from" autofocus required>
-                                        @foreach ($locations as $location)
-                                            <option value="{{$location['location']}}">{{$location['location']}}</option>
-                                        @endforeach
-                                    </select>
-
-                                    <label for="location1">From<span class="text-red-500">*</span></label>
-                                    <input
-                                        type="text"
-                                        id="location1"
-                                        name="location1"
-                                        placeholder="Enter first location"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required
-                                    />
-                                </div>
-
-                                <div class="p-2">
-                                    <p>To<span class="text-red-500">*</span></p>
-                                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="to" required>
-                                        @foreach ($locations as $location)
-                                            <option value="{{$location['location']}}">{{$location['location']}}</option>
-                                        @endforeach
-                                    </select>
-
-                                    <label for="location2">To<span class="text-red-500">*</span></label>
-                                    <input
-                                        type="text"
-                                        id="location2"
-                                        name="location2"
-                                        placeholder="Enter second location"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required
-                                    />
-                                </div>
-
-                                <div class="p-2">
-                                    <p>Weight<span class="text-red-500">*</span>(in KGs)</p>
+                                    <p>Parcel Weight<span class="text-red-500">*</span>(in kg)</p>
                                     <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" name="weight" step="0.01" placeholder="max upto 2 decimals" required>
-
-                                    <button type="submit" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Calculate Distance</button>
                                 </div>
-                                <div id="result"></div>
-
-                                <script>
-                                    function initMap() {
-                                      var location1Input = document.getElementById('location1');
-                                      var location2Input = document.getElementById('location2');
-
-                                      var autocomplete1 = new google.maps.places.Autocomplete(location1Input);
-                                      var autocomplete2 = new google.maps.places.Autocomplete(location2Input);
-
-                                      document
-                                        .getElementById('distanceForm')
-                                        .addEventListener('submit', function (event) {
-                                          event.preventDefault();
-                                          calculateDistance();
-                                        });
-
-                                      function calculateDistance() {
-                                        var location1 = location1Input.value;
-                                        var location2 = location2Input.value;
-
-                                        var service = new google.maps.DistanceMatrixService();
-                                        service.getDistanceMatrix(
-                                          {
-                                            origins: [location1],
-                                            destinations: [location2],
-                                            travelMode: 'DRIVING', // You can change this based on your requirement
-                                            unitSystem: google.maps.UnitSystem.METRIC,
-                                          },
-                                          function (response, status) {
-                                            if (status !== 'OK') {
-                                              alert('Error was: ' + status);
-                                            } else {
-                                              console.log(response); // Log the full response for examination
-                                              var distance = '';
-                                              if (
-                                                response.rows.length > 0 &&
-                                                response.rows[0].elements.length > 0
-                                              ) {
-                                                if (
-                                                  response.rows[0].elements[0].distance &&
-                                                  response.rows[0].elements[0].distance.text
-                                                ) {
-                                                  distance = response.rows[0].elements[0].distance.text;
-                                                }
-                                              }
-                                              displayResult(distance);
-                                            }
-                                          }
-                                        );
-                                      }
-
-                                      function displayResult(distance) {
-                                        if (distance) {
-                                          document.getElementById('result').innerHTML =
-                                            'The distance between the locations is: ' + distance;
-                                        } else {
-                                          document.getElementById('result').innerHTML =
-                                            'Unable to calculate the distance.';
-                                        }
-                                      }
-                                    }
-                                </script>
-                                <script
-                                src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&libraries=places&callback=initMap"
-                                async
-                                defer
-                                ></script>
                             </div>
 
                             <div class="grid grid-cols-2">
                                 <div class="p-2">
-<<<<<<< HEAD:resources/views/dashboard.blade.php
                                     <p>Sender's Full Address<span class="text-red-500">*</span></p>
                                     <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_address" required>{{ old('name') }}</textarea>
                                 </div>
@@ -159,16 +39,6 @@
                                 <div class="p-2">
                                     <p>Recipient's Full Address<span class="text-red-500">*</span></p>
                                     <textarea type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_address" required>{{ old('name') }}</textarea>
-=======
-                                    <p>Sender's Address<span class="text-red-500">*</span></p>
-                                    <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_address" required></textarea>
-                                </div>
-
-                                <div class="p-2">
-                                    <p>Recipient's Address<span class="text-red-500">*</span></p>
-                                    <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_address" required></textarea>
->>>>>>> 21a2d56ceba4804e2704c91e098077de714d0722:resources/views/book.blade.php
-
                                 </div>
                             </div>
                         </div>

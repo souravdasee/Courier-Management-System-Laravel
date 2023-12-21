@@ -27,29 +27,34 @@ class BookController extends Controller
     public function create(Request $req)
     {
         request()->validate([
-            'from' => 'required | string',
-            'to' => 'required | string',
-            'weight' => 'required',
             'sender_name' => 'required | string',
             'recipient_name' => 'required | string',
-            'item_type' => 'string',
+            'weight' => 'required',
             'sender_address' => 'required | string | max: 255',
             'recipient_address' => 'required | string | max: 255',
+            'from' => 'required | string',
+            'to' => 'required | string',
+            'distance' => 'required'
         ]);
 
         $courier = new Courier;
 
         $courier->users_id = $req->user()->id;
-        $courier->from = $req->from;
-        $courier->to = $req->to;
-        $courier->weight = $req->weight;
         $courier->sender_name = $req->sender_name;
-        $courier->recipient_name = $req->recipient_name;
-        $courier->item_type = $req->item_type;
+        $courier->weight = $req->weight;
         $courier->sender_address = $req->sender_address;
         $courier->recipient_address = $req->recipient_address;
+        $courier->recipient_name = $req->recipient_name;
+        $courier->from = $req->from;
+        $courier->to = $req->to;
+        $courier->distance = $req->distance;
 
         $courier->save();
-        return redirect('payment');
+        return redirect('prepaymentcheck');
+    }
+
+    public function prepaymentcheck()
+    {
+        return view('prepaymentcheck');
     }
 }

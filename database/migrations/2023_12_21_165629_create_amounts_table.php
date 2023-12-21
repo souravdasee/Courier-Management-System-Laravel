@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('couriers', function (Blueprint $table) {
+        Schema::create('amounts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')->constrained()->cascadeOnDelete();
-            $table->string('sender_name');
-            $table->string('recipient_name');
             $table->decimal('weight');
-            $table->string('sender_address');
-            $table->string('recipient_address');
-            $table->string('from');
-            $table->string('to');
+            $table->decimal('distance');
+            $table->integer('amount');
+            $table->integer('time');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('couriers');
+        Schema::dropIfExists('amounts');
     }
 };

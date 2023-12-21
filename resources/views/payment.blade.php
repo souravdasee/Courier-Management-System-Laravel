@@ -14,23 +14,21 @@
                     @else
                     <div class="grid grid-cols-4">
                         <div class="pr-10">
-                            <p>Parcel details</p>
-                            <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border p-6">
-                                <div><p>From: {{ $couriers['from'] }}</p></div>
-                                <div><p>To: {{ $couriers['to'] }}</p></div>
-                                <div><p>Weight: {{ $couriers['weight'] }}</p></div>
+                            <p class="text-2xl">Parcel details</p>
+                            <div class="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                                <div><p><span class="underline">From </span>: {{ $couriers['from'] }}</p></div>
+                                <div><p><span class="underline">To </span>: {{ $couriers['to'] }}</p></div>
+                                <div><p><span class="underline">Weight </span>: {{ $couriers['weight'] }}</p></div>
                             </div>
                         </div>
 
                         <div class="pr-10">
-                            <p>Amount to pay</p>
-                            <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-                                <div class="border p-4">
-                                    <p>Shipping Cost:@foreach ($parcelamounts as $parcelamount)₹{{ $parcelamount['price'] }}@endforeach</p>
-                                    <p>Platform fee: ₹<?= 10 ?></p>
-                                    <p>---------------------------</p>
-                                    <p>Total amount to pay = @foreach ($parcelamounts as $parcelamount)₹{{ $parcelamount['price'] + 10 }}@endforeach</p>
-                                </div>
+                            <p class="text-2xl" >Amount to pay</p>
+                            <div class="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                                <p><span class="underline">Shipping Cost </span>: @foreach ($parcelamounts as $parcelamount)₹{{ $parcelamount['price'] }}@endforeach</p>
+                                <p><span class="underline">Platform fee</span>: ₹<?= 10 ?></p>
+                                <p>--------------------</p>
+                                <p>Total amount to pay = @foreach ($parcelamounts as $parcelamount)₹{{ $parcelamount['price'] + 10 }}@endforeach</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-2">
@@ -44,13 +42,13 @@
                                     </select>
                                 </div>
 
-                                <button type="submit" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Pay Now</button>
+                                <button type="submit" class="p-2 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Pay Now</button>
                             </form>
                         </div>
                     </div>
                     @endif
 
-                    <a href="/dashboard">
+                    <a href="/book">
                         <button class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Back</button>
                     </a>
                 </div>
@@ -58,32 +56,32 @@
                 <div class="flex items-center justify-between bg-white dark:bg-gray-800 px-4 py-3 sm:px-6">
                     <nav class="flex" aria-label="Breadcrumb">
                         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-                          <li class="inline-flex items-center">
-                            <a href="/dashboard" class="inline-flex items-center text-sm font-medium text-green-500 hover:text-red-600 dark:hover:text-yellow-500">
-                              <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
-                              </svg>
-                              Book
-                            </a>
-                          </li>
-                          <li>
-                            <div class="flex items-center">
-                              <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                              </svg>
-                              <a href="/payment" class="ms-1 text-sm font-medium text-blue-500 hover:text-red-600 dark:hover:text-yellow-500"  md:ms-2 dark:text-gray-400">Payment</a>
-                            </div>
-                          </li>
-                          <li aria-current="page">
-                            <div class="flex items-center">
-                              <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                              </svg>
-                              <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Checkout</span>
-                            </div>
-                          </li>
+                            <li class="inline-flex items-center">
+                                <a href="/book" class="inline-flex items-center text-sm font-medium text-green-500 hover:text-red-600 dark:hover:text-yellow-500">
+                                    <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                                    </svg>
+                                    Book
+                                </a>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                    </svg>
+                                    <a href="/payment" class="ms-1 text-sm font-medium text-blue-500 hover:text-red-600 dark:hover:text-yellow-500"  md:ms-2 dark:text-gray-400">Payment</a>
+                                </div>
+                            </li>
+                            <li aria-current="page">
+                                <div class="flex items-center">
+                                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                    </svg>
+                                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Checkout</span>
+                                </div>
+                            </li>
                         </ol>
-                      </nav>
+                    </nav>
                 </div>
             </div>
         </div>
