@@ -16,12 +16,12 @@
                             <div class="grid grid-cols-3">
                                 <div class="p-2">
                                     <p>Sender's Name:<span class="text-red-500">*</span></p>
-                                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_name" placeholder="Enter sender's name" required>
+                                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_name" placeholder="(E.g. John Doe)" required>
                                 </div>
 
                                 <div class="p-2">
                                     <p>Recipient's Name:<span class="text-red-500">*</span></p>
-                                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_name" placeholder="Enter recipient's name" required>
+                                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_name" placeholder="(E.g. Mark Miller)" required>
                                 </div>
 
                                 <div class="p-2">
@@ -30,21 +30,222 @@
                                 </div>
                             </div>
 
+                            <div class="grid grid-cols-4">
+                                <div class="p-2">
+                                    <label for="sender_number">Sender's Phone Number:<span class="text-red-500">*</span></label>
+                                    <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_number" id="sender_number" placeholder="(E.g. 9876543210)" required>
+                                </div>
+
+                                <div class="p-2">
+                                    <label for="recipient_number">Recipient's Phone Number:<span class="text-red-500">*</span></label>
+                                    <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_number" id="recipient_number" placeholder="(E.g. 9876543210)" required>
+                                </div>
+
+                                <link
+                                    rel="stylesheet"
+                                    href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+                                />
+                                <style>
+                                    @layer utilities {
+                                        .autocomplete-items > div {
+                                            cursor: pointer;
+                                            padding: 10px;
+                                        }
+                                    }
+                                </style>
+
+                                <style>
+                                    @layer utilities {
+                                        .autocomplete-items-hover > div:hover {
+                                            background-color: #706c6c;
+                                        }
+                                    }
+                                </style>
+
+                                <div class="p-2">
+                                    <label for="startLocation">Sender's Location<span class="text-red-500">*</span></label>
+                                    <div class="relative w-56 inline-block">
+                                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="from" id="startLocation" placeholder="(E.g. Farakka Barrage)" oninput="autoFill('start')" required>
+                                        <div class="absolute z-auto rounded bg-gray-700 max-h-40 overflow-y-auto w-full autocomplete-items autocomplete-items-hover" id="startAutocomplete"></div>
+                                    </div>
+                                </div>
+
+                                <div class="p-2">
+                                    <label for="endLocation">Recipient's Location<span class="text-red-500">*</span></label>
+                                    <div class="relative w-56 inline-block">
+                                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="to" id="endLocation" placeholder="(E.g. kolkata)" oninput="autoFill('end')" required>
+                                        <div class="absolute z-auto rounded bg-gray-700 max-h-40 overflow-y-auto w-full autocomplete-items autocomplete-items-hover" id="endAutocomplete"></div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="grid grid-cols-2">
                                 <div class="p-2">
                                     <p>Sender's Full Address<span class="text-red-500">*</span></p>
-                                    <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_address" required>{{ old('name') }}</textarea>
+                                    <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_address" required></textarea>
                                 </div>
 
                                 <div class="p-2">
                                     <p>Recipient's Full Address<span class="text-red-500">*</span></p>
-                                    <textarea type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_address" required>{{ old('name') }}</textarea>
+                                    <textarea type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_address" required></textarea>
                                 </div>
                             </div>
+                            <input type="button" value="Get Directions" onclick="getDirections()" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" />
+                        </div>
+
+                        <div id="map" class="h-96 w-full rounded-2xl"></div>
+                        <div class="p-2">
+                            <label for="distance">Distance (in km)</label>
+                            <div><output id="distance" name="distance" class="bg-gray-800 text-gray-300 w-10 h-12 border-hidden" readonly></output></div>
                         </div>
 
                         <button type="submit" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Next</button>
                     </form>
+
+                    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+                    <script>
+                        let map;
+                        let routeLayer; // Reference to the route layer
+
+                        function initMap() {
+                            if (!map) {
+                            map = L.map('map').setView([0, 0], 2);
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution:
+                                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+                            }).addTo(map);
+                            }
+                        }
+
+                        function autoFill(type) {
+                            const input = document.getElementById(`${type}Location`);
+                            const autocompleteContainer = document.getElementById(
+                            `${type}Autocomplete`
+                            );
+                            const query = input.value;
+
+                            fetch(
+                            `https://nominatim.openstreetmap.org/search?format=json&q=${query}`
+                            )
+                            .then(response => response.json())
+                            .then(data => {
+                                autocompleteContainer.innerHTML = ''; // Clear previous suggestions
+                                if (data.length > 0) {
+                                data.forEach(item => {
+                                    const suggestion = document.createElement('div');
+                                    suggestion.innerHTML = item.display_name;
+                                    suggestion.addEventListener('click', () => {
+                                    input.value = item.display_name;
+                                    autocompleteContainer.innerHTML = '';
+                                    });
+                                    autocompleteContainer.appendChild(suggestion);
+                                });
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Autofill error:', error);
+                            });
+                        }
+
+                        function getDirections() {
+                            const startInput = document.getElementById('startLocation');
+                            const endInput = document.getElementById('endLocation');
+
+                            const startLocation = encodeURIComponent(startInput.value);
+                            const endLocation = encodeURIComponent(endInput.value);
+
+                            fetch(
+                            `https://nominatim.openstreetmap.org/search?format=json&q=${startLocation}`
+                            )
+                            .then(response => {
+                                if (!response.ok) {
+                                throw new Error('Start location not found.');
+                                }
+                                return response.json();
+                            })
+                            .then(startData => {
+                                const startCountryCode = startData[0].display_name
+                                .split(',')
+                                .slice(-1)[0]
+                                .trim(); // Extracting country code from the start location data
+
+                                fetch(
+                                `https://nominatim.openstreetmap.org/search?format=json&q=${endLocation}`
+                                )
+                                .then(response => {
+                                    if (!response.ok) {
+                                    throw new Error('End location not found.');
+                                    }
+                                    return response.json();
+                                })
+                                .then(endData => {
+                                    const endCountryCode = endData[0].display_name
+                                    .split(',')
+                                    .slice(-1)[0]
+                                    .trim(); // Extracting country code from the end location data
+
+                                    if (startCountryCode !== endCountryCode) {
+                                    // If the start and end locations are in different countries, show the message
+                                    document.getElementById('distance').innerHTML =
+                                        'Sorry, it is outside the country.';
+                                    return;
+                                    }
+
+                                    const startLat = startData[0].lat;
+                                    const startLon = startData[0].lon;
+                                    const endLat = endData[0].lat;
+                                    const endLon = endData[0].lon;
+
+                                    const routeURL = `https://router.project-osrm.org/route/v1/driving/${startLon},${startLat};${endLon},${endLat}?geometries=geojson`;
+
+                                    fetch(routeURL)
+                                    .then(response => {
+                                        if (!response.ok) {
+                                        throw new Error('Directions request failed.');
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        if (
+                                        data.code !== 'Ok' ||
+                                        !data.routes ||
+                                        data.routes.length === 0
+                                        ) {
+                                        throw new Error('No routes found.');
+                                        }
+
+                                        const newRouteLayer = L.geoJSON(data.routes[0].geometry);
+
+                                        // Clear previous route before adding new one
+                                        if (routeLayer) {
+                                        map.removeLayer(routeLayer);
+                                        }
+
+                                        routeLayer = newRouteLayer; // Update reference to the new layer
+                                        routeLayer.addTo(map);
+                                        map.fitBounds(routeLayer.getBounds());
+
+                                        // Calculate distance
+                                        const distance = data.routes[0].distance / 1000; // Distance in kilometers
+                                        document.getElementById(
+                                        'distance'
+                                        ).innerHTML = distance;
+                                    })
+                                    .catch(error => {
+                                        console.error('Error fetching directions:', error);
+                                    });
+                                })
+                                .catch(error => {
+                                    console.error('Error fetching end location:', error);
+                                });
+                            })
+                            .catch(error => {
+                                console.error('Error fetching start location:', error);
+                            });
+                        }
+
+                        window.onload = initMap;
+                    </script>
                 </div>
 
                 <div class="flex items-center justify-between bg-white dark:bg-gray-800 px-4 py-3 sm:px-6">
