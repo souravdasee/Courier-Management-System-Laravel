@@ -6,12 +6,14 @@ namespace Database\Seeders;
 
 use App\Models\Amount;
 use App\Models\Checkout;
+use App\Models\Distance;
 use App\Models\User;
 use App\Models\Location;
 use App\Models\ParcelAmount;
 use App\Models\Role;
 use App\Models\Statse;
 use App\Models\Update;
+use App\Models\Weight;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -197,6 +199,246 @@ class DatabaseSeeder extends Seeder
             'distance' => 2000,
             'amount' => 450,
             'time' => 11
+        ]);
+
+        Weight::create([
+            'min_weight' => 1,
+            'max_weight' => 50
+        ]);
+        Weight::create([
+            'min_weight' => 51,
+            'max_weight' => 100
+        ]);
+        Weight::create([
+            'min_weight' => 101,
+            'max_weight' => 200
+        ]);
+        Weight::create([
+            'min_weight' => 201,
+            'max_weight' => 500
+        ]);
+        Weight::create([
+            'min_weight' => 501,
+            'max_weight' => 1000
+        ]);
+        Weight::create([
+            'min_weight' => 1001,
+            'max_weight' => null
+        ]);
+
+        Distance::create([
+            'weights_id' => 1,
+            'min_distance' => 1,
+            'max_distance' => 1000,
+            'price' => 10
+        ]);
+        Distance::create([
+            'weights_id' => 1,
+            'min_distance' => 1001,
+            'max_distance' => 10000,
+            'price' => 20
+        ]);
+        Distance::create([
+            'weights_id' => 1,
+            'min_distance' => 10001,
+            'max_distance' => 50000,
+            'price' => 50
+        ]);
+        Distance::create([
+            'weights_id' => 1,
+            'min_distance' => 50001,
+            'max_distance' => 100000,
+            'price' => 70
+        ]);
+        Distance::create([
+            'weights_id' => 1,
+            'min_distance' => 100001,
+            'max_distance' => 500000,
+            'price' => 120
+        ]);
+        Distance::create([
+            'weights_id' => 1,
+            'min_distance' => 500001,
+            'max_distance' => 1000000,
+            'price' => 150
+        ]);
+        Distance::create([
+            'weights_id' => 1,
+            'min_distance' => 1000001,
+            'max_distance' => null,
+            'price' => 170
+        ]);
+
+        Distance::create([
+            'weights_id' => 2,
+            'min_distance' => 1,
+            'max_distance' => 1000,
+            'price' => 20
+        ]);
+        Distance::create([
+            'weights_id' => 2,
+            'min_distance' => 1001,
+            'max_distance' => 10000,
+            'price' => 30
+        ]);
+        Distance::create([
+            'weights_id' => 2,
+            'min_distance' => 10001,
+            'max_distance' => 50000,
+            'price' => 70
+        ]);
+        Distance::create([
+            'weights_id' => 2,
+            'min_distance' => 50001,
+            'max_distance' => 100000,
+            'price' => 90
+        ]);
+        Distance::create([
+            'weights_id' => 2,
+            'min_distance' => 100001,
+            'max_distance' => 500000,
+            'price' => 130
+        ]);
+        Distance::create([
+            'weights_id' => 2,
+            'min_distance' => 500001,
+            'max_distance' => 1000000,
+            'price' => 170
+        ]);
+        Distance::create([
+            'weights_id' => 2,
+            'min_distance' => 1000001,
+            'max_distance' => null,
+            'price' => 190
+        ]);
+
+        Distance::create([
+            'weights_id' => 3,
+            'min_distance' => 1,
+            'max_distance' => 1000,
+            'price' => 30
+        ]);
+        Distance::create([
+            'weights_id' => 3,
+            'min_distance' => 1001,
+            'max_distance' => 10000,
+            'price' => 40
+        ]);
+        Distance::create([
+            'weights_id' => 3,
+            'min_distance' => 10001,
+            'max_distance' => 50000,
+            'price' => 70
+        ]);
+        Distance::create([
+            'weights_id' => 3,
+            'min_distance' => 50001,
+            'max_distance' => 100000,
+            'price' => 90
+        ]);
+        Distance::create([
+            'weights_id' => 3,
+            'min_distance' => 100001,
+            'max_distance' => 500000,
+            'price' => 140
+        ]);
+        Distance::create([
+            'weights_id' => 3,
+            'min_distance' => 500001,
+            'max_distance' => 1000000,
+            'price' => 180
+        ]);
+        Distance::create([
+            'weights_id' => 3,
+            'min_distance' => 1000001,
+            'max_distance' => null,
+            'price' => 210
+        ]);
+
+        Distance::create([
+            'weights_id' => 4,
+            'min_distance' => 1,
+            'max_distance' => 1000,
+            'price' => 50
+        ]);
+        Distance::create([
+            'weights_id' => 4,
+            'min_distance' => 1001,
+            'max_distance' => 10000,
+            'price' => 70
+        ]);
+        Distance::create([
+            'weights_id' => 4,
+            'min_distance' => 10001,
+            'max_distance' => 50000,
+            'price' => 100
+        ]);
+        Distance::create([
+            'weights_id' => 4,
+            'min_distance' => 50001,
+            'max_distance' => 100000,
+            'price' => 130
+        ]);
+        Distance::create([
+            'weights_id' => 4,
+            'min_distance' => 100001,
+            'max_distance' => 500000,
+            'price' => 180
+        ]);
+        Distance::create([
+            'weights_id' => 4,
+            'min_distance' => 500001,
+            'max_distance' => 1000000,
+            'price' => 210
+        ]);
+        Distance::create([
+            'weights_id' => 4,
+            'min_distance' => 1000001,
+            'max_distance' => null,
+            'price' => 240
+        ]);
+
+        Distance::create([
+            'weights_id' => 5,
+            'min_distance' => 1,
+            'max_distance' => 1000,
+            'price' => 100
+        ]);
+        Distance::create([
+            'weights_id' => 5,
+            'min_distance' => 1001,
+            'max_distance' => 10000,
+            'price' => 150
+        ]);
+        Distance::create([
+            'weights_id' => 5,
+            'min_distance' => 10001,
+            'max_distance' => 50000,
+            'price' => 220
+        ]);
+        Distance::create([
+            'weights_id' => 5,
+            'min_distance' => 50001,
+            'max_distance' => 100000,
+            'price' => 340
+        ]);
+        Distance::create([
+            'weights_id' => 5,
+            'min_distance' => 100001,
+            'max_distance' => 500000,
+            'price' => 460
+        ]);
+        Distance::create([
+            'weights_id' => 5,
+            'min_distance' => 500001,
+            'max_distance' => 1000000,
+            'price' => 590
+        ]);
+        Distance::create([
+            'weights_id' => 5,
+            'min_distance' => 1000001,
+            'max_distance' => null,
+            'price' => 720
         ]);
 
         Checkout::factory(1000)->create();

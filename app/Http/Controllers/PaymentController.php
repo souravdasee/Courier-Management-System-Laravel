@@ -12,7 +12,6 @@ class PaymentController extends Controller
     function index()
     {
         $courier = Courier::latest()->first();
-
         $weight = $courier->weight;
         $distance = $courier->distance;
 
