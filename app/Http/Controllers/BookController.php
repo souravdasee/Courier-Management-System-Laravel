@@ -30,10 +30,12 @@ class BookController extends Controller
             'sender_name' => 'required | string',
             'recipient_name' => 'required | string',
             'weight' => 'required',
-            'sender_address' => 'required | string | max: 255',
-            'recipient_address' => 'required | string | max: 255',
+            'sender_number' => 'required | numeric | min:6000000000 | max:9999999999',
+            'recipient_number' => 'required | numeric | min:6000000000 | max:9999999999',
             'from' => 'required | string',
             'to' => 'required | string',
+            'sender_address' => 'required | string | max: 255',
+            'recipient_address' => 'required | string | max: 255',
             'distance' => 'required'
         ]);
 
@@ -41,16 +43,18 @@ class BookController extends Controller
 
         $courier->users_id = $req->user()->id;
         $courier->sender_name = $req->sender_name;
-        $courier->weight = $req->weight;
-        $courier->sender_address = $req->sender_address;
-        $courier->recipient_address = $req->recipient_address;
         $courier->recipient_name = $req->recipient_name;
+        $courier->weight = $req->weight;
+        $courier->sender_number = $req->sender_number;
+        $courier->recipient_number = $req->recipient_number;
         $courier->from = $req->from;
         $courier->to = $req->to;
+        $courier->sender_address = $req->sender_address;
+        $courier->recipient_address = $req->recipient_address;
         $courier->distance = $req->distance;
 
         $courier->save();
-        return redirect('prepaymentcheck');
+        return redirect('payment');
     }
 
     public function prepaymentcheck()

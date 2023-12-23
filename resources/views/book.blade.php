@@ -96,7 +96,7 @@
                         <div id="map" class="h-96 w-full rounded-2xl"></div>
                         <div class="p-2">
                             <label for="distance">Distance (in km)</label>
-                            <div><output id="distance" name="distance" class="bg-gray-800 text-gray-300 w-10 h-12 border-hidden" readonly></output></div>
+                            <div><textarea id="distance" name="distance" class="bg-gray-800 text-gray-300 w-full h-10 p-2 border-hidden" readonly></textarea></div>
                         </div>
 
                         <button type="submit" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Next</button>
@@ -105,7 +105,7 @@
                     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
                     <script>
                         let map;
-                        let routeLayer; // Reference to the route layer
+                        let routeLayer;
 
                         function initMap() {
                             if (!map) {
@@ -124,12 +124,10 @@
                             );
                             const query = input.value;
 
-                            fetch(
-                            `https://nominatim.openstreetmap.org/search?format=json&q=${query}`
-                            )
+                            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
                             .then(response => response.json())
                             .then(data => {
-                                autocompleteContainer.innerHTML = ''; // Clear previous suggestions
+                                autocompleteContainer.innerHTML = '';
                                 if (data.length > 0) {
                                 data.forEach(item => {
                                     const suggestion = document.createElement('div');
@@ -167,11 +165,9 @@
                                 const startCountryCode = startData[0].display_name
                                 .split(',')
                                 .slice(-1)[0]
-                                .trim(); // Extracting country code from the start location data
+                                .trim();
 
-                                fetch(
-                                `https://nominatim.openstreetmap.org/search?format=json&q=${endLocation}`
-                                )
+                                fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endLocation}`)
                                 .then(response => {
                                     if (!response.ok) {
                                     throw new Error('End location not found.');
@@ -182,10 +178,9 @@
                                     const endCountryCode = endData[0].display_name
                                     .split(',')
                                     .slice(-1)[0]
-                                    .trim(); // Extracting country code from the end location data
+                                    .trim();
 
                                     if (startCountryCode !== endCountryCode) {
-                                    // If the start and end locations are in different countries, show the message
                                     document.getElementById('distance').innerHTML =
                                         'Sorry, it is outside the country.';
                                     return;
@@ -216,17 +211,15 @@
 
                                         const newRouteLayer = L.geoJSON(data.routes[0].geometry);
 
-                                        // Clear previous route before adding new one
                                         if (routeLayer) {
                                         map.removeLayer(routeLayer);
                                         }
 
-                                        routeLayer = newRouteLayer; // Update reference to the new layer
+                                        routeLayer = newRouteLayer;
                                         routeLayer.addTo(map);
                                         map.fitBounds(routeLayer.getBounds());
 
-                                        // Calculate distance
-                                        const distance = data.routes[0].distance / 1000; // Distance in kilometers
+                                        const distance = data.routes[0].distance / 1000;
                                         document.getElementById(
                                         'distance'
                                         ).innerHTML = distance;

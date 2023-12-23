@@ -34,8 +34,6 @@ require __DIR__ . '/auth.php';
 Route::get('/', [BookController::class, 'index'])->name('home');
 Route::get('/book', [BookController::class, 'show'])->middleware(['auth', 'verified'])->name('book');
 Route::post('/book', [BookController::class, 'create']);
-Route::get('/prepaymentcheck', [BookController::class, 'prepaymentcheck']);
-// Route::post('/prepaymentcheck', [BookController::class, 'createprepaymentcheck']);
 
 Route::get('/payment', [PaymentController::class, 'index'])->middleware('auth', 'verified')->name('payment');
 Route::post('/payment', [PaymentController::class, 'addData'])->middleware('auth', 'verified');

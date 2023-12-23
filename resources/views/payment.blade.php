@@ -16,19 +16,20 @@
                         <div class="pr-10">
                             <p class="text-2xl">Parcel details</p>
                             <div class="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-                                <div><p><span class="underline">From </span>: {{ $couriers['from'] }}</p></div>
-                                <div><p><span class="underline">To </span>: {{ $couriers['to'] }}</p></div>
-                                <div><p><span class="underline">Weight </span>: {{ $couriers['weight'] }}</p></div>
+                                <div><p><span class="underline">From </span>: {{ $couriers->from }}</p></div>
+                                <div><p><span class="underline">To </span>: {{ $couriers->to }}</p></div>
+                                <div><p><span class="underline">Weight </span>: {{ $couriers->weight }}</p></div>
+                                <div><p><span class="underline">Distance </span>: {{ $couriers->distance }}</p></div>
                             </div>
                         </div>
 
                         <div class="pr-10">
                             <p class="text-2xl" >Amount to pay</p>
                             <div class="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-                                <p><span class="underline">Shipping Cost </span>: @foreach ($parcelamounts as $parcelamount)₹{{ $parcelamount['price'] }}@endforeach</p>
+                                <p><span class="underline">Shipping Cost </span>: ₹{{ $parcelamounts->amount }}</p>
                                 <p><span class="underline">Platform fee</span>: ₹<?= 10 ?></p>
                                 <p>--------------------</p>
-                                <p>Total amount to pay = @foreach ($parcelamounts as $parcelamount)₹{{ $parcelamount['price'] + 10 }}@endforeach</p>
+                                <p>Total amount to pay = ₹{{ $parcelamounts->amount + 10 }}</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-2">
@@ -69,7 +70,7 @@
                                     <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                                     </svg>
-                                    <a href="/payment" class="ms-1 text-sm font-medium text-blue-500 hover:text-red-600 dark:hover:text-yellow-500"  md:ms-2 dark:text-gray-400">Payment</a>
+                                    <a href="/payment" class="ms-1 text-sm font-medium text-blue-500 hover:text-red-600 dark:hover:text-yellow-500 md:ms-2 dark:text-gray-400">Payment</a>
                                 </div>
                             </li>
                             <li aria-current="page">

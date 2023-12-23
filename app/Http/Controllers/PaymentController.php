@@ -2,25 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Amount;
 use App\Models\Courier;
-use App\Models\ParcelAmount;
 use App\Models\Payment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
     function index()
     {
         $courier = Courier::latest()->first();
-        $parcelamount = ParcelAmount::all();
+
+        $weight = $courier->weight;
+        $distance = $courier->distance;
+
+        $amount = Amount::where('weight', '<=', $weight)
+            ->where('distance', '<=', $distance)
+            ->orderBy('weight', 'desc')
+            ->orderBy('distance', 'desc')
+            ->first();
 
         return view('payment', [
-            'couriers' => $courier
-        ], [
-            'parcelamounts' => $parcelamount
-                ->where('from', '=', $courier->from)
-                ->where('to', '=', $courier->to)
+            'couriers' => $courier,
+            'parcelamounts' => $amount
         ]);
     }
 

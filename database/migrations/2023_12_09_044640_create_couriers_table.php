@@ -17,12 +17,13 @@ return new class extends Migration
             $table->string('sender_name');
             $table->string('recipient_name');
             $table->decimal('weight');
-            $table->integer('sender_number');
-            $table->integer('recipient_number');
+            $table->unsignedBigInteger('sender_number');
+            $table->unsignedBigInteger('recipient_number');
             $table->string('from');
             $table->string('to');
             $table->string('sender_address');
             $table->string('recipient_address');
+            $table->decimal('distance');
             $table->timestamps();
         });
     }
