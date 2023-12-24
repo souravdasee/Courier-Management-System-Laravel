@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\Amount;
 use App\Models\Checkout;
 use App\Models\Distance;
@@ -11,7 +9,6 @@ use App\Models\User;
 use App\Models\Location;
 use App\Models\ParcelAmount;
 use App\Models\Role;
-use App\Models\Statse;
 use App\Models\Update;
 use App\Models\Weight;
 use Illuminate\Database\Seeder;
@@ -439,6 +436,49 @@ class DatabaseSeeder extends Seeder
             'min_distance' => 1000001,
             'max_distance' => null,
             'price' => 720
+        ]);
+
+        Distance::create([
+            'weights_id' => 6,
+            'min_distance' => 1,
+            'max_distance' => 1000,
+            'price' => 150
+        ]);
+        Distance::create([
+            'weights_id' => 6,
+            'min_distance' => 1001,
+            'max_distance' => 10000,
+            'price' => 190
+        ]);
+        Distance::create([
+            'weights_id' => 6,
+            'min_distance' => 10001,
+            'max_distance' => 50000,
+            'price' => 300
+        ]);
+        Distance::create([
+            'weights_id' => 6,
+            'min_distance' => 50001,
+            'max_distance' => 100000,
+            'price' => 400
+        ]);
+        Distance::create([
+            'weights_id' => 6,
+            'min_distance' => 100001,
+            'max_distance' => 500000,
+            'price' => 550
+        ]);
+        Distance::create([
+            'weights_id' => 6,
+            'min_distance' => 500001,
+            'max_distance' => 1000000,
+            'price' => 750
+        ]);
+        Distance::create([
+            'weights_id' => 6,
+            'min_distance' => 1000001,
+            'max_distance' => null,
+            'price' => 880
         ]);
 
         Checkout::factory(1000)->create();

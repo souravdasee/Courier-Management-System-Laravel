@@ -18,18 +18,18 @@
                             <div class="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
                                 <div><p><span class="underline">From </span>: {{ $couriers->from }}</p></div>
                                 <div><p><span class="underline">To </span>: {{ $couriers->to }}</p></div>
-                                <div><p><span class="underline">Weight </span>: {{ $couriers->weight }}</p></div>
-                                <div><p><span class="underline">Distance </span>: {{ $couriers->distance }}</p></div>
+                                <div><p><span class="underline">Weight </span>: {{ $couriers->weight }} KG</p></div>
+                                <div><p><span class="underline">Distance </span>: {{ $couriers->distance }} KM</p></div>
                             </div>
                         </div>
 
                         <div class="pr-10">
                             <p class="text-2xl" >Amount to pay</p>
                             <div class="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-                                <p><span class="underline">Shipping Cost </span>: ₹{{ $parcelamounts->amount }}</p>
+                                <p><span class="underline">Shipping Cost </span>: ₹{{ $parcelamounts }}</p>
                                 <p><span class="underline">Platform fee</span>: ₹<?= 10 ?></p>
                                 <p>--------------------</p>
-                                <p>Total amount to pay = ₹{{ $parcelamounts->amount + 10 }}</p>
+                                <p>Total amount to pay = ₹{{ $parcelamounts + 10 }}</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-2">

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Distance extends Model
 {
     use HasFactory;
+
+    public function weight()
+    {
+        return $this->belongsTo(Weight::class, 'weights_id');
+    }
 }
