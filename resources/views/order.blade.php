@@ -46,7 +46,7 @@
                             <tbody>
                                 @foreach($checkouts as $checkout)
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td class="px-6 py-4">{{ $checkout['created_at']->format('D, h:i:sa d-M Y (T)') }}</td>
+                                        <td class="px-6 py-4">{{ $checkout['created_at']->diffForHumans() }}</td>
                                         <td class="px-6 py-4">{{ $checkout['from'] }}</td>
                                         <td class="px-6 py-4">{{ $checkout['to'] }}</td>
                                         <td class="px-6 py-4">₹{{ $checkout['parcel_amounts'] }}</td>

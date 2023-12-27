@@ -19,13 +19,12 @@ class StatusController extends Controller
 
     public function delivery()
     {
-        $checkout = Checkout::orderBy('id', 'desc')->paginate(10);
-        $stats = Update::all();
+        $checkout = Checkout::where('current_status', '=', 'Out for delivery')->orderBy('id', 'desc')->paginate(10);
+
         return view(
             'delivery',
             [
-                'checkouts' => $checkout,
-                'statses' => $stats
+                'checkouts' => $checkout
             ]
         );
     }

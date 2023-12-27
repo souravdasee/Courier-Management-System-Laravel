@@ -35,16 +35,16 @@
                             </thead>
                             <tbody>
                                 @foreach($checkouts as $checkout)
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td class="px-6 py-4">{{ $checkout['users_name'] }}</td>
-                                        <td class="px-6 py-4">{{ $checkout['tracking_id'] }}</td>
-                                        <td class="px-6 py-4">{{ $checkout['current_status'] }}</td>
-                                        <td class="px-6 py-4">{{ $checkout->payment_method }}</td>
-                                        <td class="px-6 py-4">{{ $checkout->payment_status }}</td>
-                                        <td class="px-6 py-4">
-                                            <a href="{{"/delivery/".$checkout['id']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</a>
-                                        </td>
-                                    </tr>
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td class="px-6 py-4">{{ $checkout->users_name }}</td>
+                                    <td class="px-6 py-4">{{ $checkout->tracking_id }}</td>
+                                    <td class="px-6 py-4">{{ $checkout->current_status }}</td>
+                                    <td class="px-6 py-4">{{ $checkout->payment_method }}</td>
+                                    <td class="px-6 py-4">{{ $checkout->payment_status }}</td>
+                                    <td class="px-6 py-4">
+                                        <a href="{{"/delivery/".$checkout['id']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</a>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>

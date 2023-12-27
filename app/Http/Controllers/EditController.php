@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Checkout;
 use App\Models\Update;
+use Twilio\Rest\Client;
+use App\Models\Checkout;
 use Illuminate\Http\Request;
 
 class EditController extends Controller
@@ -22,6 +23,22 @@ class EditController extends Controller
     function update(Request $req)
     {
         $update = Checkout::find($req->id);
+
+
+        $sid = getenv("TWILIO_ACCOUNT_SID");
+        $token = getenv("TWILIO_AUTH_TOKEN");
+        $number_from = getenv("TWILIO_PHONE_NUMBER_FROM");
+        $number_to = getenv("TWILIO_PHONE_NUMBER_TO");
+        $twilio = new Client($sid, $token);
+
+        $twilio->messages
+            ->create(
+                $number_to,
+                [
+                    "body" => "Your parcel order has been: $req->current_status",
+                    "from" => $number_from
+                ]
+            )->sid;
 
         request()->validate([
             'current_status' => 'required | string | max:255',
