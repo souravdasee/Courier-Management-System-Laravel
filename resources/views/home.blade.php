@@ -51,7 +51,10 @@
 
                                 <div class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
                                     <form action="/tracking" method="GET">
-                                        <input class="ring-2 bg-gray-200 text-white dark:bg-gray-900" type="number" name="search">
+                                        <input class="ring-2 bg-gray-200 text-white dark:bg-gray-900" type="number" name="search" required>
+                                        @error('search')
+                                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
                                         <button class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Track</button>
                                     </form>
                                 </div>

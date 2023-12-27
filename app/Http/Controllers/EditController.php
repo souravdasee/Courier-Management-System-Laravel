@@ -32,6 +32,7 @@ class EditController extends Controller
         $update->current_location = $req->current_location;
 
         $update->save();
-        return redirect('status');
+
+        return redirect('status')->with('success', 'Status updated');
     }
 }

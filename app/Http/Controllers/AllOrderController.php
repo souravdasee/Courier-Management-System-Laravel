@@ -66,6 +66,6 @@ class AllOrderController extends Controller
         $update->remarks = $req->remarks;
 
         $update->save();
-        return redirect('allorder');
+        return redirect('allorder')->with('success', 'Order updated');
     }
 }

@@ -58,6 +58,6 @@ class StatusController extends Controller
         $update->voice = $req->file('voice')->store('audios');
 
         $update->save();
-        return redirect('delivery');
+        return redirect('delivery')->with('success', 'Delivered');
     }
 }

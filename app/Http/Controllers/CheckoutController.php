@@ -54,6 +54,6 @@ class CheckoutController extends Controller
         $parcel->role = $req->user()->role;
 
         $parcel->save();
-        return redirect('order');
+        return redirect('order')->with('success', 'Parcel booked');
     }
 }

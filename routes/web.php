@@ -49,6 +49,7 @@ Route::get('/tracking', [TrackingController::class, 'index']);
 Route::get('/status', [StatusController::class, 'index'])->middleware('can:operator', 'auth', 'verified')->name('status');
 Route::get('/edit/{id}', [EditController::class, 'show'])->middleware('can:operator', 'auth', 'verified');
 Route::post('/edit', [EditController::class, 'update'])->middleware('can:operator', 'auth', 'verified');
+
 Route::get('/delivery', [StatusController::class, 'delivery'])->middleware('can:delivery', 'auth', 'verified')->name('delivery');
 Route::get('/delivery/{id}', [StatusController::class, 'show'])->middleware('can:delivery', 'auth', 'verified');
 Route::post('/delivery/', [StatusController::class, 'update'])->middleware('can:delivery', 'auth', 'verified');

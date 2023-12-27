@@ -50,7 +50,7 @@ class AdminController extends Controller
         $user->password = $req->password;
 
         $user->save();
-        return redirect('users');
+        return redirect('users')->with('success', 'New user created');
     }
 
     public function show($id)
@@ -79,6 +79,6 @@ class AdminController extends Controller
         $update->email = $req->email;
 
         $update->save();
-        return redirect('users');
+        return redirect('users')->with('success', 'User details updated');
     }
 }

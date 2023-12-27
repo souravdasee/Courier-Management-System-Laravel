@@ -55,4 +55,5 @@
             </div>
         </div>
     </div>
+    <x-flash />
 </x-app-layout>
