@@ -16,34 +16,66 @@
                         <div class="p-2">
                             <label for="users_name">User name: </label>
                             <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="users_name" id="users_name" value="{{ $checkouts['users_name'] }}">
+                            @error('users_name')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="p-2">
+                            <label for="role">Role: {{ $checkouts->role }}</label>
+                            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="role" id="role" value="{{ $checkouts->role }}">
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->role }}">
+                                        {{ $role->role }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('role')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="p-2">
                             <label for="from">From: </label>
                             <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="from" id="from" value="{{ $checkouts['from'] }}">
+                            @error('from')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="p-2">
                             <label for="to">To: </label>
                             <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="to" id="to" value="{{ $checkouts['to'] }}">
+                            @error('to')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="p-2">
                             <label for="weight">Weight: </label>
                             <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" step="0.01" name="weight" id="weight" value="{{ $checkouts['weight'] }}">
+                            @error('weight')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="p-2">
                             <label for="parcel_amount">Amount: </label>
                             <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" name="parcel_amounts" id="parcel_amount" value="{{ $checkouts['parcel_amounts'] }}">
+                            @error('parcel_amounts')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="p-2">
                             <label for="payment_method">Payment method: {{ $checkouts->payment_method }} ||</label>
-                            <input class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" type="radio" checked name="payment_method" id="upi" value="upi">
-                            <label for="upi">UPI</label>
-                            <input class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" type="radio" name="payment_method" id="card" value="card">
-                            <label for="card">Card</label>
+                                <input class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" type="radio" checked name="payment_method" id="upi" value="upi">
+                                <label for="upi">UPI</label>
+                                <input class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" type="radio" name="payment_method" id="card" value="card">
+                                <label for="card">Card</label>
+                            @error('payment_method')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="p-2">
@@ -52,11 +84,17 @@
                                 <option value="Paid">Paid</option>
                                 <option value="Unpaid">Unpaid</option>
                             </select>
+                            @error('payment_status')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="p-2">
                             <label for="tracking_id">Tracking ID: </label>
                             <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" name="tracking_id" id="tracking_id" value="{{ $checkouts['tracking_id'] }}">
+                            @error('tracking_id')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="p-2">
@@ -66,11 +104,17 @@
                                 <option value="{{$statse['status']}}">{{$statse['status']}}</option>
                                 @endforeach
                             </select>
+                            @error('current_status')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="p-2">
                             <label for="current_location">Current Location: </label>
                             <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="current_location" id="current_location" required value="{{ $checkouts->current_location}}">
+                            @error('current_location')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <script src="https://cdn.tiny.cloud/1/{{env('TINYMCE_API_KEY')}}/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
@@ -93,6 +137,9 @@
                             <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="remarks" id="tinymce" cols="20" rows="10">
                                 {{ $checkouts['remarks'] }}
                             </textarea>
+                            @error('remarks')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="p-2">

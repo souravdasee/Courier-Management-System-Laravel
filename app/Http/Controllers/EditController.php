@@ -23,8 +23,14 @@ class EditController extends Controller
     {
         $update = Checkout::find($req->id);
 
+        request()->validate([
+            'current_status' => 'required | string | max:255',
+            'current_location' => 'required | string | max:255'
+        ]);
+
         $update->current_status = $req->current_status;
         $update->current_location = $req->current_location;
+
         $update->save();
         return redirect('status');
     }

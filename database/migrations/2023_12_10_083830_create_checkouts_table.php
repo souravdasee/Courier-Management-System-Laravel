@@ -19,11 +19,12 @@ return new class extends Migration
             $table->string('users_name');
             $table->string('from');
             $table->string('to');
+            $table->decimal('distance');
             $table->decimal('weight');
-            $table->bigInteger('parcel_amounts');
+            $table->unsignedBigInteger('parcel_amounts');
             $table->string('payment_method');
             $table->string('payment_status')->default('Paid');
-            $table->bigInteger('tracking_id')->unique();
+            $table->unsignedBigInteger('tracking_id')->unique();
             $table->string('current_location')->default('Not shipped yet');
             $table->string('current_status')->default('Booked');
             $table->string('remarks')->nullable();

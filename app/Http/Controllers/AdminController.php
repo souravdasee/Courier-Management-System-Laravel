@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
-use Illuminate\Validation\Rules\Password;
-
-
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+
+
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Validation\Rules\Password;
 
 class AdminController extends Controller
 {
@@ -37,7 +38,7 @@ class AdminController extends Controller
         request()->validate([
             'name' => 'required | string | max:255 ',
             'role' => 'required | string ',
-            'email' => 'required | email ',
+            'email' => 'required | email | unique:users,email',
             'password' => 'required | min:4 | max:127'
         ]);
 
@@ -65,13 +66,13 @@ class AdminController extends Controller
 
     public function update(Request $req)
     {
+        $update = User::find($req->id);
+
         request()->validate([
             'name' => 'required | string | max:255 ',
             'role' => 'required | string ',
-            'email' => 'required | email '
+            'email' => ['required', Rule::unique('users')->ignore($update->id)]
         ]);
-
-        $update = User::find($req->id);
 
         $update->name = $req->name;
         $update->role = $req->role;

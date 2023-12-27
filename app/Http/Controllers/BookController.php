@@ -15,11 +15,9 @@ class BookController extends Controller
 
     public function show()
     {
-        $location = Location::all();
         $courier = Courier::all();
 
         return view('book', [
-            'locations' => $location,
             'couriers' => $courier
         ]);
     }
@@ -27,16 +25,16 @@ class BookController extends Controller
     public function create(Request $req)
     {
         request()->validate([
-            'sender_name' => 'required | string',
-            'recipient_name' => 'required | string',
-            'weight' => 'required',
+            'sender_name' => 'required | string | max:255',
+            'recipient_name' => 'required | string | max:255',
+            'weight' => 'required | decimal:0,2 | max:50000',
             'sender_number' => 'required | numeric | min:6000000000 | max:9999999999',
             'recipient_number' => 'required | numeric | min:6000000000 | max:9999999999',
             'from' => 'required | string',
             'to' => 'required | string',
             'sender_address' => 'required | string | max: 255',
             'recipient_address' => 'required | string | max: 255',
-            'distance' => 'required'
+            'distance' => 'required | numeric'
         ]);
 
         $courier = new Courier;

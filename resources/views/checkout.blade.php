@@ -14,7 +14,7 @@
                         <div class="p-2">
                             <p class="text-5xl">Parcel details</p>
                             <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border p-2">
-                                <div class="grid grid-cols-3">
+                                <div class="grid grid-cols-4">
                                     <div class="hidden">
                                         Booking person name:
                                         <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='name'>
@@ -54,21 +54,20 @@
                                     </div>
 
                                     <div class="grid grid-cols-2 mr-12">
-                                        Parcel weight: <p>{{ $couriers['weight'] }}</p>
-                                        <input type="number" step="0.01" value="{{ $couriers['weight'] }}" class="hidden" name="weight">
+                                        Parcel weight: <p>{{ $couriers->weight }}gm</p>
+                                        <input type="number" step="0.01" value="{{ $couriers->weight }}" class="hidden" name="weight">
+                                    </div>
+
+                                    <div class="grid grid-cols-2 mr-12">
+                                        Distance: <p>{{ $couriers->distance }}km</p>
+                                        <input type="number" step="0.01" value="{{ $couriers->distance }}" class="hidden" name="distance">
                                     </div>
                                 </div><br>
 
                                 <div class="grid grid-cols-4">
                                     <div class="grid grid-cols-2 mr-12" >
-                                        Paid amount: <p>@foreach ($parcelamounts as $parcelamount){{ $parcelamount['price'] + 10 }}@endforeach</p>
-                                        <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='parcel_amounts'>
-                                            <option value="@foreach ($parcelamounts as $parcelamount){{ $parcelamount['price'] + 10 }}@endforeach">
-                                                @foreach ($parcelamounts as $parcelamount)
-                                                    {{ $parcelamount['price'] + 10 }}
-                                                @endforeach
-                                            </option>
-                                        </select>
+                                        Paid amount: <p>₹{{ $paymentmethods->amount }}</p>
+                                        <input type="hidden" name="parcel_amounts" value="{{ $paymentmethods->amount }}">
                                     </div>
 
                                     <div class="grid grid-cols-2 mr-12">

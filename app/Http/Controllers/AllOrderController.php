@@ -24,10 +24,12 @@ class AllOrderController extends Controller
     {
         $checkout = Checkout::find($id);
         $stats = Update::all();
+        $role = Role::all();
 
         return view('editall', [
             'checkouts' => $checkout,
-            'statses' => $stats
+            'statses' => $stats,
+            'roles' => $role
         ]);
     }
 
@@ -35,20 +37,23 @@ class AllOrderController extends Controller
     {
         request()->validate([
             'users_name' => 'required | string | max:255',
-            'from' => 'required | string',
-            'to' => 'required | string',
-            'weight' => 'required',
-            'parcel_amounts' => 'required | integer',
-            'payment_method' => 'required | string',
-            'payment_status' => 'required | string',
-            'tracking_id' => 'required | integer',
-            'current_status' => 'required | string',
-            'current_location' => 'required | string'
+            'role' => 'required | string | max:255',
+            'from' => 'required | string | max:255',
+            'to' => 'required | string | max:255',
+            'weight' => 'required | decimal:0,2 | max:50000',
+            'parcel_amounts' => 'required | integer | min:20 | max:1200',
+            'payment_method' => 'required | string | max:255',
+            'payment_status' => 'required | string | max:255',
+            'tracking_id' => 'required | integer | min:1000000000 | max:9999999999',
+            'current_status' => 'required | string | max:255',
+            'current_location' => 'required | string',
+            'remarks' => 'string | max:255'
         ]);
 
         $update = Checkout::find($req->id);
 
         $update->users_name = $req->users_name;
+        $update->role = $req->role;
         $update->from = $req->from;
         $update->to = $req->to;
         $update->weight = $req->weight;

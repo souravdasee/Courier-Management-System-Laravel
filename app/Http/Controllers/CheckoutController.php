@@ -15,14 +15,10 @@ class CheckoutController extends Controller
     function index(Request $req)
     {
         $courier = Courier::latest()->first();
-        $parcelamount = ParcelAmount::all();
         $paymentmethod = Payment::latest()->first();
         $user = User::all();
 
         return view('checkout', [
-            'parcelamounts' => $parcelamount
-                ->where('from', '=', $courier->from)
-                ->where('to', '=', $courier->to),
             'paymentmethods' => $paymentmethod,
             'couriers' => $courier,
             'users' => $user,
@@ -35,7 +31,8 @@ class CheckoutController extends Controller
         request()->validate([
             'from' => 'required | string',
             'to' => 'required | string',
-            'weight' => 'required',
+            'weight' => 'required | decimal:0,2 | max:50000',
+            'distance' => 'required | numeric',
             'parcel_amounts' => 'required | integer',
             'payment_method' => 'required | string',
             'payment_status' => 'required | string',
@@ -49,6 +46,7 @@ class CheckoutController extends Controller
         $parcel->from = $req->from;
         $parcel->to = $req->to;
         $parcel->weight = $req->weight;
+        $parcel->distance = $req->distance;
         $parcel->parcel_amounts = $req->parcel_amounts;
         $parcel->payment_method = $req->payment_method;
         $parcel->payment_status = $req->payment_status;

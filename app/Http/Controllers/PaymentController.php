@@ -12,7 +12,7 @@ class PaymentController extends Controller
     function index()
     {
         $courier = Courier::latest()->first();
-        $weight = ($courier->weight) * 1000;
+        $weight = $courier->weight;
         $distance = ($courier->distance) * 1000;
 
         $price = Distance::where('min_distance', '<=', $distance)
@@ -44,6 +44,7 @@ class PaymentController extends Controller
         $courier = new Payment;
 
         $courier->users_id = $req->user()->id;
+        $courier->amount = $req->amount;
         $courier->method = $req->method;
 
         $courier->save();

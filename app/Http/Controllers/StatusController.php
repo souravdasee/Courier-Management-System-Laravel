@@ -45,6 +45,13 @@ class StatusController extends Controller
     {
         $update = Checkout::find($req->id);
 
+        request()->validate([
+            'payment_status' => 'required | string | max:255',
+            'current_status' => 'required | string | max:255',
+            'image' => 'required | image',
+            'voice' => 'required | file'
+        ]);
+
         $update->current_status = $req->current_status;
         $update->payment_status = $req->payment_status;
         $update->image = $req->file('image')->store('images');

@@ -16,29 +16,49 @@
                             <div class="grid grid-cols-3">
                                 <div class="p-2">
                                     <p>Sender's Name:<span class="text-red-500">*</span></p>
-                                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_name" placeholder="(E.g. John Doe)" required>
+                                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_name" placeholder="(E.g. John Doe)" value="{{ old('sender_name') }}" required>
+
+                                    @error('sender_name')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="p-2">
                                     <p>Recipient's Name:<span class="text-red-500">*</span></p>
-                                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_name" placeholder="(E.g. Mark Miller)" required>
+                                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_name" value="{{ old('recipient_name') }}" placeholder="(E.g. Mark Miller)" required>
+
+                                    @error('recipient_name')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="p-2">
-                                    <p>Parcel Weight<span class="text-red-500">*</span>(in kg)</p>
-                                    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" name="weight" step="0.01" placeholder="max upto 2 decimals" required>
+                                    <p>Parcel Weight<span class="text-red-500">*</span>(in gm)</p>
+                                    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" name="weight" value="{{ old('weight') }}" step="0.01" placeholder="max upto 50Kg & in 2 decimals" required>
+
+                                    @error('weight')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-4">
                                 <div class="p-2">
                                     <label for="sender_number">Sender's Phone Number:<span class="text-red-500">*</span></label>
-                                    <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_number" id="sender_number" placeholder="(E.g. 9876543210)" required>
+                                    <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_number" id="sender_number" placeholder="(E.g. 9876543210)" value="{{ old('sender_number') }}" required>
+
+                                    @error('sender_number')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="p-2">
                                     <label for="recipient_number">Recipient's Phone Number:<span class="text-red-500">*</span></label>
-                                    <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_number" id="recipient_number" placeholder="(E.g. 9876543210)" required>
+                                    <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_number" value="{{ old('recipient_number') }}" id="recipient_number" placeholder="(E.g. 9876543210)" required>
+
+                                    @error('recipient_number')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <link
@@ -65,7 +85,7 @@
                                 <div class="p-2">
                                     <label for="startLocation">Sender's Location<span class="text-red-500">*</span></label>
                                     <div class="relative w-56 inline-block">
-                                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="from" id="startLocation" placeholder="(E.g. Farakka Barrage)" oninput="autoFill('start')" required>
+                                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="from" value="{{ old('from') }}" id="startLocation" placeholder="(E.g. Farakka Barrage)" oninput="autoFill('start')" required>
                                         <div class="absolute z-auto rounded bg-gray-700 max-h-40 overflow-y-auto w-full autocomplete-items autocomplete-items-hover" id="startAutocomplete"></div>
                                     </div>
                                 </div>
@@ -73,7 +93,7 @@
                                 <div class="p-2">
                                     <label for="endLocation">Recipient's Location<span class="text-red-500">*</span></label>
                                     <div class="relative w-56 inline-block">
-                                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="to" id="endLocation" placeholder="(E.g. kolkata)" oninput="autoFill('end')" required>
+                                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="to" value="{{ old('to') }}" id="endLocation" placeholder="(E.g. kolkata)" oninput="autoFill('end')" required>
                                         <div class="absolute z-auto rounded bg-gray-700 max-h-40 overflow-y-auto w-full autocomplete-items autocomplete-items-hover" id="endAutocomplete"></div>
                                     </div>
                                 </div>
@@ -82,12 +102,20 @@
                             <div class="grid grid-cols-2">
                                 <div class="p-2">
                                     <p>Sender's Full Address<span class="text-red-500">*</span></p>
-                                    <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_address" required></textarea>
+                                    <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sender_address" required>{{ old('sender_address') }}</textarea>
+
+                                    @error('sender_address')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="p-2">
                                     <p>Recipient's Full Address<span class="text-red-500">*</span></p>
-                                    <textarea type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_address" required></textarea>
+                                    <textarea type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="recipient_address" required>{{ old('recipient_address') }}</textarea>
+
+                                    @error('recipient_address')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <input type="button" value="Get Directions" onclick="getDirections()" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" />
@@ -96,7 +124,7 @@
                         <div id="map" class="h-96 w-full rounded-2xl"></div>
                         <div class="p-2">
                             <label for="distance">Distance (in km)</label>
-                            <div><textarea id="distance" name="distance" class="bg-gray-800 text-gray-300 w-full h-10 p-2 border-hidden" readonly></textarea></div>
+                            <div><textarea id="distance" name="distance" class="bg-gray-800 text-gray-300 w-full h-10 p-2 border-hidden" readonly></textarea>{{ old('distance') }}</div>
                         </div>
 
                         <button type="submit" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Next</button>

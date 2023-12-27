@@ -17,11 +17,14 @@
                         <p class="p-2">Name: {{ $checkouts['users_name'] }}</p>
                         <p class="p-2">Parcel Amount: {{ $checkouts['parcel_amounts'] }}</p>
                         <div class="p-2">
-                            <label for="payment_status">Current Status: {{ $checkouts->payment_status }}</label>
+                            <label for="payment_status">Payment Status: {{ $checkouts->payment_status }}</label>
                             <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="payment_status" autofocus required>
                                     <option value="Paid">Paid</option>
                                     <option value="Unpaid">Unpaid</option>
                             </select>
+                            @error('payment_status')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="p-2">
@@ -31,11 +34,17 @@
                                     <option value="{{$stats['status']}}">{{$stats['status']}}</option>
                                 @endforeach
                             </select>
+                            @error('current_status')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="p-2">
                             <label for="image">Image: </label>
                             <input accept="image/*" type="file" name="image" class="w-auto text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
+                            @error('image')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
 
@@ -119,6 +128,9 @@
                                 document.getElementById('audioForm').submit();
                                 }
                             </script>
+                            @error('voice')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                     </form>
                 </div>

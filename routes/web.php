@@ -33,7 +33,7 @@ require __DIR__ . '/auth.php';
 
 Route::get('/', [BookController::class, 'index'])->name('home');
 Route::get('/book', [BookController::class, 'show'])->middleware(['auth', 'verified'])->name('book');
-Route::post('/book', [BookController::class, 'create']);
+Route::post('/book', [BookController::class, 'create'])->middleware(['auth', 'verified']);
 
 Route::get('/payment', [PaymentController::class, 'index'])->middleware('auth', 'verified')->name('payment');
 Route::post('/payment', [PaymentController::class, 'addData'])->middleware('auth', 'verified');
@@ -59,6 +59,6 @@ Route::post('/allorder', [AllOrderController::class, 'update'])->middleware('can
 
 Route::get('/users', [AdminController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('users');
 Route::get('/users/create', [AdminController::class, 'create'])->middleware('can:admin', 'auth', 'verified');
-Route::post('/users/create', [AdminController::class, 'store']);
+Route::post('/users/create', [AdminController::class, 'store'])->middleware('can:admin', 'auth', 'verified');
 Route::get('/users/{id}', [AdminController::class, 'show'])->middleware('can:admin', 'auth', 'verified');
 Route::post('/users/', [AdminController::class, 'update'])->middleware('can:admin', 'auth', 'verified');

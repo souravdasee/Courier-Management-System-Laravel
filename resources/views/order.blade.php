@@ -26,6 +26,9 @@
                                         Amount
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Distance
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Payment Status
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -46,7 +49,8 @@
                                         <td class="px-6 py-4">{{ $checkout['created_at']->format('D, h:i:sa d-M Y (T)') }}</td>
                                         <td class="px-6 py-4">{{ $checkout['from'] }}</td>
                                         <td class="px-6 py-4">{{ $checkout['to'] }}</td>
-                                        <td class="px-6 py-4">{{ $checkout['parcel_amounts'] }}</td>
+                                        <td class="px-6 py-4">₹{{ $checkout['parcel_amounts'] }}</td>
+                                        <td class="px-6 py-4">{{ $checkout->distance }}km</td>
                                         <td class="px-6 py-4">{{ $checkout['payment_status'] }}</td>
                                         <td class="px-6 py-4">{{ $checkout['tracking_id'] }}</td>
                                         <td class="px-6 py-4">{{ $checkout['current_status'] }}</td>
