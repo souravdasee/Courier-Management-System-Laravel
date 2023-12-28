@@ -14,9 +14,6 @@
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
-                                        Booked Person Name
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
                                         Tracking ID
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -33,10 +30,9 @@
                             <tbody>
                                 @foreach($checkouts as $checkout)
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td class="px-6 py-4">{{ $checkout['users_name'] }}</td>
-                                        <td class="px-6 py-4">{{ $checkout['tracking_id'] }}</td>
-                                        <td class="px-6 py-4">{{ $checkout['current_status'] }}</td>
-                                        <td class="px-6 py-4">{{ $checkout['current_location'] }}</td>
+                                        <td class="px-6 py-4">{{ $checkout->tracking_id }}</td>
+                                        <td class="px-6 py-4">{{ $checkout->current_status }}</td>
+                                        <td class="px-6 py-4">{{ $checkout->current_location }}</td>
                                         <td class="px-6 py-4">
                                             <a href="{{"/edit/".$checkout['id']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</a>
                                         </td>

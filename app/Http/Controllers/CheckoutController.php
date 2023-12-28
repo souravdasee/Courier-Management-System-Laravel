@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Checkout;
 use App\Models\Courier;
-use App\Models\ParcelAmount;
 use App\Models\Payment;
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 

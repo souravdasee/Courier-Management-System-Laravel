@@ -13,7 +13,15 @@
                         @csrf
                         <input type="hidden" name="id" value="{{$checkouts['id']}}">
 
-                        <p class="p-2">Tracking ID: {{ $checkouts['tracking_id'] }}</p>
+                        <p class="p-2">Sender Name: {{ $checkouts->sender_name }}</p>
+                        <p class="p-2">Sender Number: {{ $checkouts->sender_number }}</p>
+                        <p class="p-2">Recipient Name: {{ $checkouts->recipient_name }}</p>
+                        <p class="p-2">Recipient Number: {{ $checkouts->recipient_number }}</p>
+                        <p class="p-2">From: {{ $checkouts->from }}</p>
+                        <p class="p-2">To: {{ $checkouts->to }}</p>
+                        <p class="p-2">Tracking ID: {{ $checkouts->tracking_id }}</p>
+                        <p class="p-2">Payment Method: {{ $checkouts->payment_method }}</p>
+                        <p class="p-2">Parcel Amount: {{ $checkouts->parcel_amounts }}</p>
 
                         <div class="p-2">
                             <label for="current_status">Current Status: {{ $checkouts->current_status }}</label>

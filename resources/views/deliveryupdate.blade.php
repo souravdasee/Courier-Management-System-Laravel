@@ -13,9 +13,15 @@
                         @csrf
                         <input type="hidden" name="id" value="{{$checkouts['id']}}">
 
-                        <p class="p-2">Tracking ID: {{ $checkouts['tracking_id'] }}</p>
-                        <p class="p-2">Name: {{ $checkouts['users_name'] }}</p>
-                        <p class="p-2">Parcel Amount: {{ $checkouts['parcel_amounts'] }}</p>
+                        <p class="p-2">Sender Name: {{ $checkouts->sender_name }}</p>
+                        <p class="p-2">Sender Number: {{ $checkouts->sender_number }}</p>
+                        <p class="p-2">Recipient Name: {{ $checkouts->recipient_name }}</p>
+                        <p class="p-2">Recipient Number: {{ $checkouts->recipient_number }}</p>
+                        <p class="p-2">From: {{ $checkouts->from }}</p>
+                        <p class="p-2">To: {{ $checkouts->to }}</p>
+                        <p class="p-2">Tracking ID: {{ $checkouts->tracking_id }}</p>
+                        <p class="p-2">Payment Method: {{ $checkouts->payment_method }}</p>
+                        <p class="p-2">Parcel Amount: {{ $checkouts->parcel_amounts }}</p>
                         <div class="p-2">
                             <label for="payment_status">Payment Status: {{ $checkouts->payment_status }}</label>
                             <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="payment_status" autofocus required>

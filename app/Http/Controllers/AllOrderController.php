@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Checkout;
-use App\Models\Role;
 use App\Models\Update;
 use Illuminate\Http\Request;
 
@@ -12,11 +11,9 @@ class AllOrderController extends Controller
     function index()
     {
         $order = Checkout::with("user")->orderBy('id', 'desc')->Paginate(10);
-        $role = Role::with('role');
 
         return view('allorder', [
-            'orders' => $order,
-            'roles' => $role
+            'orders' => $order
         ]);
     }
 
@@ -24,12 +21,10 @@ class AllOrderController extends Controller
     {
         $checkout = Checkout::find($id);
         $stats = Update::all();
-        $role = Role::all();
 
         return view('editall', [
             'checkouts' => $checkout,
-            'statses' => $stats,
-            'roles' => $role
+            'statses' => $stats
         ]);
     }
 
@@ -37,9 +32,15 @@ class AllOrderController extends Controller
     {
         request()->validate([
             'users_name' => 'required | string | max:255',
-            'role' => 'required | string | max:255',
+            'sender_name' => 'required | string | max:255',
+            'recipient_name' => 'required | string | max:255',
+            'sender_number' => 'required | numeric | min:6000000000 | max:9999999999',
+            'recipient_number' => 'required | numeric | min:6000000000 | max:9999999999',
+            'sender_address' => 'required | string | max:255',
+            'recipient_address' => 'required | string | max:255',
             'from' => 'required | string | max:255',
             'to' => 'required | string | max:255',
+            'distance' => 'required | decimal:0,2 | max:50000000',
             'weight' => 'required | decimal:0,2 | max:50000',
             'parcel_amounts' => 'required | integer | min:20 | max:1200',
             'payment_method' => 'required | string | max:255',
@@ -47,16 +48,22 @@ class AllOrderController extends Controller
             'tracking_id' => 'required | integer | min:1000000000 | max:9999999999',
             'current_status' => 'required | string | max:255',
             'current_location' => 'required | string',
-            'remarks' => 'string | max:255'
+            'remarks' => 'string | max:255 | nullable'
         ]);
 
         $update = Checkout::find($req->id);
 
         $update->users_name = $req->users_name;
-        $update->role = $req->role;
+        $update->sender_name = $req->sender_name;
+        $update->recipient_name = $req->recipient_name;
+        $update->sender_number = $req->sender_number;
+        $update->recipient_number = $req->recipient_number;
+        $update->sender_address = $req->sender_address;
+        $update->recipient_address = $req->recipient_address;
         $update->from = $req->from;
         $update->to = $req->to;
         $update->weight = $req->weight;
+        $update->distance = $req->distance;
         $update->parcel_amounts = $req->parcel_amounts;
         $update->payment_method = $req->payment_method;
         $update->payment_status = $req->payment_status;
