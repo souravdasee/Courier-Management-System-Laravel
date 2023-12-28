@@ -14,7 +14,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $user = User::latest()->orderBy('id', 'desc')->Paginate(10);
+        $user = User::latest()->filter(request(['search']))->paginate(10)->withQueryString();
 
         return view('admin.index', [
             'users' => $user

@@ -5,6 +5,10 @@
         </h2>
     </x-slot>
 
+    <form action="/allorder" method="GET" class="flex justify-center">
+        <input type="number" name="search" placeholder="Find with tracking ID" class="bg-white dark:bg-gray-800 text-black dark:text-white absolute w-72 rounded-2xl text-center" value="{{ request('search') }}">
+    </form>
+
     <div class="py-12">
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -38,7 +42,7 @@
                                     <td class="px-1 py-4">{{ $order->current_status }}</td>
                                     <td class="px-1 py-4">{{ $order->current_location }}</td>
                                     <td class="px-1 py-4">{!! $order->remarks !!}</td>
-                                    <td class="px-1 py-4 text-right">
+                                    <td class="px-1 py-4 text-center">
                                         <a href="{{"/adminedit/".$order['id']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                     </td>
                                 </tr>

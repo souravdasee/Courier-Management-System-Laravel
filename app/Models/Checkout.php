@@ -19,4 +19,16 @@ class Checkout extends Model
     {
         return $this->hasOne(Role::class, "role", 'roles_id');
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when(
+            $filters['search'] ?? false,
+            fn ($query) =>
+            $query->where(
+                fn ($query) =>
+                $query->where('tracking_id', '=', request('search'))
+            )
+        );
+    }
 }

@@ -25,8 +25,11 @@
                 </a>
             </div>
         </div>
-
     </x-slot>
+
+    <form action="/users" method="GET" class="flex justify-center">
+        <input type="email" name="search" placeholder="Find with email ID" class="bg-white dark:bg-gray-800 text-black dark:text-white absolute w-72 rounded-2xl text-center" value="{{ request('search') }}">
+    </form>
 
     <div class="py-12">
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">

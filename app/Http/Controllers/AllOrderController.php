@@ -10,7 +10,7 @@ class AllOrderController extends Controller
 {
     function index()
     {
-        $order = Checkout::with("user")->orderBy('id', 'desc')->Paginate(10);
+        $order = Checkout::with("user")->latest()->filter(request(['search']))->paginate(10)->withQueryString();
 
         return view('allorder', [
             'orders' => $order
