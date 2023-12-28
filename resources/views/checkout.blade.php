@@ -13,90 +13,93 @@
                         @csrf
                         <div class="p-2">
                             <p class="text-5xl">Parcel details</p>
-                            <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border p-2">
-                                <div class="grid grid-cols-4">
-                                    <div class="hidden">
-                                        Booking person name:
-                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='name'>
-                                            <option value="@foreach($users as $user){{ $user['name'] }}@endforeach">
-                                                @foreach($users as $user){{ $user['name'] }}@endforeach
-                                            </option>
-                                        </select>
-                                    </div>
-
-                                    <div class="hidden">
-                                        Booking person role:
-                                        <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='name'>
-                                            <option value="{{$roles}}">
-                                                {{$roles}}
-                                            </option>
-                                        </select>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 mr-12">
-                                        Parcel from:
-                                        <p>{{ $couriers['from'] }}</p>
-                                        <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='from'>
-                                            <option value="{{ $couriers['from'] }}">
-                                                {{ $couriers['from'] }}
-                                            </option>
-                                        </select>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 mr-12">
-                                        Parcel to:
-                                        <p>{{ $couriers['to'] }}</p>
-                                        <select class=" hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='to'>
-                                            <option value="{{ $couriers['to'] }}">
-                                                {{ $couriers['to'] }}
-                                            </option>
-                                        </select>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 mr-12">
-                                        Parcel weight: <p>{{ $couriers->weight }}gm</p>
-                                        <input type="number" step="0.01" value="{{ $couriers->weight }}" class="hidden" name="weight">
-                                    </div>
-
-                                    <div class="grid grid-cols-2 mr-12">
-                                        Distance: <p>{{ $couriers->distance }}km</p>
-                                        <input type="number" step="0.01" value="{{ $couriers->distance }}" class="hidden" name="distance">
-                                    </div>
-                                </div><br>
-
-                                <div class="grid grid-cols-4">
-                                    <div class="grid grid-cols-2 mr-12" >
-                                        Paid amount: <p>₹{{ $paymentmethods->amount }}</p>
-                                        <input type="hidden" name="parcel_amounts" value="{{ $paymentmethods->amount }}">
-                                    </div>
-
-                                    <div class="grid grid-cols-2 mr-12">
-                                        Payment method: <p>{{ $paymentmethods['method'] }}</p>
-                                        <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='payment_method'>
-                                            <option value="{{ $paymentmethods['method'] }}">
-                                                {{ $paymentmethods['method'] }}
-                                            </option>
-                                        </select>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 mr-12">
-                                        payment status: <p>Paid</p>
-                                        <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='payment_status'>
-                                            <option value="Paid">
-                                                Paid
-                                            </option>
-                                        </select>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 mr-12">
-                                        tracking id: <p><?= rand(1000000000, 9999999999) ?></p>
-                                        <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='tracking_id'>
-                                            <option value="<?= rand(1111111111, 9999999999) ?>">
-                                                <?= rand(1000000000, 9999999999) ?>
-                                            </option>
-                                        </select>
-                                    </div>
+                            <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-2">
+                                <div class="hidden">
+                                    Booking person name:
+                                    <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='name'>
+                                        <option value="@foreach($users as $user){{ $user['name'] }}@endforeach">
+                                            @foreach($users as $user){{ $user['name'] }}@endforeach
+                                        </option>
+                                    </select>
                                 </div>
+
+                                <div class="hidden">
+                                    Booking person role:
+                                    <select class="grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='name'>
+                                        <option value="{{$roles}}">
+                                            {{$roles}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="flex mr-12">
+                                    Parcel from:
+                                    <p>{{ $couriers['from'] }}</p>
+                                    <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='from'>
+                                        <option value="{{ $couriers['from'] }}">
+                                            {{ $couriers['from'] }}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="flex mr-12">
+                                    Parcel to:
+                                    <p>{{ $couriers['to'] }}</p>
+                                    <select class=" hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='to'>
+                                        <option value="{{ $couriers['to'] }}">
+                                            {{ $couriers['to'] }}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="flex mr-12">
+                                    Parcel weight: <p>{{ $couriers->weight }}gm</p>
+                                    <input type="number" step="0.01" value="{{ $couriers->weight }}" class="hidden" name="weight">
+                                </div>
+
+                                <div class="flex mr-12">
+                                    Distance: <p>{{ $couriers->distance }}km</p>
+                                    <input type="number" step="0.01" value="{{ $couriers->distance }}" class="hidden" name="distance">
+                                </div>
+
+                                <div class="flex mr-12" >
+                                    Paid amount: <p>₹{{ $paymentmethods->amount }}</p>
+                                    <input type="hidden" name="parcel_amounts" value="{{ $paymentmethods->amount }}">
+                                </div>
+
+                                <div class="flex mr-12">
+                                    Payment method: <p>{{ $paymentmethods['method'] }}</p>
+                                    <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='payment_method'>
+                                        <option value="{{ $paymentmethods['method'] }}">
+                                            {{ $paymentmethods['method'] }}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="flex mr-12">
+                                    payment status: <p>Paid</p>
+                                    <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='payment_status'>
+                                        <option value="Paid">
+                                            Paid
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="flex mr-12">
+                                    tracking id: <p><?= rand(1000000000, 9999999999) ?></p>
+                                    <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='tracking_id'>
+                                        <option value="<?= rand(1111111111, 9999999999) ?>">
+                                            <?= rand(1000000000, 9999999999) ?>
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <input type="hidden" value="{{ $paymentmethods->sender_name }}" name="sender_name" readonly>
+                                <input type="hidden" value="{{ $paymentmethods->recipient_name }}" name="recipient_name" readonly>
+                                <input type="hidden" value="{{ $paymentmethods->sender_number }}" name="sender_number" readonly>
+                                <input type="hidden" value="{{ $paymentmethods->recipient_number }}" name="recipient_number" readonly>
+                                <input type="hidden" value="{{ $paymentmethods->sender_address }}" name="sender_address" readonly>
+                                <input type="hidden" value="{{ $paymentmethods->recipient_address }}" name="recipient_address" readonly>
                             </div>
                         </div>
 

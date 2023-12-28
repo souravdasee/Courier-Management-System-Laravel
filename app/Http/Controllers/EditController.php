@@ -25,20 +25,21 @@ class EditController extends Controller
         $update = Checkout::find($req->id);
 
 
-        $sid = getenv("TWILIO_ACCOUNT_SID");
-        $token = getenv("TWILIO_AUTH_TOKEN");
-        $number_from = getenv("TWILIO_PHONE_NUMBER_FROM");
-        $number_to = getenv("TWILIO_PHONE_NUMBER_TO");
-        $twilio = new Client($sid, $token);
+        // SMS Service Provider
+        // $sid = getenv("TWILIO_ACCOUNT_SID");
+        // $token = getenv("TWILIO_AUTH_TOKEN");
+        // $number_from = getenv("TWILIO_PHONE_NUMBER_FROM");
+        // $number_to = getenv("TWILIO_PHONE_NUMBER_TO");
+        // $twilio = new Client($sid, $token);
 
-        $twilio->messages
-            ->create(
-                $number_to,
-                [
-                    "body" => "Your parcel order has been: $req->current_status",
-                    "from" => $number_from
-                ]
-            )->sid;
+        // $twilio->messages
+        //     ->create(
+        //         $number_to,
+        //         [
+        //             "body" => "Your parcel order has been: $req->current_status",
+        //             "from" => $number_from
+        //         ]
+        //     )->sid;
 
         request()->validate([
             'current_status' => 'required | string | max:255',

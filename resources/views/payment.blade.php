@@ -12,41 +12,50 @@
                     @if($couriers->sender_address === $couriers->recipient_address)
                         <p class="p-4">Sorry, Please choose different location of delivery and pickup</p>
                     @else
-                    <div class="grid grid-cols-4">
-                        <div class="pr-10">
-                            <p class="text-2xl">Parcel details</p>
-                            <div class="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-                                <div><p><span class="underline">From </span>: {{ $couriers->from }}</p></div>
-                                <div><p><span class="underline">To </span>: {{ $couriers->to }}</p></div>
-                                <div><p><span class="underline">Weight </span>: {{ $couriers->weight }} gm</p></div>
-                                <div><p><span class="underline">Distance </span>: {{ $couriers->distance }} KM</p></div>
-                            </div>
-                        </div>
 
-                        <div class="pr-10">
-                            <p class="text-2xl" >Amount to pay</p>
-                            <div class="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-                                <p><span class="underline">Shipping Cost </span>: ₹{{ $parcelamounts }}</p>
-                                <p><span class="underline">Platform fee</span>: ₹<?= 10 ?></p>
-                                <p>--------------------</p>
-                                <p>Total amount to pay = ₹{{ $parcelamounts + 10 }}</p>
-                            </div>
+                    <p class="text-2xl">Parcel details</p>
+                    <div class="pr-10">
+                        <div class="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                            <div><p><span class="underline">From </span>: {{ $couriers->from }}</p></div>
+                            <div><p><span class="underline">To </span>: {{ $couriers->to }}</p></div>
+                            <div><p><span class="underline">Weight </span>: {{ $couriers->weight }} gm</p></div>
+                            <div><p><span class="underline">Distance </span>: {{ $couriers->distance }} KM</p></div>
                         </div>
-                        <div class="grid grid-cols-2">
-                            <p class="p-2">Method to pay</p>
-                            <form action="/payment" method="POST">
-                                @csrf
-                                <div class="p-2">
-                                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="method" required>
-                                        <option value="UPI">UPI</option>
-                                        <option value="Card">Card</option>
-                                    </select>
-                                </div>
-                                <input type="hidden" value="{{ $parcelamounts + 10 }}" name="amount">
+                    </div>
 
-                                <button type="submit" class="p-2 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Pay Now</button>
-                            </form>
+                    <div class="pr-10">
+                        <p class="text-2xl" >Amount to pay</p>
+                        <div class="p-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                            <p><span class="underline">Shipping Cost </span>: ₹{{ $parcelamounts }}</p>
+                            <p><span class="underline">Platform fee</span>: ₹<?= 10 ?></p>
+                            <p>--------------------</p>
+                            <p>Total amount to pay = ₹{{ $parcelamounts + 10 }}</p>
                         </div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                        <p class="p-2">Method to pay</p>
+                        <form action="/payment" method="POST">
+                            @csrf
+                            <div class="p-2">
+                                <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="method" required>
+                                    <option value="UPI">UPI</option>
+                                    <option value="Card">Card</option>
+                                </select>
+                            </div>
+                            <input type="hidden" value="{{ $couriers->sender_name }}" name="sender_name" readonly>
+                            <input type="hidden" value="{{ $couriers->recipient_name }}" name="recipient_name" readonly>
+                            <input type="hidden" value="{{ $couriers->weight }}" name="weight" readonly>
+                            <input type="hidden" value="{{ $couriers->sender_number }}" name="sender_number" readonly>
+                            <input type="hidden" value="{{ $couriers->recipient_number }}" name="recipient_number" readonly>
+                            <input type="hidden" value="{{ $couriers->from }}" name="from" readonly>
+                            <input type="hidden" value="{{ $couriers->to }}" name="to" readonly>
+                            <input type="hidden" value="{{ $couriers->sender_address }}" name="sender_address" readonly>
+                            <input type="hidden" value="{{ $couriers->recipient_address }}" name="recipient_address" readonly>
+                            <input type="hidden" value="{{ $couriers->distance }}" name="distance" readonly>
+                            <input type="hidden" value="{{ $parcelamounts + 10 }}" name="amount" readonly>
+
+                            <button type="submit" class="p-2 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Pay Now</button>
+                        </form>
                     </div>
                     @endif
 

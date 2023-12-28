@@ -14,28 +14,7 @@
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
-                                        Time of booking
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        From
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        To
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Amount
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Distance
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Payment Status
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
                                         Tracking ID
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Current Status
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Current Location
@@ -46,15 +25,8 @@
                             <tbody>
                                 @foreach($checkouts as $checkout)
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td class="px-6 py-4">{{ $checkout['created_at']->diffForHumans() }}</td>
-                                        <td class="px-6 py-4">{{ $checkout['from'] }}</td>
-                                        <td class="px-6 py-4">{{ $checkout['to'] }}</td>
-                                        <td class="px-6 py-4">₹{{ $checkout['parcel_amounts'] }}</td>
-                                        <td class="px-6 py-4">{{ $checkout->distance }}km</td>
-                                        <td class="px-6 py-4">{{ $checkout['payment_status'] }}</td>
-                                        <td class="px-6 py-4">{{ $checkout['tracking_id'] }}</td>
-                                        <td class="px-6 py-4">{{ $checkout['current_status'] }}</td>
-                                        <td class="px-6 py-4">{{ $checkout['current_location'] }}</td>
+                                        <td class="px-6 py-4">{{ $checkout->tracking_id }}</td>
+                                        <td class="px-6 py-4">{{ $checkout->current_location }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

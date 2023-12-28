@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    function index()
+    function index(Request $req)
     {
+        $req->session();
+        dd($req);
         $courier = Courier::latest()->first();
         $weight = $courier->weight;
         $distance = ($courier->distance) * 1000;
@@ -44,6 +46,16 @@ class PaymentController extends Controller
         $courier = new Payment;
 
         $courier->users_id = $req->user()->id;
+        $courier->sender_name = $req->sender_name;
+        $courier->recipient_name = $req->recipient_name;
+        $courier->weight = $req->weight;
+        $courier->sender_number = $req->sender_number;
+        $courier->recipient_number = $req->recipient_number;
+        $courier->from = $req->from;
+        $courier->to = $req->to;
+        $courier->sender_address = $req->sender_address;
+        $courier->recipient_address = $req->recipient_address;
+        $courier->distance = $req->distance;
         $courier->amount = $req->amount;
         $courier->method = $req->method;
 

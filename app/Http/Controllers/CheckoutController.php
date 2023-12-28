@@ -43,6 +43,7 @@ class CheckoutController extends Controller
 
         $parcel->users_id = $req->user()->id;
         $parcel->users_name = $req->user()->name;
+        $parcel->role = $req->user()->role;
         $parcel->from = $req->from;
         $parcel->to = $req->to;
         $parcel->weight = $req->weight;
@@ -51,7 +52,12 @@ class CheckoutController extends Controller
         $parcel->payment_method = $req->payment_method;
         $parcel->payment_status = $req->payment_status;
         $parcel->tracking_id = $req->tracking_id;
-        $parcel->role = $req->user()->role;
+        $parcel->sender_name = $req->sender_name;
+        $parcel->recipient_name = $req->recipient_name;
+        $parcel->sender_number = $req->sender_number;
+        $parcel->recipient_number = $req->recipient_number;
+        $parcel->sender_address = $req->sender_address;
+        $parcel->recipient_address = $req->recipient_address;
 
         $parcel->save();
         return redirect('order')->with('success', 'Parcel booked');
