@@ -42,6 +42,7 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->middleware('auth'
 Route::post('/checkout', [CheckoutController::class, 'create'])->middleware('auth', 'verified');
 
 Route::get('/order', [OrderController::class, 'index'])->middleware('auth', 'verified')->name('order');
+Route::get('/order/{id}', [OrderController::class, 'show'])->middleware('auth', 'verified');
 
 Route::get('/tracking', [TrackingController::class, 'index']);
 

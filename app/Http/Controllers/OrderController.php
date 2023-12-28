@@ -15,4 +15,13 @@ class OrderController extends Controller
             'checkouts' => $checkout
         ]);
     }
+
+    public function show($id)
+    {
+        $checkout = Checkout::find($id);
+
+        return view('orderdetails', [
+            'checkouts' => $checkout
+        ]);
+    }
 }
