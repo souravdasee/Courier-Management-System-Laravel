@@ -86,12 +86,8 @@
                                 </div>
 
                                 <div class="flex mr-12">
-                                    tracking id: <p><?= rand(1000000000, 9999999999) ?></p>
-                                    <select class="hidden grid-cols-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" name='tracking_id'>
-                                        <option value="<?= rand(1111111111, 9999999999) ?>">
-                                            <?= rand(1000000000, 9999999999) ?>
-                                        </option>
-                                    </select>
+                                    <label for="tracking_id" class="mt-2">Tracking ID: </label>
+                                    <input type="number" name="tracking_id" id="tracking_id" value="<?= rand(1000000000, 9999999999) ?>" class="border-none dark:bg-gray-800" readonly>
                                 </div>
 
                                 <input type="hidden" value="{{ $paymentmethods->sender_name }}" name="sender_name" readonly>
@@ -103,12 +99,10 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Ok</button>
+                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Checkout<span class="text-white">¹</span></button>
                     </form>
 
-                    <a href="/payment">
-                        <button class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Back</button>
-                    </a>
+                    <p class="text-blue-500 dark:text-yellow-500 text-sm"><span class="text-white">¹</span>&nbsp;Please affix the QR code to the packed box of the item by viewing the order page.</p>
                 </div>
 
                 <div class="flex items-center justify-between bg-white dark:bg-gray-800 px-4 py-3 sm:px-6">
@@ -141,6 +135,11 @@
                         </ol>
                       </nav>
                 </div>
+            </div>
+            <div class="pt-6">
+                <a href="/payment">
+                    <button class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Back</button>
+                </a>
             </div>
         </div>
     </div>

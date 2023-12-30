@@ -36,7 +36,7 @@
                                 @foreach($checkouts as $checkout)
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <td class="px-6 py-4">{{ $checkout->created_at->diffForHumans() }}</td>
-                                        <td class="px-6 py-4">{{ $checkout->tracking_id }}</td>
+                                        <td class="px-6 py-4 flex justify-center">{{ $checkout->tracking_id }}</td>
                                         <td class="px-6 py-4">{{ $checkout->current_location }}</td>
                                         <td class="px-1 py-4 text-center">
                                             <a href="{{"/order/".$checkout['id']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
