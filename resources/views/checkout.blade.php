@@ -87,7 +87,10 @@
 
                                 <div class="flex mr-12">
                                     <label for="tracking_id" class="mt-2">Tracking ID: </label>
-                                    <input type="number" name="tracking_id" id="tracking_id" class="border-none dark:bg-gray-800 text-white" autofocus>
+                                    <input type="text" name="tracking_id" id="tracking_id" class="border-none w-full dark:bg-gray-800 text-white" placeholder="scan the barcode to generate tracking number" autofocus>
+                                    @error('tracking_id')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <input type="hidden" value="{{ $paymentmethods->sender_name }}" name="sender_name" readonly>
@@ -102,7 +105,7 @@
                         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Checkout<span class="text-white">¹</span></button>
                     </form>
 
-                    <p class="text-blue-500 dark:text-yellow-500 text-sm"><span class="text-white">¹</span>&nbsp;Please affix the QR code to the packed box of the item by viewing the order page.</p>
+                    <p class="text-blue-500 dark:text-yellow-500 text-sm"><span class="text-white">¹</span>&nbsp;Attach the BAR CODE to the packed box.</p>
                 </div>
 
                 <div class="flex items-center justify-between bg-white dark:bg-gray-800 px-4 py-3 sm:px-6">

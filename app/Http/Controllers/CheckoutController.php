@@ -34,7 +34,7 @@ class CheckoutController extends Controller
             'parcel_amounts' => 'required | integer',
             'payment_method' => 'required | string',
             'payment_status' => 'required | string',
-            'tracking_id' => 'required | integer | min:10'
+            'tracking_id' => 'required | string | min:13 | unique:checkouts,tracking_id'
         ]);
 
         $parcel = new Checkout();

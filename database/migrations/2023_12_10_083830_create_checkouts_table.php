@@ -30,7 +30,7 @@ return new class extends Migration
             $table->unsignedBigInteger('parcel_amounts');
             $table->string('payment_method');
             $table->string('payment_status')->default('Paid');
-            $table->unsignedBigInteger('tracking_id')->unique();
+            $table->string('tracking_id')->unique();
             $table->string('current_location')->default('Not shipped');
             $table->string('current_status')->default('Booked');
             $table->string('remarks')->nullable();
