@@ -114,7 +114,7 @@
 
                         <input type="button" value="Get Directions" onclick="getDirections()" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" />
 
-                        <div id="map" class="h-96 w-full rounded-2xl"></div>
+                        <div id="map" class="h-96 w-full rounded-2xl hidden"></div>
                         <div class="p-2">
                             <label for="distance">Distance (in km)</label>
                             <div><textarea id="distance" name="distance" class="bg-gray-800 text-gray-300 w-full h-10 p-2 border-hidden" readonly></textarea></div>

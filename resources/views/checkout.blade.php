@@ -87,7 +87,7 @@
 
                                 <div class="flex mr-12">
                                     <label for="tracking_id" class="mt-2">Tracking ID: </label>
-                                    <input type="number" name="tracking_id" id="tracking_id" value="<?= rand(1000000000, 9999999999) ?>" class="border-none dark:bg-gray-800" readonly>
+                                    <input type="number" name="tracking_id" id="tracking_id" class="border-none dark:bg-gray-800 text-white" autofocus>
                                 </div>
 
                                 <input type="hidden" value="{{ $paymentmethods->sender_name }}" name="sender_name" readonly>
