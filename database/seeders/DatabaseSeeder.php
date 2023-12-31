@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Checkout;
 use App\Models\Distance;
+use App\Models\Location;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Update;
@@ -19,6 +20,9 @@ class DatabaseSeeder extends Seeder
     {
         Update::truncate();
         Checkout::truncate();
+        Location::truncate();
+
+        Location::factory(100)->create();
 
         User::create([
             'name' => 'Sourav Das',
