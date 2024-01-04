@@ -11,7 +11,7 @@ class TrackingController extends Controller
     {
         $trackingids = Checkout::latest();
 
-        request()->validate(['search' => 'required | numeric | min:1000000000 | max:9999999999']);
+        request()->validate(['search' => 'required']);
 
         if (request('search')) {
             $trackingids->where('tracking_id', '=', request('search'));

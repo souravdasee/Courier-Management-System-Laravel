@@ -38,29 +38,29 @@ Route::post('/book', [BookController::class, 'create'])->middleware(['auth', 've
 Route::get('/payment', [PaymentController::class, 'index'])->middleware('auth', 'verified')->name('payment');
 Route::post('/payment', [PaymentController::class, 'addData'])->middleware('auth', 'verified');
 
-Route::get('/checkout', [CheckoutController::class, 'index'])->middleware('auth', 'verified');
+Route::get('/checkout', [CheckoutController::class, 'index'])->middleware('auth', 'verified')->name('checkout');
 Route::post('/checkout', [CheckoutController::class, 'create'])->middleware('auth', 'verified');
 
 Route::get('/order', [OrderController::class, 'index'])->middleware('auth', 'verified')->name('order');
-Route::get('/order/{id}', [OrderController::class, 'show'])->middleware('auth', 'verified');
+Route::get('/order/{id}', [OrderController::class, 'show'])->middleware('auth', 'verified')->name('orderdetails');
 
-Route::get('/tracking', [TrackingController::class, 'index']);
-
-
-Route::get('/status', [StatusController::class, 'index'])->middleware('can:operator', 'auth', 'verified')->name('status');
-Route::get('/edit/{id}', [EditController::class, 'show'])->middleware('can:operator', 'auth', 'verified');
-Route::post('/edit', [EditController::class, 'update'])->middleware('can:operator', 'auth', 'verified');
+Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking');
 
 Route::get('/delivery', [StatusController::class, 'delivery'])->middleware('can:delivery', 'auth', 'verified')->name('delivery');
-Route::get('/delivery/{id}', [StatusController::class, 'show'])->middleware('can:delivery', 'auth', 'verified');
+Route::get('/delivery/{id}', [StatusController::class, 'show'])->middleware('can:delivery', 'auth', 'verified')->name('deliveryupdate');
 Route::post('/delivery/', [StatusController::class, 'update'])->middleware('can:delivery', 'auth', 'verified');
 
+Route::get('/status', [StatusController::class, 'index'])->middleware('can:operator', 'auth', 'verified')->name('status');
+Route::get('/edit/{id}', [EditController::class, 'show'])->middleware('can:operator', 'auth', 'verified')->name('statusupdate');
+Route::post('/edit', [EditController::class, 'update'])->middleware('can:operator', 'auth', 'verified');
+
+
 Route::get('/allorder', [AllOrderController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('allorder');
-Route::get('/adminedit/{id}', [AllOrderController::class, 'show'])->middleware('can:admin', 'auth', 'verified');
+Route::get('/adminedit/{id}', [AllOrderController::class, 'show'])->middleware('can:admin', 'auth', 'verified')->name('allorderdetails');
 Route::post('/allorder', [AllOrderController::class, 'update'])->middleware('can:admin', 'auth', 'verified');
 
 Route::get('/users', [AdminController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('users');
-Route::get('/users/create', [AdminController::class, 'create'])->middleware('can:admin', 'auth', 'verified');
+Route::get('/users/create', [AdminController::class, 'create'])->middleware('can:admin', 'auth', 'verified')->name('createusers');
 Route::post('/users/create', [AdminController::class, 'store'])->middleware('can:admin', 'auth', 'verified');
-Route::get('/users/{id}', [AdminController::class, 'show'])->middleware('can:admin', 'auth', 'verified');
+Route::get('/users/{id}', [AdminController::class, 'show'])->middleware('can:admin', 'auth', 'verified')->name('updateuserdetails');
 Route::post('/users/', [AdminController::class, 'update'])->middleware('can:admin', 'auth', 'verified');
