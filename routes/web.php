@@ -31,20 +31,20 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('/', [BookController::class, 'index'])->name('home');
-Route::get('/book', [BookController::class, 'show'])->middleware(['auth', 'verified'])->name('book');
-Route::post('/book', [BookController::class, 'create'])->middleware(['auth', 'verified']);
-
-Route::get('/payment', [PaymentController::class, 'index'])->middleware('auth', 'verified')->name('payment');
-Route::post('/payment', [PaymentController::class, 'addData'])->middleware('auth', 'verified');
-
-Route::get('/checkout', [CheckoutController::class, 'index'])->middleware('auth', 'verified')->name('checkout');
-Route::post('/checkout', [CheckoutController::class, 'create'])->middleware('auth', 'verified');
-
-Route::get('/order', [OrderController::class, 'index'])->middleware('auth', 'verified')->name('order');
-Route::get('/order/{id}', [OrderController::class, 'show'])->middleware('auth', 'verified')->name('orderdetails');
-
 Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking');
+
+Route::get('/', [BookController::class, 'index'])->name('home');
+Route::get('/book', [BookController::class, 'show'])->middleware('can:user', 'auth', 'verified')->name('book');
+Route::post('/book', [BookController::class, 'create'])->middleware('can:user', 'auth', 'verified');
+
+Route::get('/payment', [PaymentController::class, 'index'])->middleware('can:user', 'auth', 'verified')->name('payment');
+Route::post('/payment', [PaymentController::class, 'addData'])->middleware('can:user', 'auth', 'verified');
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->middleware('can:user', 'auth', 'verified')->name('checkout');
+Route::post('/checkout', [CheckoutController::class, 'create'])->middleware('can:user', 'auth', 'verified');
+
+Route::get('/order', [OrderController::class, 'index'])->middleware('can:user', 'auth', 'verified')->name('order');
+Route::get('/order/{id}', [OrderController::class, 'show'])->middleware('can:user', 'auth', 'verified')->name('orderdetails');
 
 Route::get('/delivery', [StatusController::class, 'delivery'])->middleware('can:delivery', 'auth', 'verified')->name('delivery');
 Route::get('/delivery/{id}', [StatusController::class, 'show'])->middleware('can:delivery', 'auth', 'verified')->name('deliveryupdate');
