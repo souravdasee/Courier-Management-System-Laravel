@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Update;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StatusController extends Controller
 {
-    function index()
+    public function index()
     {
         $checkout = Checkout::latest()->filter(request(['search']))->paginate(10)->withQueryString();
 
@@ -58,5 +59,32 @@ class StatusController extends Controller
 
         $update->save();
         return redirect('delivery')->with('success', 'Delivered');
+    }
+
+    public function receive()
+    {
+        $checkout = Checkout::latest()->paginate();
+
+        return view('receive-item-status-update', [
+            'checkouts' => $checkout
+        ]);
+    }
+
+    public function updatereceive(Request $req)
+    {
+        $checkout = Checkout::where('tracking_id', $req->tracking_id)->first();
+
+        request()->validate([
+            'current_location' => 'required | string | max:255',
+            'current_status' => 'required | string | max:255',
+            'tracking_id' => 'required | string'
+        ]);
+
+        $checkout->current_location = $req->current_location;
+        $checkout->current_status = $req->current_status;
+        $checkout->tracking_id = $req->tracking_id;
+
+        $checkout->save();
+        return redirect('status/receive')->with('success', 'Item received');
     }
 }

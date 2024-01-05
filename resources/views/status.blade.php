@@ -1,12 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Update Order Status') }}
-        </h2>
+        <x-status-tabs />
     </x-slot>
 
     <form action="/status" method="GET" class="flex justify-center">
-        <input type="number" name="search" placeholder="Find with tracking ID" class="bg-white dark:bg-gray-800 text-black dark:text-white absolute w-72 rounded-2xl text-center" value="{{ request('search') }}">
+        <input type="text" name="search" placeholder="Find with tracking ID" class="bg-white dark:bg-gray-800 text-black dark:text-white absolute w-72 rounded-2xl text-center" value="{{ request('search') }}">
     </form>
 
     <div class="py-12">

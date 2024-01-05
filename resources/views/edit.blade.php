@@ -56,7 +56,7 @@
                         fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
                             .then(response => response.json())
                             .then(data => {
-                            const placeName = data.display_name;
+                            const placeName = data.address.city;
                             document.getElementById('placeName').innerHTML = placeName;
                             })
                             .catch(error => console.error('Error:', error));

@@ -54,6 +54,8 @@ Route::get('/status', [StatusController::class, 'index'])->middleware('can:opera
 Route::get('/edit/{id}', [EditController::class, 'show'])->middleware('can:operator', 'auth', 'verified')->name('statusupdate');
 Route::post('/edit', [EditController::class, 'update'])->middleware('can:operator', 'auth', 'verified');
 
+Route::get('/status/receive', [StatusController::class, 'receive'])->middleware('can:operator', 'auth', 'verified')->name('receive_item_status');
+Route::post('/status/receive', [StatusController::class, 'updatereceive'])->middleware('can:operator', 'auth', 'verified');
 
 Route::get('/allorder', [AllOrderController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('allorder');
 Route::get('/adminedit/{id}', [AllOrderController::class, 'show'])->middleware('can:admin', 'auth', 'verified')->name('allorderdetails');
