@@ -32,13 +32,22 @@
         @elseif (request()->routeIs('status'))
         <title>Status</title>
 
+        @elseif (request()->routeIs('receive_item_status'))
+        <title>Receive Status</title>
+
+        @elseif (request()->routeIs('dispatch_item_status'))
+        <title>Dispatch Status</title>
+
         @elseif (request()->routeIs('statusupdate'))
         <title>Status update</title>
 
         @elseif (request()->routeIs('allorder'))
         <title>All orders</title>
 
-        @elseif (request()->routeIs('allorderdetails'))
+        @elseif (request()->routeIs('archiveorder'))
+        <title>Archived Orders</title>
+
+        @elseif (request()->routeIs('orderAllDetails'))
         <title>Order all details</title>
 
         @elseif (request()->routeIs('users'))

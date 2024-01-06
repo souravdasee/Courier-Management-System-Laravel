@@ -13,28 +13,28 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @user
-                        <x-nav-link :href="route('book')" :active="request()->routeIs('book')">
+                        <x-nav-link :href="route('book', 'payment', 'checkout')" :active="request()->routeIs('book', 'payment', 'checkout')">
                             {{ __('Book') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('order')" :active="request()->routeIs('order')">
-                            {{ __('Ordes') }}
+                        <x-nav-link :href="route('order', 'orderdetails')" :active="request()->routeIs('order', 'orderdetails')">
+                            {{ __('Orders') }}
                         </x-nav-link>
                     @enduser
                     @delivery
-                        <x-nav-link :href="route('delivery')" :active="request()->routeIs('delivery')">
+                        <x-nav-link :href="route('delivery', 'deliveryupdate')" :active="request()->routeIs('delivery', 'deliveryupdate')">
                             {{ __('Delivery') }}
                         </x-nav-link>
                     @enddelivery
                     @operator
-                        <x-nav-link :href="route('status')" :active="request()->routeIs('status')">
+                        <x-nav-link :href="route('status', 'statusupdate', 'receive_item_status', 'dispatch_item_status')" :active="request()->routeIs('status', 'statusupdate', 'receive_item_status', 'dispatch_item_status')">
                             {{ __('Status Update') }}
                         </x-nav-link>
                     @endoperator
                     @admin
-                        <x-nav-link :href="route('allorder')" :active="request()->routeIs('allorder')">
+                        <x-nav-link :href="route('allorder', 'orderAllDetails', 'archiveorder')" :active="request()->routeIs('allorder', 'orderAllDetails', 'archiveorder')">
                             {{ __('All Orders') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                        <x-nav-link :href="route('users', 'createusers', 'updateuserdetails')" :active="request()->routeIs('users', 'createusers', 'updateuserdetails')">
                             {{ __('Users') }}
                         </x-nav-link>
                     @endadmin
@@ -92,27 +92,27 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('book')" :active="request()->routeIs('book')">
+            <x-responsive-nav-link :href="route('book', 'payment', 'checkout')" :active="request()->routeIs('book', 'payment', 'checkout')">
                 {{ __('Book') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('order')" :active="request()->routeIs('order')">
+            <x-responsive-nav-link :href="route('order', 'orderdetails')" :active="request()->routeIs('order', 'orderdetails')">
                 {{ __('Orders') }}
             </x-responsive-nav-link>
             @delivery
-                <x-responsive-nav-link :href="route('delivery')" :active="request()->routeIs('delivery')">
+                <x-responsive-nav-link :href="route('delivery', 'deliveryupdate')" :active="request()->routeIs('delivery', 'deliveryupdate')">
                     {{ __('Delivery') }}
                 </x-responsive-nav-link>
             @enddelivery
             @operator
-                <x-responsive-nav-link :href="route('status')" :active="request()->routeIs('status')">
+                <x-responsive-nav-link :href="route('status', 'statusupdate', 'receive_item_status', 'dispatch_item_status')" :active="request()->routeIs('status', 'statusupdate', 'receive_item_status', 'dispatch_item_status')">
                     {{ __('Status Update') }}
                 </x-responsive-nav-link>
             @endoperator
             @admin
-                <x-responsive-nav-link :href="route('allorder')" :active="request()->routeIs('allorder')">
+                <x-responsive-nav-link :href="route('allorder', 'orderAllDetails', 'archiveorder')" :active="request()->routeIs('allorder', 'orderAllDetails', 'archiveorder')">
                     {{ __('All Orders') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                <x-responsive-nav-link :href="route('users', 'createusers', 'updateuserdetails')" :active="request()->routeIs('users', 'createusers', 'updateuserdetails')">
                     {{ __('Users') }}
                 </x-responsive-nav-link>
             @endadmin

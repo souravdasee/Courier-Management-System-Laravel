@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArchiveOrder;
 use App\Models\Checkout;
 use App\Models\Update;
 use Illuminate\Http\Request;
 
 class AllOrderController extends Controller
 {
-    function index()
+    public function index()
     {
         $order = Checkout::with("user")->latest()->filter(request(['search']))->paginate(10)->withQueryString();
 
@@ -17,7 +18,7 @@ class AllOrderController extends Controller
         ]);
     }
 
-    function show($id)
+    public function show($id)
     {
         $checkout = Checkout::find($id);
         $stats = Update::all();
@@ -28,7 +29,7 @@ class AllOrderController extends Controller
         ]);
     }
 
-    function update(Request $req)
+    public function update(Request $req)
     {
         request()->validate([
             'users_name' => 'required | string | max:255',
@@ -74,5 +75,14 @@ class AllOrderController extends Controller
 
         $update->save();
         return redirect('allorder')->with('success', 'Order updated');
+    }
+
+    public function archive()
+    {
+        $archiveOrder = ArchiveOrder::latest()->filter(request(['search']))->paginate(10)->withQueryString();
+
+        return view('archive-order', [
+            'archiveorders' => $archiveOrder
+        ]);
     }
 }

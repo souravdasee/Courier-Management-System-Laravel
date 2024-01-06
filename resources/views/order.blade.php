@@ -27,7 +27,7 @@
                                         Current Location
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        View
+                                        Details
                                     </th>
                                 </tr>
                             </thead>
@@ -38,8 +38,15 @@
                                         <td class="px-6 py-4">{{ $checkout->created_at->diffForHumans() }}</td>
                                         <td class="px-6 py-4 flex justify-center">{{ $checkout->tracking_id }}</td>
                                         <td class="px-6 py-4">{{ $checkout->current_location }}</td>
-                                        <td class="px-1 py-4 text-center">
+                                        <td class="px-1 py-4 flex justify-center">
                                             <a href="{{"/order/".$checkout['id']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
+
+                                            <form method="POST" action="/order/{{ $checkout->id }}">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button class="ml-4 font-medium text-red-600 hover:underline">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

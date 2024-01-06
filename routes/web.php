@@ -45,6 +45,7 @@ Route::post('/checkout', [CheckoutController::class, 'create'])->middleware('can
 
 Route::get('/order', [OrderController::class, 'index'])->middleware('can:user', 'auth', 'verified')->name('order');
 Route::get('/order/{id}', [OrderController::class, 'show'])->middleware('can:user', 'auth', 'verified')->name('orderdetails');
+Route::delete('/order/{id}', [OrderController::class, 'destroy'])->middleware('can:user', 'auth', 'verified');
 
 Route::get('/delivery', [StatusController::class, 'delivery'])->middleware('can:delivery', 'auth', 'verified')->name('delivery');
 Route::get('/delivery/{id}', [StatusController::class, 'show'])->middleware('can:delivery', 'auth', 'verified')->name('deliveryupdate');
@@ -61,8 +62,10 @@ Route::get('/status/dispatch', [StatusController::class, 'dispatch'])->middlewar
 Route::post('/status/dispatch', [StatusController::class, 'updatedispatch'])->middleware('can:operator', 'auth', 'verified');
 
 Route::get('/allorder', [AllOrderController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('allorder');
-Route::get('/adminedit/{id}', [AllOrderController::class, 'show'])->middleware('can:admin', 'auth', 'verified')->name('allorderdetails');
+Route::get('/adminedit/{id}', [AllOrderController::class, 'show'])->middleware('can:admin', 'auth', 'verified')->name('orderAllDetails');
 Route::post('/allorder', [AllOrderController::class, 'update'])->middleware('can:admin', 'auth', 'verified');
+
+Route::get('/archiveorder', [AllOrderController::class, 'archive'])->middleware('can:admin', 'auth', 'verified')->name('archiveorder');
 
 Route::get('/users', [AdminController::class, 'index'])->middleware('can:admin', 'auth', 'verified')->name('users');
 Route::get('/users/create', [AdminController::class, 'create'])->middleware('can:admin', 'auth', 'verified')->name('createusers');

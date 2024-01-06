@@ -3,7 +3,7 @@
         <x-admin-tabs />
     </x-slot>
 
-    <form action="/allorder" method="GET" class="flex justify-center">
+    <form action="/archiveorder" method="GET" class="flex justify-center">
         <input type="text" name="search" placeholder="Find with tracking ID" class="bg-white dark:bg-gray-800 text-black dark:text-white absolute w-72 rounded-2xl text-center" value="{{ request('search') }}">
     </form>
 
@@ -24,34 +24,29 @@
                                     <th scope="col" class="px-1 py-3">Current Status</th>
                                     <th scope="col" class="px-1 py-3">Current Location</th>
                                     <th scope="col" class="px-1 py-3">Remarks</th>
-                                    <th scope="col" class="px-1 py-3">Edit</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                @foreach($orders as $order)
+                                @foreach($archiveorders as $order)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="px-1 py-4">{{ $order->created_at->format('h:i:sA d-M y') }}</td>
-                                    <td class="px-1 py-4">{{ $order->from }}</td>
+                                    <td class="px-1 py-4">{{ \Carbon\Carbon::parse($order['checkout_created_at'])->setTimezone('Asia/Kolkata')->format('h:i:sA d/M y') }}</td>
+                                    <td class="px-1 py-4">{{ $order['from'] }}</td>
                                     <td class="px-1 py-4">{{ $order['to'] }}</td>
-                                    <td class="px-1 py-4">{{ $order->parcel_amounts }}</td>
-                                    <td class="px-1 py-4">{{ $order->payment_status }}</td>
-                                    <td class="px-1 py-4">{{ $order->tracking_id }}</td>
-                                    <td class="px-1 py-4">{{ $order->current_status }}</td>
-                                    <td class="px-1 py-4">{{ $order->current_location }}</td>
-                                    <td class="px-1 py-4">{!! $order->remarks !!}</td>
-                                    <td class="px-1 py-4 text-center">
-                                        <a href="{{"/adminedit/".$order['id']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
+                                    <td class="px-1 py-4">{{ $order['parcel_amounts'] }}</td>
+                                    <td class="px-1 py-4">{{ $order['payment_status'] }}</td>
+                                    <td class="px-1 py-4">{{ $order['tracking_id'] }}</td>
+                                    <td class="px-1 py-4">{{ $order['current_status'] }}</td>
+                                    <td class="px-1 py-4">{{ $order['current_location'] }}</td>
+                                    <td class="px-1 py-4">{!! $order['remarks'] !!}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                    {{ $orders->links() }}
+                    {{ $archiveorders->links() }}
                 </div>
             </div>
         </div>
     </div>
-    <x-flash />
 </x-app-layout>
