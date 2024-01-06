@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Update;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class StatusController extends Controller
 {
@@ -74,10 +74,16 @@ class StatusController extends Controller
     {
         $checkout = Checkout::where('tracking_id', $req->tracking_id)->first();
 
+        if (!$checkout) {
+            throw ValidationException::withMessages([
+                'tracking_id' => 'No record found for the provided Tracking ID.',
+            ]);
+        }
+
         request()->validate([
             'current_location' => 'required | string | max:255',
             'current_status' => 'required | string | max:255',
-            'tracking_id' => 'required | string'
+            'tracking_id' => 'required | string | same:tracking_id'
         ]);
 
         $checkout->current_location = $req->current_location;
@@ -86,5 +92,38 @@ class StatusController extends Controller
 
         $checkout->save();
         return redirect('status/receive')->with('success', 'Item received');
+    }
+
+    public function dispatch()
+    {
+        $checkout = Checkout::latest()->paginate();
+
+        return view('dispatch-item-status-update', [
+            'checkouts' => $checkout
+        ]);
+    }
+
+    public function updatedispatch(Request $req)
+    {
+        $checkout = Checkout::where('tracking_id', $req->tracking_id)->first();
+
+        if (!$checkout) {
+            throw ValidationException::withMessages([
+                'tracking_id' => 'No record found for the provided Tracking ID.',
+            ]);
+        }
+
+        request()->validate([
+            'current_location' => 'required | string | max:255',
+            'current_status' => 'required | string | max:255',
+            'tracking_id' => 'required | string | same:tracking_id'
+        ]);
+
+        $checkout->current_location = $req->current_location;
+        $checkout->current_status = $req->current_status;
+        $checkout->tracking_id = $req->tracking_id;
+
+        $checkout->save();
+        return redirect('status/dispatch')->with('success', 'Item dispatched');
     }
 }
