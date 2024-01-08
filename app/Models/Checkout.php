@@ -10,6 +10,14 @@ class Checkout extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'location_timeline' => 'array',
+    ];
+
+    protected $fillable = [
+        'location_timeline->enabled',
+    ];
+
     public function user()
     {
         return $this->hasOne(User::class, "id", "users_id");

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Checkout;
 use App\Models\Courier;
 use App\Models\Payment;
+use App\Models\Update;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,12 +16,14 @@ class CheckoutController extends Controller
         $courier = Courier::latest()->first();
         $paymentmethod = Payment::latest()->first();
         $user = User::all();
+        $update = Update::all();
 
         return view('checkout', [
             'paymentmethods' => $paymentmethod,
             'couriers' => $courier,
             'users' => $user,
-            'roles' => $req->user()->role
+            'roles' => $req->user()->role,
+            'updates' => $update
         ]);
     }
 
@@ -56,6 +59,10 @@ class CheckoutController extends Controller
         $parcel->recipient_number = $req->recipient_number;
         $parcel->sender_address = $req->sender_address;
         $parcel->recipient_address = $req->recipient_address;
+        $parcel->current_status = $req->current_status;
+        $parcel->current_location = $req->current_location;
+        // $parcel->location_timeline = $req->location_timeline;
+        $parcel->update(['location_timeline->enabled' => $req->location_timeline]);
 
         $parcel->save();
         return redirect('order')->with('success', 'Parcel booked');

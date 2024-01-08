@@ -89,6 +89,7 @@ class StatusController extends Controller
         $checkout->current_location = $req->current_location;
         $checkout->current_status = $req->current_status;
         $checkout->tracking_id = $req->tracking_id;
+        $checkout->location_timeline = json_encode($req->location_timeline);
 
         $checkout->save();
         return redirect('status/receive')->with('success', 'Item received');

@@ -31,6 +31,9 @@
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
+
+                            <input name="location_timeline" type="hidden" class="text-black dark:text-white bg-gray-50 dark:bg-gray-800" value="Raiganj" readonly>
+
                             <button type="submit" class="hidden"></button>
                         </form>
                         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
