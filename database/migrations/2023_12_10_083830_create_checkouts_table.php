@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('remarks')->nullable();
             $table->string('image')->nullable();
             $table->string('voice')->nullable();
-            $table->json('location_timeline')->nullable();
+            $table->json('timeline_data')->nullable();
             $table->timestamps();
         });
     }

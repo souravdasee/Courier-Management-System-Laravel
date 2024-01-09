@@ -7,81 +7,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-    {{-- <style>
-        .modal {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 60rem;
-        background-color: #f3f3f3;
-        padding: 5rem 6rem;
-        box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
-        z-index: 1000;
-        transition: all 0.5s;
-        }
-
-        .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(4px);
-        z-index: 100;
-        transition: all 0.5s;
-        }
-
-        .modal__header {
-        font-size: 3.25rem;
-        margin-bottom: 4.5rem;
-        line-height: 1.5;
-        }
-
-        .modal__form {
-        margin: 0 3rem;
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        align-items: center;
-        gap: 2.5rem;
-        }
-
-        .modal__form label {
-        font-size: 1.7rem;
-        font-weight: 500;
-        }
-
-        .modal__form input {
-        font-size: 1.7rem;
-        padding: 1rem 1.5rem;
-        border: 1px solid #ddd;
-        border-radius: 0.5rem;
-        }
-
-        .modal__form button {
-        grid-column: 1 / span 2;
-        justify-self: center;
-        margin-top: 1rem;
-        }
-
-        .btn--close-modal {
-        font-family: inherit;
-        color: inherit;
-        position: absolute;
-        top: 0.5rem;
-        right: 2rem;
-        font-size: 4rem;
-        cursor: pointer;
-        border: none;
-        background: none;
-        }
-
-        .hidden {
-        visibility: hidden;
-        opacity: 0;
-        }
-    </style> --}}
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -100,21 +25,29 @@
                     <p>Parcel Amount: {{$checkouts->parcel_amounts}}</p>
                     <p>Payment Method: {{$checkouts->payment_method}}</p>
                     <p>Payment Status: {{$checkouts->payment_status}}</p>
-                    <p>Current Status: {{$checkouts->current_status}}
-                    <a href="#" class="text-blue-500 text-sm m-2 btn--show-modal">view</a>
-                    </p>
-                    <p>Current Location: {{$checkouts->current_location}}</p>
                     <p>Tracking ID: {{$checkouts->tracking_id}}</p>
+                    <div>Current Status: {{$checkouts->current_status}} at {{$checkouts->current_location}}
+                        <a href="#" class="text-blue-500 text-sm ml-2 btn--show-modal">view details</a>
+                        <div class="modal hidden bg-gray-300 dark:bg-gray-900 w-auto rounded-2xl">
+                            <div class="m-2 p-2">
+                                <ol class="relative border-s border-black dark:border-white">
+                                    @foreach(json_decode($checkouts->timeline_data, true) as $data)
+                                        <li class="ms-4 mb-2">
+                                            <div class="absolute w-3 h-3 bg-red-500 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900"></div>
+                                            <time class="mb-1 text-red-500 text-sm font-normal leading-none">{{ carbon\carbon::parse($data['time'])->format('d-M-Y h:m:s A') }}</time>
+                                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $data['status'] }}</h3>
+                                            <p class="text-base font-normal">
+                                                <p class="text-blue-500">Location: {{ $data['location'] }}</p>
+                                            </p>
+                                        </li>
+                                    @endforeach
+                                </ol>
 
-                    <div class="modal hidden text-black">
-                        <button class="btn--close-modal">&times;</button>
-
-
-                        <p>Hello</p>
-
-
+                                <button class="mt-4 btn--close-modal text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">OK</button>
+                            </div>
+                        </div>
+                        <div class="overlay hidden"></div>
                     </div>
-                    <div class="overlay hidden"></div>
 
                     <script>
                         const modal = document.querySelector('.modal');

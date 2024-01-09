@@ -1,7 +1,7 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 sticky top-0 inset-x-0 sm:justify-start z-50 w-full text-sm py-3 sm:py-0">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-8 sm:h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
@@ -13,35 +13,35 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @user
-                        <x-nav-link :href="route('book', 'payment', 'checkout')" :active="request()->routeIs('book', 'payment', 'checkout')">
+                        <x-nav-link :href="route('book')" :active="request()->routeIs('book', 'payment', 'checkout')">
                             {{ __('Book') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('order', 'orderdetails')" :active="request()->routeIs('order', 'orderdetails')">
+                        <x-nav-link :href="route('order')" :active="request()->routeIs('order', 'orderdetails')">
                             {{ __('Orders') }}
                         </x-nav-link>
                     @enduser
                     @delivery
-                        <x-nav-link :href="route('delivery', 'deliveryupdate')" :active="request()->routeIs('delivery', 'deliveryupdate')">
+                        <x-nav-link :href="route('delivery')" :active="request()->routeIs('delivery', 'deliveryupdate')">
                             {{ __('Delivery') }}
                         </x-nav-link>
                     @enddelivery
                     @operator
-                        <x-nav-link :href="route('status', 'statusupdate', 'receive_item_status', 'dispatch_item_status')" :active="request()->routeIs('status', 'statusupdate', 'receive_item_status', 'dispatch_item_status')">
+                        <x-nav-link :href="route('receive_item_status')" :active="request()->routeIs('status', 'statusupdate', 'receive_item_status', 'dispatch_item_status')">
                             {{ __('Status Update') }}
                         </x-nav-link>
                     @endoperator
                     @admin
-                        <x-nav-link :href="route('allorder', 'orderAllDetails', 'archiveorder')" :active="request()->routeIs('allorder', 'orderAllDetails', 'archiveorder')">
+                        <x-nav-link :href="route('allorder')" :active="request()->routeIs('allorder', 'orderAllDetails', 'archiveorder')">
                             {{ __('All Orders') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('users', 'createusers', 'updateuserdetails')" :active="request()->routeIs('users', 'createusers', 'updateuserdetails')">
+                        <x-nav-link :href="route('users')" :active="request()->routeIs('users', 'createusers', 'updateuserdetails')">
                             {{ __('Users') }}
                         </x-nav-link>
                     @endadmin
                 </div>
             </div>
 
-            <x-theme-switch />
+            <x-theme-switch class="" />
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

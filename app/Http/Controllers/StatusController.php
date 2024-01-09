@@ -89,7 +89,16 @@ class StatusController extends Controller
         $checkout->current_location = $req->current_location;
         $checkout->current_status = $req->current_status;
         $checkout->tracking_id = $req->tracking_id;
-        $checkout->location_timeline = json_encode($req->location_timeline);
+
+        $existingTimeline = $checkout->timeline_data ? json_decode($checkout->timeline_data, true) : [];
+        $newLocationData = [
+            'status' => $req->current_status,
+            'location' => $req->current_location,
+            'time' => now()->toDateTimeString()
+        ];
+        $existingTimeline[] = $newLocationData;
+
+        $checkout->timeline_data = json_encode($existingTimeline);
 
         $checkout->save();
         return redirect('status/receive')->with('success', 'Item received');
@@ -123,6 +132,16 @@ class StatusController extends Controller
         $checkout->current_location = $req->current_location;
         $checkout->current_status = $req->current_status;
         $checkout->tracking_id = $req->tracking_id;
+
+        $existingTimeline = $checkout->timeline_data ? json_decode($checkout->timeline_data, true) : [];
+        $newLocationData = [
+            'status' => $req->current_status,
+            'location' => $req->current_location,
+            'time' => now()->toDateTimeString()
+        ];
+        $existingTimeline[] = $newLocationData;
+
+        $checkout->timeline_data = json_encode($existingTimeline);
 
         $checkout->save();
         return redirect('status/dispatch')->with('success', 'Item dispatched');

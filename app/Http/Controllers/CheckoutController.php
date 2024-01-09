@@ -61,8 +61,16 @@ class CheckoutController extends Controller
         $parcel->recipient_address = $req->recipient_address;
         $parcel->current_status = $req->current_status;
         $parcel->current_location = $req->current_location;
-        // $parcel->location_timeline = $req->location_timeline;
-        $parcel->update(['location_timeline->enabled' => $req->location_timeline]);
+
+        $existingTimeline = $parcel->timeline_data ? json_decode($parcel->timeline_data, true) : [];
+        $newLocationData = [
+            'status' => $req->current_status,
+            'location' => $req->current_location,
+            'time' => now()->toDateTimeString()
+        ];
+        $existingTimeline[] = $newLocationData;
+
+        $parcel->timeline_data = json_encode($existingTimeline);
 
         $parcel->save();
         return redirect('order')->with('success', 'Parcel booked');

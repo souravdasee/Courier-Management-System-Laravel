@@ -49,6 +49,16 @@ class EditController extends Controller
         $update->current_status = $req->current_status;
         $update->current_location = $req->current_location;
 
+        $existingTimeline = $update->timeline_data ? json_decode($update->timeline_data, true) : [];
+        $newLocationData = [
+            'status' => $req->current_status,
+            'location' => $req->current_location,
+            'time' => now()->toDateTimeString()
+        ];
+        $existingTimeline[] = $newLocationData;
+
+        $update->timeline_data = json_encode($existingTimeline);
+
         $update->save();
 
         return redirect('status')->with('success', 'Status updated');

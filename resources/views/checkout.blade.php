@@ -101,7 +101,7 @@
                                 <input type="hidden" value="{{ $paymentmethods->recipient_address }}" name="recipient_address" readonly>
                                 <input type="hidden" value="{{ $updates[0]->status }}" name="current_status" readonly>
                                 <input type="hidden" value="{{ $paymentmethods->from }}" name="current_location" readonly>
-                                <input type="hidden" value="{{ $paymentmethods->from }}" name="location_timeline" readonly>
+                                <input type="hidden" name="timeline_data" readonly>
                             </div>
                         </div>
 

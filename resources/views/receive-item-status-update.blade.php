@@ -32,7 +32,7 @@
                                 @enderror
                             </div>
 
-                            <input name="location_timeline" type="hidden" class="text-black dark:text-white bg-gray-50 dark:bg-gray-800" value="Raiganj" readonly>
+                            <input type="hidden" name="location_timeline" readonly>
 
                             <button type="submit" class="hidden"></button>
                         </form>
