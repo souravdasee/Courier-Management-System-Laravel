@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Update;
 use Twilio\Rest\Client;
 use App\Models\Checkout;
@@ -9,14 +10,16 @@ use Illuminate\Http\Request;
 
 class EditController extends Controller
 {
-    function show($id)
+    function show($id, Request $req)
     {
         $checkout = Checkout::find($id);
         $stats = Update::all();
+        $location = User::where('id', '=', $req->user()->id)->latest();
 
         return view('edit', [
             'checkouts' => $checkout,
-            'statses' => $stats
+            'statses' => $stats,
+            'locations' => $location->get()
         ]);
     }
 

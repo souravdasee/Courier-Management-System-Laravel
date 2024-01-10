@@ -34,7 +34,7 @@
                                     @foreach(json_decode($checkouts->timeline_data, true) as $data)
                                         <li class="ms-4 mb-2">
                                             <div class="absolute w-3 h-3 bg-red-500 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900"></div>
-                                            <time class="mb-1 text-red-500 text-sm font-normal leading-none">{{ carbon\carbon::parse($data['time'])->format('d-M-Y h:m:s A') }}</time>
+                                            <time class="mb-1 text-red-500 text-sm font-normal leading-none">{{ carbon\carbon::parse($data['time'])->format('d-M-Y h:i:s') }}</time>
                                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $data['status'] }}</h3>
                                             <p class="text-base font-normal">
                                                 <p class="text-blue-500">Location: {{ $data['location'] }}</p>

@@ -36,6 +36,20 @@
                             </div>
 
                             <div>
+                                <label for="city">City: </label>
+                                <select name="city" id="city" class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    @foreach ($locations as $location)
+                                        <option value="{{ $location->location }}">
+                                            {{ $location->location }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('city')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
                                 <label for="email">Email: </label>
                                 <input type="email" name="email" value="{{ old('email') }}" id="email" class="w-auto text-sm text-black border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-white focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" placeholder="User Email" required>
                                 @error('email')

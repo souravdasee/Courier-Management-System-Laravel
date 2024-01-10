@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Models\Location;
 
 class AdminController extends Controller
 {
@@ -24,9 +25,11 @@ class AdminController extends Controller
     public function create()
     {
         $role = Role::all();
+        $location = Location::all();
 
         return view('admin.create', [
-            'roles' => $role
+            'roles' => $role,
+            'locations' => $location
         ]);
     }
 
@@ -43,6 +46,7 @@ class AdminController extends Controller
 
         $user->name = $req->name;
         $user->role = $req->role;
+        $user->city = $req->city;
         $user->email = $req->email;
         $user->password = $req->password;
 

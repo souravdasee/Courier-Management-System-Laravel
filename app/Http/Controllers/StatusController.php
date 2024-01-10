@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Update;
 use App\Models\Checkout;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -11,7 +12,7 @@ class StatusController extends Controller
 {
     public function index()
     {
-        $checkout = Checkout::latest()->filter(request(['search']))->paginate(10)->withQueryString();
+        $checkout = Checkout::latest()->filter(request(['search']))->orderBy('id', 'desc')->paginate(10)->withQueryString();
 
         return view('status', [
             'checkouts' => $checkout
@@ -61,12 +62,14 @@ class StatusController extends Controller
         return redirect('delivery')->with('success', 'Delivered');
     }
 
-    public function receive()
+    public function receive(Request $req)
     {
-        $checkout = Checkout::latest()->paginate();
+        $checkout = Checkout::latest()->orderBy('id', 'desc')->paginate(10);
+        $location = User::where('id', '=', $req->user()->id)->latest();
 
         return view('receive-item-status-update', [
-            'checkouts' => $checkout
+            'checkouts' => $checkout,
+            'locations' => $location->get()
         ]);
     }
 
@@ -104,12 +107,14 @@ class StatusController extends Controller
         return redirect('status/receive')->with('success', 'Item received');
     }
 
-    public function dispatch()
+    public function dispatch(Request $req)
     {
-        $checkout = Checkout::latest()->paginate();
+        $checkout = Checkout::latest()->orderBy('id', 'desc')->paginate(10);
+        $location = User::where('id', '=', $req->user()->id)->latest();
 
         return view('dispatch-item-status-update', [
-            'checkouts' => $checkout
+            'checkouts' => $checkout,
+            'locations' => $location->get()
         ]);
     }
 

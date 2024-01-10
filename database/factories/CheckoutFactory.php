@@ -18,6 +18,14 @@ class CheckoutFactory extends Factory
      */
     public function definition(): array
     {
+        $newLocationData = [
+            'status' => fake()->word(),
+            'location' => fake()->city(),
+            'time' => now()->toDateTimeString()
+        ];
+        $existingTimeline[] = $newLocationData;
+        $timeline_data = json_encode($existingTimeline);
+
         return [
             'users_id' => fake()->numberBetween(1, 103),
             'users_name' => fake()->name(),
@@ -36,7 +44,8 @@ class CheckoutFactory extends Factory
             'payment_status' => fake()->word(),
             'tracking_id' => fake()->numberBetween(1000000000, 9999999999),
             'current_status' => fake()->word(),
-            'remarks' => fake()->sentence()
+            'remarks' => fake()->sentence(),
+            'timeline_data' => $timeline_data
         ];
     }
 }

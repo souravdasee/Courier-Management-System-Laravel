@@ -18,7 +18,7 @@
 
                             <div class="flex mb-2">
                                 <label for="placeName" class="">Current Location:&nbsp;</label>
-                                <textarea name="current_location" id="placeName" class="w-full bg-gray-50 dark:bg-gray-800 text-black dark:text-white border-none" readonly></textarea>
+                                <textarea name="current_location" id="placeName" class="w-full bg-gray-50 dark:bg-gray-800 text-black dark:text-white border-none" readonly>{{ $locations[0]->city }}</textarea>
                             </div>
                             @error('current_location')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -61,31 +61,6 @@
                         </div>
                         {{ $checkouts->links() }}
                     </div>
-                    <script>
-                        function success(position) {
-                        const latitude = position.coords.latitude;
-                        const longitude = position.coords.longitude;
-
-                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
-                            .then(response => response.json())
-                            .then(data => {
-                            const placeName = data.address.city;
-                            // window.localStorage.setItem
-                            document.getElementById('placeName').innerHTML = placeName;
-                            })
-                            .catch(error => console.error('Error:', error));
-                        }
-
-                        function error() {
-                        alert('Unable to retrieve your location');
-                        }
-
-                        if ('geolocation' in navigator) {
-                        navigator.geolocation.getCurrentPosition(success, error);
-                        } else {
-                        alert('Geolocation is not supported');
-                        }
-                    </script>
                 </div>
             </div>
         </div>

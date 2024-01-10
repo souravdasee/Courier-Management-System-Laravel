@@ -27,24 +27,49 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Sourav Das',
             'email' => 's@d.c',
+            'city' => 'Raiganj',
             'password' => 'poiu0987',
             'role' => 'Admin'
         ]);
         User::create([
             'name' => 'John Doe',
             'email' => 'j@d.c',
+            'city' => 'Raiganj',
             'password' => 'poiu0987',
             'role' => 'Data Entry'
         ]);
         User::create([
             'name' => 'Mark Miller',
             'email' => 'm@a.c',
+            'city' => 'Raiganj',
+            'password' => 'poiu0987',
+            'role' => 'Delivery Agent'
+        ]);
+        User::create([
+            'name' => 'Gourab Das',
+            'email' => 'g@d.c',
+            'city' => 'Malda',
+            'password' => 'poiu0987',
+            'role' => 'Admin'
+        ]);
+        User::create([
+            'name' => 'James Doe',
+            'email' => 'ja@d.c',
+            'city' => 'Malda',
+            'password' => 'poiu0987',
+            'role' => 'Data Entry'
+        ]);
+        User::create([
+            'name' => 'Louis Miller',
+            'email' => 'l@m.c',
+            'city' => 'Malda',
             'password' => 'poiu0987',
             'role' => 'Delivery Agent'
         ]);
         User::create([
             'name' => 'Jane Doe',
             'email' => 'j@d.a',
+            'city' => 'Malda',
             'password' => 'poiu0987',
             'role' => 'User'
         ]);
