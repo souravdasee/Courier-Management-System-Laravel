@@ -4,7 +4,9 @@
     </x-slot>
 
     <form action="/allorder" method="GET" class="flex justify-center">
-        <input type="text" name="search" placeholder="Find with tracking ID" class="bg-white dark:bg-gray-800 text-black dark:text-white absolute w-72 rounded-2xl text-center" value="{{ request('search') }}">
+        <input type="text" name="search" placeholder="Find with tracking ID"
+            class="bg-white dark:bg-gray-800 text-black dark:text-white absolute w-72 rounded-2xl text-center"
+            value="{{ request('search') }}">
     </form>
 
     <div class="py-12">
@@ -13,7 +15,8 @@
                 <div class="p-2  text-gray-900 dark:text-gray-100">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm rtl:text-right text-gray-500 dark:text-gray-400 text-center">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <thead
+                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-1 py-3">Time of booking</th>
                                     <th scope="col" class="px-1 py-3">From</th>
@@ -29,21 +32,23 @@
                             </thead>
 
                             <tbody>
-                                @foreach($orders as $order)
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="px-1 py-4">{{ $order->created_at->format('h:i:sA d-M y') }}</td>
-                                    <td class="px-1 py-4">{{ $order->from }}</td>
-                                    <td class="px-1 py-4">{{ $order['to'] }}</td>
-                                    <td class="px-1 py-4">{{ $order->parcel_amounts }}</td>
-                                    <td class="px-1 py-4">{{ $order->payment_status }}</td>
-                                    <td class="px-1 py-4">{{ $order->tracking_id }}</td>
-                                    <td class="px-1 py-4">{{ $order->current_status }}</td>
-                                    <td class="px-1 py-4">{{ $order->current_location }}</td>
-                                    <td class="px-1 py-4">{!! $order->remarks !!}</td>
-                                    <td class="px-1 py-4 text-center">
-                                        <a href="{{"/adminedit/".$order['id']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
-                                </tr>
+                                @foreach ($orders as $order)
+                                    <tr
+                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <td class="px-1 py-4">{{ $order->created_at->format('h:i:sA d-M y') }}</td>
+                                        <td class="px-1 py-4">{{ $order->from }}</td>
+                                        <td class="px-1 py-4">{{ $order['to'] }}</td>
+                                        <td class="px-1 py-4">{{ $order->parcel_amounts }}</td>
+                                        <td class="px-1 py-4">{{ $order->payment_status }}</td>
+                                        <td class="px-1 py-4">{{ $order->tracking_id }}</td>
+                                        <td class="px-1 py-4">{{ $order->current_status }}</td>
+                                        <td class="px-1 py-4">{{ $order->current_location }}</td>
+                                        <td class="px-1 py-4">{!! $order->remarks !!}</td>
+                                        <td class="px-1 py-4 text-center">
+                                            <a href="{{ '/adminedit/' . $order['id'] }}"
+                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

@@ -11,7 +11,8 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm rtl:text-right text-gray-500 dark:text-gray-400 text-center">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <thead
+                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         Recipient Name
@@ -31,16 +32,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($checkouts as $checkout)
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="px-6 py-4">{{ $checkout->recipient_name }}</td>
-                                    <td class="px-6 py-4">{{ $checkout->recipient_number }}</td>
-                                    <td class="px-6 py-4">{{ $checkout->tracking_id }}</td>
-                                    <td class="px-6 py-4">{{ $checkout->current_location }}</td>
-                                    <td class="px-6 py-4">
-                                        <a href="{{"/delivery/".$checkout['id']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</a>
-                                    </td>
-                                </tr>
+                                @foreach ($checkouts as $checkout)
+                                    <tr
+                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <td class="px-6 py-4">{{ $checkout->recipient_name }}</td>
+                                        <td class="px-6 py-4">{{ $checkout->recipient_number }}</td>
+                                        <td class="px-6 py-4">{{ $checkout->tracking_id }}</td>
+                                        <td class="px-6 py-4">{{ $checkout->current_location }}</td>
+                                        <td class="px-6 py-4">
+                                            <a href="{{ '/delivery/' . $checkout['id'] }}"
+                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</a>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
