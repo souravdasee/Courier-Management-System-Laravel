@@ -19,9 +19,9 @@ class StatusController extends Controller
         ]);
     }
 
-    public function delivery()
+    public function delivery(Request $req)
     {
-        $checkout = Checkout::where('current_status', '=', 'Out for delivery')->orderBy('id', 'desc')->paginate(10);
+        $checkout = Checkout::where('current_status', '=', 'Delivery agent received')->where('current_location', '=', $req->user()->city)->where('to', '=', $req->user()->city)->orderBy('id', 'desc')->paginate(10);
 
         return view(
             'delivery',
@@ -64,7 +64,7 @@ class StatusController extends Controller
 
     public function receive(Request $req)
     {
-        $checkout = Checkout::latest()->orderBy('id', 'desc')->paginate(10);
+        $checkout = Checkout::where('current_status', '=', 'Booked')->where('current_location', '=', $req->user()->city)->latest()->orderBy('id', 'desc')->paginate(10);
         $location = User::where('id', '=', $req->user()->id)->latest();
 
         return view('receive-item-status-update', [
@@ -109,7 +109,7 @@ class StatusController extends Controller
 
     public function dispatch(Request $req)
     {
-        $checkout = Checkout::latest()->orderBy('id', 'desc')->paginate(10);
+        $checkout = Checkout::where('current_status', '=', 'Received')->where('current_location', '=', $req->user()->city)->where('to', '!=', $req->user()->city)->latest()->orderBy('id', 'desc')->paginate(10);
         $location = User::where('id', '=', $req->user()->id)->latest();
 
         return view('dispatch-item-status-update', [
@@ -150,5 +150,51 @@ class StatusController extends Controller
 
         $checkout->save();
         return redirect('status/dispatch')->with('success', 'Item dispatched');
+    }
+
+    public function deliver(Request $req)
+    {
+        $all = Checkout::all();
+        $checkout = Checkout::where('current_status', '=', 'Received')->where('current_location', '=', $req->user()->city)->where('to', '=', $req->user()->city)->latest()->orderBy('id', 'desc')->paginate(10);
+        $location = User::where('id', '=', $req->user()->id)->latest();
+
+        return view('deliver-item-status-update', [
+            'checkouts' => $checkout,
+            'locations' => $location->get()
+        ]);
+    }
+
+    public function updatedeliver(Request $req)
+    {
+        $checkout = Checkout::where('tracking_id', $req->tracking_id)->first();
+
+        if (!$checkout) {
+            throw ValidationException::withMessages([
+                'tracking_id' => 'No record found for the provided Tracking ID.',
+            ]);
+        }
+
+        request()->validate([
+            'current_location' => 'required | string | max:255',
+            'current_status' => 'required | string | max:255',
+            'tracking_id' => 'required | string | same:tracking_id'
+        ]);
+
+        $checkout->current_location = $req->current_location;
+        $checkout->current_status = $req->current_status;
+        $checkout->tracking_id = $req->tracking_id;
+
+        $existingTimeline = $checkout->timeline_data ? json_decode($checkout->timeline_data, true) : [];
+        $newLocationData = [
+            'status' => $req->current_status,
+            'location' => $req->current_location,
+            'time' => now()->toDateTimeString()
+        ];
+        $existingTimeline[] = $newLocationData;
+
+        $checkout->timeline_data = json_encode($existingTimeline);
+
+        $checkout->save();
+        return redirect('status/deliver')->with('success', 'Item handed-over to delivery agent');
     }
 }

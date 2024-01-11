@@ -8,7 +8,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <form action="/status/receive" method="post">
+                        <form action="/status/deliver" method="post">
                             @csrf
                             <input type="text" name="tracking_id" class="w-full rounded-2xl dark:bg-gray-800 text-black dark:text-white" placeholder="scan the barcode to receive item" autofocus>
                             @error('tracking_id')
@@ -24,7 +24,7 @@
 
 
                             <div>
-                                <input type="text" name="current_status" value="Received" class="hidden" readonly>
+                                <input type="text" name="current_status" value="Delivery agent received" class="hidden" readonly>
                                 @error('current_status')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                 @enderror

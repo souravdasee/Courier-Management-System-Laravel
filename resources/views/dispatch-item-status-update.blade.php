@@ -17,8 +17,7 @@
                             @enderror
 
                             <div class="flex mb-2">
-                                <label for="placeName" class="">Current Location:&nbsp;</label>
-                                <textarea name="current_location" id="placeName" class="w-full bg-gray-50 dark:bg-gray-800 text-black dark:text-white border-none" readonly>{{ $locations[0]->city }}</textarea>
+                                <textarea name="current_location" id="placeName" class="w-full hidden bg-gray-50 dark:bg-gray-800 text-black dark:text-white border-none" readonly>{{ $locations[0]->city }}</textarea>
                             </div>
                             @error('current_location')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -46,6 +45,9 @@
                                         <th scope="col" class="px-6 py-3">
                                             Current Location
                                         </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Destination
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -54,6 +56,7 @@
                                             <td class="px-6 py-4">{{ $checkout->tracking_id }}</td>
                                             <td class="px-6 py-4">{{ $checkout->current_status }}</td>
                                             <td class="px-6 py-4">{{ $checkout->current_location }}</td>
+                                            <td class="px-6 py-4">{{ $checkout->to }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

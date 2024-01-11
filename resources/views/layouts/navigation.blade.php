@@ -26,7 +26,7 @@
                         </x-nav-link>
                     @enddelivery
                     @operator
-                        <x-nav-link :href="route('receive_item_status')" :active="request()->routeIs('status', 'statusupdate', 'receive_item_status', 'dispatch_item_status')">
+                        <x-nav-link :href="route('receive_item_status')" :active="request()->routeIs('status', 'statusupdate', 'receive_item_status', 'deliver_item_status', 'dispatch_item_status')">
                             {{ __('Status Update') }}
                         </x-nav-link>
                     @endoperator

@@ -35,6 +35,9 @@
         @elseif (request()->routeIs('receive_item_status'))
         <title>Receive Status</title>
 
+        @elseif (request()->routeIs('deliver_item_status'))
+        <title>Deliver Status</title>
+
         @elseif (request()->routeIs('dispatch_item_status'))
         <title>Dispatch Status</title>
 

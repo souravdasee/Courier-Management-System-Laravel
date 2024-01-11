@@ -6,7 +6,7 @@
     </x-slot>
 
     <form action="/order" method="GET" class="flex justify-center">
-        <input type="number" name="search" placeholder="Find with tracking ID" class="bg-white dark:bg-gray-800 text-black dark:text-white absolute w-72 rounded-2xl text-center" value="{{ request('search') }}">
+        <input type="text" name="search" placeholder="Find with tracking ID" class="bg-white dark:bg-gray-800 text-black dark:text-white absolute w-72 rounded-2xl text-center" value="{{ request('search') }}">
     </form>
 
     <div class="py-12">

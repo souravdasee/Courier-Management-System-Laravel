@@ -25,6 +25,9 @@
                                         Current Location
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Destination
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Change status
                                     </th>
                                 </tr>
@@ -35,6 +38,7 @@
                                         <td class="px-6 py-4">{{ $checkout->tracking_id }}</td>
                                         <td class="px-6 py-4">{{ $checkout->current_status }}</td>
                                         <td class="px-6 py-4">{{ $checkout->current_location }}</td>
+                                        <td class="px-6 py-4">{{ $checkout->to }}</td>
                                         <td class="px-6 py-4">
                                             <a href="{{"/edit/".$checkout['id']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</a>
                                         </td>
