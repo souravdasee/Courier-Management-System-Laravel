@@ -58,10 +58,12 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         $role = Role::all();
+        $location = Location::all();
 
         return view('admin.show', [
             'users' => $user,
-            'roles' => $role
+            'roles' => $role,
+            'locations' => $location
         ]);
     }
 

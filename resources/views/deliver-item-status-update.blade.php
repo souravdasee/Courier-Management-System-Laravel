@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-status-tabs />
+        <x-sub-menu />
     </x-slot>
 
     <div class="py-12">

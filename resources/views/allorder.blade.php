@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-admin-tabs />
+        <x-sub-menu />
     </x-slot>
 
     <form action="/allorder" method="GET" class="flex justify-center">

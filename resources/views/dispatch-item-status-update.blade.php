@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-status-tabs />
+        <x-sub-menu />
     </x-slot>
 
     <div class="py-12">
@@ -10,7 +10,6 @@
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <form action="/status/dispatch" method="post">
                             @csrf
-                            {{-- <input type="text" name="id" value="{{ $checkouts[0]->tracking_id}}"> --}}
                             <input type="text" name="tracking_id"
                                 class="w-full rounded-2xl dark:bg-gray-800 text-black dark:text-white"
                                 placeholder="scan the barcode to receive item" autofocus>

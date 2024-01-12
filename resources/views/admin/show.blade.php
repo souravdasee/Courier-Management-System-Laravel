@@ -14,7 +14,7 @@
                         <input type="hidden" name="id" value="{{ $users['id'] }}">
 
                         <div class="p-2">
-                            <label for="users_name">User name: </label>
+                            <label for="users_name"><b>User name:</b>&nbsp;&nbsp;{{ $users->name }}</label>
                             <input
                                 class="w-auto text-sm text-black dark:text-white border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none dark:bg-gray-700 dark:border-gray-600"
                                 type="text" name="name" id="users_name" value="{{ $users['name'] }}">
@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="p-2">
-                            <label for="role">User Role:</label>
+                            <label for="role"><b>User Role:</b>&nbsp;&nbsp;{{ $users->role }}</label>
                             <select name="role" id="role"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required>
@@ -37,7 +37,20 @@
                         </div>
 
                         <div class="p-2">
-                            <label for="users_email">User Email: </label>
+                            <label for="city"><b>User From:</b>&nbsp;&nbsp;{{ $users->city }}</label>
+                            <select name="city" id="city"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                required>
+                                @foreach ($locations as $location)
+                                    <option value="{{ $location->location }}">
+                                        {{ $location->location }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="p-2">
+                            <label for="users_email"><b>User Email:</b>&nbsp;&nbsp;{{ $users->email }}</label>
                             <input
                                 class="w-auto text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-50 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 type="email" name="email" id="users_email" value="{{ $users['email'] }}">
