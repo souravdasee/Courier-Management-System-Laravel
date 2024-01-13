@@ -6,6 +6,7 @@ use App\Models\Courier;
 use App\Models\Payment;
 use App\Models\Distance;
 use Illuminate\Http\Request;
+use Razorpay\Api\Api;
 
 class PaymentController extends Controller
 {
@@ -29,13 +30,25 @@ class PaymentController extends Controller
             })
             ->value('price');
 
+        $api = new Api(getenv("RAZOR_PAY_API_KEY"), getenv("RAZOR_PAY_SECRET_KEY"));
+
+        $orderData = [
+            'receipt'         => 'rcptid_11',
+            'amount'          => 39900,
+            'currency'        => 'INR'
+        ];
+
+        $razorpayOrder = $api->order->create($orderData);
+
+        dd($razorpayOrder);
+
         return view('payment', [
             'couriers' => $courier,
             'parcelamounts' => $price
         ]);
     }
 
-    function addData(Request $req)
+    function payment(Request $req)
     {
         request()->validate([
             'method' => 'required | string'

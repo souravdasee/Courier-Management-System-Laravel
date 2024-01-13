@@ -38,7 +38,7 @@ Route::get('/book', [BookController::class, 'show'])->middleware('can:user', 'au
 Route::post('/book', [BookController::class, 'create'])->middleware('can:user', 'auth', 'verified');
 
 Route::get('/payment', [PaymentController::class, 'index'])->middleware('can:user', 'auth', 'verified')->name('payment');
-Route::post('/payment', [PaymentController::class, 'addData'])->middleware('can:user', 'auth', 'verified');
+Route::post('/payment', [PaymentController::class, 'payment'])->middleware('can:user', 'auth', 'verified');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->middleware('can:user', 'auth', 'verified')->name('checkout');
 Route::post('/checkout', [CheckoutController::class, 'create'])->middleware('can:user', 'auth', 'verified');

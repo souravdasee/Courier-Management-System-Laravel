@@ -17,9 +17,9 @@ class OrderController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($id, Request $req)
     {
-        $checkout = Checkout::find($id);
+        $checkout = Checkout::where('users_id', '=', $req->user()->id)->findOrFail($id)->latest()->first();
 
         return view('orderdetails', [
             'checkouts' => $checkout
