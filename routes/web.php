@@ -46,6 +46,8 @@ Route::post('/checkout', [CheckoutController::class, 'create'])->middleware('can
 Route::get('/order', [OrderController::class, 'index'])->middleware('can:user', 'auth', 'verified')->name('order');
 Route::get('/order/{id}', [OrderController::class, 'show'])->middleware('can:user', 'auth', 'verified')->name('orderdetails');
 Route::delete('/order/{id}', [OrderController::class, 'destroy'])->middleware('can:user', 'auth', 'verified');
+Route::post('/restore/{id}', [OrderController::class, 'restore'])->middleware('can:user', 'auth', 'verified');
+Route::post('/delete/{id}', [OrderController::class, 'delete'])->middleware('can:user', 'auth', 'verified');
 
 Route::get('/delivery', [StatusController::class, 'delivery'])->middleware('can:delivery', 'auth', 'verified')->name('delivery');
 Route::get('/delivery/{id}', [StatusController::class, 'show'])->middleware('can:delivery', 'auth', 'verified')->name('deliveryupdate');

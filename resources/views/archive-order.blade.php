@@ -27,6 +27,7 @@
                                     <th scope="col" class="px-1 py-3">Current Status</th>
                                     <th scope="col" class="px-1 py-3">Current Location</th>
                                     <th scope="col" class="px-1 py-3">Remarks</th>
+                                    <th scope="col" class="px-1 py-3">Action</th>
                                 </tr>
                             </thead>
 
@@ -45,6 +46,21 @@
                                         <td class="px-1 py-4">{{ $order['current_status'] }}</td>
                                         <td class="px-1 py-4">{{ $order['current_location'] }}</td>
                                         <td class="px-1 py-4">{!! $order['remarks'] !!}</td>
+                                        <td class="px-1 py-4">
+                                            <form method="POST" action="/restore/{{ $order->id }}">
+                                                @csrf
+
+                                                <button
+                                                    class="ml-4 font-medium text-black dark:text-white hover:underline">Restore</button>
+                                            </form>
+                                            <form method="POST" action="/delete/{{ $order->id }}">
+                                                @csrf
+
+                                                <button
+                                                    class="ml-4 font-medium text-black dark:text-white hover:underline">Permanent
+                                                    Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -55,4 +71,5 @@
             </div>
         </div>
     </div>
+    <x-flash />
 </x-app-layout>

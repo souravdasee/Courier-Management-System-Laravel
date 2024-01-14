@@ -79,7 +79,7 @@ class AllOrderController extends Controller
 
     public function archive()
     {
-        $archiveOrder = ArchiveOrder::latest()->filter(request(['search']))->paginate(10)->withQueryString();
+        $archiveOrder = Checkout::onlyTrashed()->paginate(10);
 
         return view('archive-order', [
             'archiveorders' => $archiveOrder
